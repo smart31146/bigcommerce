@@ -1,0 +1,59 @@
+<div class="productView-alsoBought-item-inner">
+    <div class="productView-alsoBought-item-check">
+        <div class="form-field">
+            <input class="form-checkbox" type="checkbox" name="productView-alsoBought-item-checkbox" id="productView-alsoBought-item-checkbox-{{product.id}}" value="{{product.id}}" checked data-also-bought-checkbox>
+            <label class="form-label is-checked" for="productView-alsoBought-item-checkbox-{{product.id}}">
+                <div class="productView-alsoBought-item-title">{{product.title}}</div>
+                <div class="productView-alsoBought-item-price">
+                    {{#if product.call_for_price}}
+                        <span class="price--call">{{product.call_for_price}}</span>
+                    {{else}}
+                        {{#or customer (if theme_settings.restrict_to_login '!==' true)}}
+                            {{> components/products/price price=product.price schema_org=schema}}
+                        {{else}}
+                            {{> components/common/login-for-pricing}}
+                        {{/or}}
+                    {{/if}}
+                </div>
+            </label>
+
+
+
+            <div class="form-increment" data-quantity-change> 
+                <input type="tel" class="qty-form-input" product-id="{{product.id}}" value="1" id="custom-parentproduct"/>
+                <div class="buttons_box">   
+                    <button class="button button--icon" data-action="inc">
+                        <span class="is-srOnly">{{lang 'products.quantity_increase'}}</span>
+                        <i class="icon" aria-hidden="true">
+                            <svg>
+                                <use xlink:href="#icon-add"/>
+                            </svg>
+                        </i>
+                    </button>
+                    <button class="button button--icon" data-action="dec">
+                        <span class="is-srOnly">{{lang 'products.quantity_decrease'}}</span>
+                        <i class="icon" aria-hidden="true">
+                            <svg>
+                                <use xlink:href="#icon-remove"/>
+                            </svg>
+                        </i>
+                    </button>
+                                      
+                </div>                                  
+            </div>
+
+            <!-- <input type="tel" class="qty-form-input" value="1" disabled="disabled" style="cursor: not-allowed" /> -->
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $('#custom-parentproduct').change(function(){
+        // console.log($(this).val());
+        if($(this).val() > 0) {
+            $('.parentproduct').val($(this).val());
+        } else {
+            $('.parentproduct').val(1);
+        }
+    });
+</script>

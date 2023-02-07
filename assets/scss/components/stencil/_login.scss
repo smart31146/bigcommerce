@@ -1,0 +1,269 @@
+// =============================================================================
+// LOGIN (CSS)
+// =============================================================================
+
+.login {
+    margin: spacing("double") auto spacing("double")*2;
+    max-width: remCalc(900px);
+}
+
+.login-row {
+    @include grid-row();
+    @include breakpoint("medium") {
+        margin-top: 0;
+    }
+}
+
+.login-form {
+    @include grid-column(12);
+
+    @include breakpoint("medium") {
+        @include grid-column(6);
+
+        margin-top: 0;
+    }
+}
+
+.new-customer {
+    @include grid-column(12);
+    @include breakpoint("medium") {
+        @include grid-column(6);
+    }
+}
+
+.new-customer-intro {
+    margin-bottom: 0;
+}
+
+.new-customer-fact-list {
+    margin-left: spacing("double");
+}
+
+.new-customer-fact {
+    padding-left: spacing("half");
+}
+.login-heading{
+    font-family: 'Gibson-regular','Helvetica Neue',Helvetica,Arial,sans-serif;
+    color: #414042;
+    text-transform: uppercase;
+    font-size: 46px;
+    margin-bottom: 44px;
+}
+.supermarket-page--pages-auth-login .body{
+    background-color: #fff;
+    .container{
+        padding: 20px !important;
+    }
+    .login-row{
+        margin-top: 0px !important;
+        max-width: none;
+    }
+    form{
+        padding: 0px !important;
+    }
+    .form-label{
+        font-weight: 600 !important;
+        color: #46474c;
+        font-style: normal;
+        line-height: 1.42857143;
+        font-size: 16px;
+    }
+    a.forgot-password{
+        color: #006bb4 !important;
+        margin-left: 30px;
+        font-size: 14px;
+        font-weight: 500;
+        &:hover{
+            color: #3cb4e5;
+            text-decoration: underline;
+        }
+    }
+    .form-input{
+        background: #fff;
+        background-clip: padding-box;
+        border: 1px solid #c2c2c2;
+        border-radius: 1px;
+        font-family: 'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
+        font-size: 16px;
+        height: 32px;
+        line-height: 1.42857143;
+        padding: 0 9px;
+        vertical-align: baseline;
+        width: 100%;
+        box-sizing: border-box;
+        &:focus{
+            outline: none !important;
+        }
+    }
+    .mt-30{
+        margin-top: 30px;
+    }
+    .panel-header, .panel-body, .panel-title{
+        background: #fff !important;
+        font-weight: 600 !important;
+        color: #6d6e71;
+        font-style: normal;
+        line-height: 1.42857143;
+        font-size: 16px;
+    }
+    .panel-body{
+        font-size: 14px;
+    }
+    .panel-title{
+        border-bottom: 1px solid #e8e8e8;
+        padding-bottom: 10px;
+    }
+    .login-text{
+        font-weight: 600 !important;
+        color: #6d6e71;
+        font-style: normal;
+        line-height: 1.42857143;
+        font-size: 16px;
+    }
+}
+//Forgot Password
+.supermarket-page--pages-auth-forgot-password{
+    background-color: #fff;
+    .forgot-heading{
+        @extend .login-heading;
+        margin-top: 30px;
+        display: block;
+    }
+    .container{
+        padding: 0px;
+        max-width: none;
+    }
+    .account--fixedSmall{
+        margin-top: 0px;
+    }
+    .reset-password-intro{
+        @extend .login-text;
+        font-size: 14px;
+    }
+    .form-input{
+        background: #fff;
+        background-clip: padding-box;
+        border: 1px solid #c2c2c2;
+        border-radius: 1px;
+        font-family: 'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
+        font-size: 16px;
+        height: 32px;
+        line-height: 1.42857143;
+        padding: 0 9px;
+        vertical-align: baseline;
+        width: 100%;
+        box-sizing: border-box;
+        &:focus{
+            outline: none !important;
+        }
+    }
+    .form-prefixPostfix-button--postfix{
+        margin: 30px 0px !important;
+    }
+    .form-label{
+        font-weight: 600 !important;
+        color: #46474c;
+        font-style: normal;
+        line-height: 1.42857143;
+        font-size: 16px;
+    }
+    .form-prefixPostfix{
+        width: 100%;
+    }
+}
+// Register
+.supermarket-page--pages-auth-create-account{
+    background-color: #fff;
+    .register-heading{
+        @extend .login-heading;
+        margin-top: 30px;
+        display: block;
+    }
+    // .account--fixedSmall{
+    //     padding: 0px !important;
+    // }
+    .form-inlineMessage{
+    font-size: 14px;
+    font-family: 'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 1.42857143;
+    color: #e02b27;
+    }
+    .form-field{
+        padding-left: inherit;
+    }
+    .form-label{
+        font-weight: 600 !important;
+        color: #46474c;
+        font-style: normal;
+        line-height: 1.42857143;
+        font-size: 14px;
+        &:focus-visible{
+            outline: none;
+        }
+        &::before{
+            border-color: #c2c2c2 !important;
+        }
+    }
+    .form-input{
+        background: #fff;
+        background-clip: padding-box;
+        border: 1px solid #c2c2c2;
+        border-radius: 1px;
+        font-family: 'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
+        font-size: 16px;
+        height: 32px;
+        line-height: 1.42857143;
+        padding: 0 9px;
+        vertical-align: baseline;
+        width: 100%;
+        box-sizing: border-box;
+        &:focus{
+            outline: none !important;
+        }
+    }
+    .container{
+        padding: 0px;
+        max-width: none;
+        @media (max-width: screenSize("medium") - 1px) {
+            padding-left: 20px;
+        }
+    }
+    .form-row{
+        margin: 0 -0.75rem !important;
+    }
+    .form-actions input{
+        display: block;
+    }
+    .form-label small{
+        float: none;
+    }
+}
+.new-customer-intro{
+    font-weight: normal;
+}
+.radio-wrapper{
+    display: flex;
+    width: 20%;
+    margin-bottom: 10px;
+}
+.registerd-customer .panel-header, .registerd-customer .panel-body {
+    padding-left: 0;
+}
+.personalinf{
+    margin: 0 0 22px;
+    padding: 0 0 11px;
+    width: 100%;
+    box-sizing: border-box;
+    float: left;
+    font-weight: 300;
+    line-height: 1.2;
+    font-size: 18px;
+    color: #6d6e71;
+}
+.login-form{
+    @media (max-width: screenSize("medium") - 1px) {
+        padding-left: 0px;
+    }
+}

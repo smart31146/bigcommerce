@@ -1,0 +1,76 @@
+
+<article class="papathemes-brandCarousel-container" data-section-type="brands-logo">
+    {{#unless hide_heading}}
+    <h5 class="footer-info-heading">{{lang 'footer.brands'}}</h5>
+    {{/unless}}
+    <div class="papathemes-brandCarousel" data-slick='{
+        "dots": false,
+        "infinite": false,
+        "mobileFirst": true,
+        "slidesToShow": 2,
+        "slidesToScroll": 2,
+        "responsive": [
+            {
+                "breakpoint": 1260,
+                "settings": {
+                    "slidesToScroll": 2,
+                    "slidesToShow": 5
+                }
+            },
+            {
+                "breakpoint": 800,
+                "settings": {
+                    "slidesToScroll": 2,
+                    "slidesToShow": 5
+                }
+            },
+            {
+                "breakpoint": 550,
+                "settings": {
+                    "slidesToScroll": 2,
+                    "slidesToShow": 3
+                }
+            }
+        ]
+    }'>
+        {{#if type '==' 'static'}}
+            {{#if (lang 'papathemes.brands.image1')}}
+            <div class="papathemes-brandCarousel-slide"><a href="{{lang 'papathemes.brands.image1'}}"><img src="{{lang 'papathemes.brands.image1'}}" alt="{{lang 'papathemes.brands.title1'}}" /></a></div>
+            {{/if}}
+            {{#if (lang 'papathemes.brands.image2')}}
+            <div class="papathemes-brandCarousel-slide"><a href="{{lang 'papathemes.brands.image2'}}"><img src="{{lang 'papathemes.brands.image2'}}" alt="{{lang 'papathemes.brands.title2'}}" /></a></div>
+            {{/if}}
+            {{#if (lang 'papathemes.brands.image3')}}
+            <div class="papathemes-brandCarousel-slide"><a href="{{lang 'papathemes.brands.image3'}}"><img src="{{lang 'papathemes.brands.image3'}}" alt="{{lang 'papathemes.brands.title3'}}" /></a></div>
+            {{/if}}
+            {{#if (lang 'papathemes.brands.image4')}}
+            <div class="papathemes-brandCarousel-slide"><a href="{{lang 'papathemes.brands.image4'}}"><img src="{{lang 'papathemes.brands.image4'}}" alt="{{lang 'papathemes.brands.title4'}}" /></a></div>
+            {{/if}}
+            {{#if (lang 'papathemes.brands.image5')}}
+            <div class="papathemes-brandCarousel-slide"><a href="{{lang 'papathemes.brands.image5'}}"><img src="{{lang 'papathemes.brands.image5'}}" alt="{{lang 'papathemes.brands.title5'}}" /></a></div>
+            {{/if}}
+            {{#if (lang 'papathemes.brands.image6')}}
+            <div class="papathemes-brandCarousel-slide"><a href="{{lang 'papathemes.brands.image6'}}"><img src="{{lang 'papathemes.brands.image6'}}" alt="{{lang 'papathemes.brands.title6'}}" /></a></div>
+            {{/if}}
+            {{#if (lang 'papathemes.brands.image7')}}
+            <div class="papathemes-brandCarousel-slide"><a href="{{lang 'papathemes.brands.image7'}}"><img src="{{lang 'papathemes.brands.image7'}}" alt="{{lang 'papathemes.brands.title7'}}" /></a></div>
+            {{/if}}
+            {{#if (lang 'papathemes.brands.image8')}}
+            <div class="papathemes-brandCarousel-slide"><a href="{{lang 'papathemes.brands.image8'}}"><img src="{{lang 'papathemes.brands.image8'}}" alt="{{lang 'papathemes.brands.title8'}}" /></a></div>
+            {{/if}}
+            {{#if (lang 'papathemes.brands.image9')}}
+            <div class="papathemes-brandCarousel-slide"><a href="{{lang 'papathemes.brands.image9'}}"><img src="{{lang 'papathemes.brands.image9'}}" alt="{{lang 'papathemes.brands.title9'}}" /></a></div>
+            {{/if}}
+            {{#if (lang 'papathemes.brands.image10')}}
+            <div class="papathemes-brandCarousel-slide"><a href="{{lang 'papathemes.brands.image10'}}"><img src="{{lang 'papathemes.brands.image10'}}" alt="{{lang 'papathemes.brands.title10'}}" /></a></div>
+            {{/if}}
+        {{else}}
+            {{#each shop_by_brand}}
+                <div class="papathemes-brandCarousel-slide"><a href="{{url}}">{{name}}</a></div>
+            {{/each}}
+        {{/if}}
+    </div>
+    {{#unless hide_view_all}}
+    <p><a href="{{urls.brands}}">{{lang 'common.view_all'}}</a></p>
+    {{/unless}}
+</article>

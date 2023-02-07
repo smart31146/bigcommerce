@@ -1,0 +1,273 @@
+.heroCarousel-container {
+    display: flex;
+    flex-flow: row wrap;
+    width: 100%;
+
+    @if $theme-style == "compact" {
+		@include breakpoint("medium") {
+            margin-bottom: spacing("half");
+            
+            @if $theme-layout == "left-sidebar" {
+                margin-top: spacing("half");
+            }
+		}
+    }
+}
+
+.heroCarousel {
+    margin-bottom: 0;
+    margin-top: 0;
+    width: 100%;
+
+    .js & {
+        opacity: 1;
+        max-height: none;
+        transition: none;
+    }
+
+    @media (max-width: screenSize("medium") - 1px) {
+        padding-bottom: spacing("single") + spacing("base");
+    }
+
+    @include breakpoint("medium") {
+        width: auto;
+        flex: 1 1 0;
+    }
+
+    &.slick-initialized {
+        max-height: none;
+    }
+    &.slick-dotted {
+        margin-bottom: 0;
+    }
+}
+
+.heroCarousel .slick-next, 
+.heroCarousel .slick-prev {
+    top: 50%;
+    display: none !important;
+
+    @include breakpoint("medium") {
+        display: block !important;
+    }
+}
+
+.heroCarousel .slick-dots li {
+    height: auto;
+    width: auto;
+    padding: remCalc(5px);
+
+    // papathemes-beautify deleted button
+
+    button,
+    button::before {
+        @include square(6px);
+        border-radius: remCalc(3px);
+        transition: all 0.5s ease;
+    }
+
+    &.slick-active {
+        button,
+        button::before {
+            width: remCalc(15px);
+        }
+    }
+
+
+}
+
+.js {
+    .heroCarousel-slide:first-child {
+        display: block;
+    }
+
+    .heroCarousel-slide + .heroCarousel-slide {
+        opacity: 0;
+        max-height: 0;
+    }
+
+    // .heroCarousel-slide:not(.slick-slide),
+    // .heroCarousel-slide.slick-slide:not(.slick-active) {
+    //     background-image: none !important;
+    // }
+
+    .slick-initialized .heroCarousel-slide + .heroCarousel-slide {
+        opacity: 1;
+        max-height: none;
+    }
+}
+
+.heroCarousel-slide {
+    .heroCarousel-image-wrapper {
+        max-height: none;
+    }
+    
+    .heroCarousel-image {
+        max-height: none;
+    }
+
+    a {
+        display: block;
+    }
+}
+
+.heroCarousel-image-box {
+    max-width: 100%;
+    margin: 0 auto;
+    position: relative;
+}
+.heroCarousel-image-box-padding {
+    height: 0;
+}
+
+.heroCarousel-image {
+    width: 100%;
+
+    &.lazyload,
+    &.lazyloading {
+        // width: auto; // comment out to fix error image smaller while loading http://prntscr.com/ukh8z8
+
+        .heroCarousel-image-wrapper:not(.heroCarousel-image-wrapper--sized) & + .heroCarousel-content {
+            opacity: 0;
+        }
+    }
+
+    @include breakpoint("medium") {
+        width: auto;
+    }
+}
+
+.heroCarousel-content {
+    @include breakpoint("medium") {
+        background-color: rgba($carousel-bgColor, stencilNumber("carousel-bgColor-opacity") / 100);
+    }
+}
+
+.heroCarousel-video-wrapper {
+    position: relative;
+    overflow: hidden;
+}
+
+.heroCarousel-video {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 0;
+    padding-bottom: stencilString('carousel-video-ratio');
+    transform: translateY(-50%);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease;
+
+    .slick-active & {
+        visibility: visible;
+    }
+
+    .heroCarousel:not([data-youtube-autoplay]) &,
+    .slick-video-playing & {
+        visibility: visible;
+        opacity: 1;
+    }
+
+    iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+
+// 
+// Make position of carousel description text of each slide 
+// to left or right depends on theme settings
+// 
+@include breakpoint("medium") {
+    @for $i from 0 through 4 {
+        @if stencilString("carousel-slide" + #{$i} + "-position") == "left" {
+            .heroCarousel-slide--#{$i} .heroCarousel-content {
+                text-align: left;
+
+                @include breakpoint("medium") {
+                    left: auto;
+                    right: 50%;
+                    width: auto;
+                }
+                // papathemes-beautify
+                @include breakpoint("xlarge") {
+                    max-width: 39rem;
+                }
+                @include breakpoint("xxlarge") {
+                    max-width: 41rem;
+                }
+            }
+        }
+        @else if stencilString("carousel-slide" + #{$i} + "-position") == "right" {
+            .heroCarousel-slide--#{$i} .heroCarousel-content {
+                text-align: right;
+
+                @include breakpoint("medium") {
+                    left: 50%;
+                    right: auto;
+                    width: auto;
+                }
+                // papathemes-beautify
+                @include breakpoint("xlarge") {
+                    max-width: 39rem;
+                }
+                @include breakpoint("xxlarge") {
+                    max-width: 41rem;
+                }
+            }
+        }
+    }
+}
+
+
+// papathemes-beautify edited
+.heroCarousel-title {
+    font-family: $header-font-family;
+    font-weight: $header-font-weight;
+    font-size: stencilNumber("carousel-title-fontSize-mobile");
+    line-height: 1.1;
+    margin-bottom: spacing("quarter");
+
+    @include breakpoint("medium") {
+        font-size: stencilNumber("carousel-title-fontSize");
+        margin-bottom: spacing("half");
+    }
+}
+
+.heroCarousel-description {
+    font-size: stencilNumber("carousel-description-fontSize-mobile");
+    margin-bottom: spacing("half");
+
+    @include breakpoint("medium") {
+        font-size: stencilNumber("carousel-description-fontSize");
+        margin-bottom: 0;
+    }
+}
+.heroCarousel-slide--0 .heroCarousel-content{
+  
+    right: 0!important;
+    left: 50% !important;
+    max-width: 50%;
+    @media (max-width: screenSize("medium") - 1px) {
+       max-width: 100%;
+    }
+
+}
+.button--black:hover, .button--black:focus {
+    background-color: #006bb4 !important;
+    border-color: #006bb4 !important;
+}
+.heroCarousel-description{
+    font-size: 18px;
+    line-height: 24px;
+    font-weight: 400;
+}
+.heroCarousel-action{
+    padding: 14px 16px !important;
+}

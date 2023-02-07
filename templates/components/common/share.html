@@ -1,0 +1,143 @@
+
+{{#or settings.add_this.buttons settings.facebook_like_button.enabled}}
+    {{assignVar 'encodedUrl' (encodeURI url)}}
+    {{assignVar 'encodedTitle' (encodeURI head.title)}}
+    <div class="addthis_toolbox">
+        {{#if settings.add_this.buttons}}
+            <ul class="socialLinks socialLinks--alt"{{#if idPrefix}} id="socialLinks-{{idPrefix}}"{{/if}}>
+                {{#each settings.add_this.buttons}}
+                    {{#if service '===' 'email'}}
+                        <li class="socialLinks-item socialLinks-item--{{service}}">
+                            <a class="socialLinks__link icon icon--{{service}}"
+                            title="{{{capitalize service}}}"
+                            href="mailto:?subject={{getVar 'encodedTitle'}}&amp;body={{getVar 'encodedUrl'}}"
+                            target="_self"
+                            rel="noopener"
+                            {{{annotation}}}
+                            >
+                                <span class="aria-description--hidden">{{{capitalize service}}}</span>
+                                <!-- <svg>
+                                    <use xlink:href="#icon-envelope"/>
+                                </svg> -->
+                                <img alt="Email" src="https://cdn11.bigcommerce.com/s-eplfis85ct/product_images/uploaded_images/hex-icon-silver-mail-72px.png">
+                                
+                            </a>
+                            
+                        </li>
+
+        {{else if service '===' 'print'}}
+        <li class="socialLinks-item socialLinks-item--{{service}}">
+        <a class="socialLinks__link icon icon--{{service}}"
+           title="{{{capitalize service}}}"
+           onclick="window.print();return false;"
+           {{{annotation}}}
+        >
+            <span class="aria-description--hidden">{{{capitalize service}}}</span>
+            <!-- <svg>
+                <use xlink:href="#icon-print"/>
+            </svg> -->
+            <img alt="Print" src="https://cdn11.bigcommerce.com/s-eplfis85ct/product_images/uploaded_images/printicon.png">
+        </a>
+        </li>
+
+        {{/if}}
+                {{/each}}
+                {{#each settings.add_this.buttons}}
+                    {{#if service '!=' 'email'}}
+        {{#if service '!=' 'print'}}
+                        <li class="socialLinks-item socialLinks-item--{{service}}">
+                            {{#if service '===' 'facebook'}}
+                            <a class="socialLinks__link icon icon--{{service}}"
+                            title="{{{capitalize service}}}"
+                            href="https://facebook.com/sharer/sharer.php?u={{getVar 'encodedUrl'}}"
+                            target="_blank"
+                            rel="noopener"
+                            {{{annotation}}}
+                            >
+                                <span class="aria-description--hidden">{{{capitalize service}}}</span>
+                                <!-- <svg>
+                                    <use xlink:href="#icon-facebook"/>
+                                </svg> -->
+                                <img alt="QRFS on Facebook" title="QRFS on Facebook" src="https://cdn11.bigcommerce.com/s-eplfis85ct/product_images/uploaded_images/facebook-72px.png">
+                            </a>						
+                            
+                            {{else if service '===' 'email'}}
+                            <a class="socialLinks__link icon icon--{{service}}"
+                            title="{{{capitalize service}}}"
+                            href="mailto:?subject={{getVar 'encodedTitle'}}&amp;body={{getVar 'encodedUrl'}}"
+                            target="_self"
+                            rel="noopener"
+                            {{{annotation}}}
+                            >
+                                <span class="aria-description--hidden">{{{capitalize service}}}</span>
+                                <!-- <svg>
+                                    <use xlink:href="#icon-envelope"/>
+                                </svg> -->
+                                <img alt="Email" title="Email" src="https://cdn11.bigcommerce.com/s-eplfis85ct/product_images/uploaded_images/hex-icon-silver-mail-72px.png">
+                                
+                            </a>
+                            
+                            {{else if service '===' 'twitter'}}
+                            <a class="socialLinks__link icon icon--{{service}}"
+                            href="https://twitter.com/intent/tweet/?text={{getVar 'encodedTitle'}}&amp;url={{getVar 'encodedUrl'}}"
+                            target="_blank"
+                            rel="noopener"
+                            title="{{{capitalize service}}}"
+                            {{{annotation}}}
+                            >
+                                <span class="aria-description--hidden">{{{capitalize service}}}</span>
+                                <!-- <svg>
+                                    <use xlink:href="#icon-twitter"/>
+                                </svg> -->
+                                <img alt="QRFS on Twitter" title="QRFS on Twitter" src="https://cdn11.bigcommerce.com/s-eplfis85ct/product_images/uploaded_images/twitter-72px.png">
+                            </a>						
+                        
+                          
+                        
+                            {{else if service '===' 'linkedin'}}
+                            <a class="socialLinks__link icon icon--{{service}}"
+                            title="{{{capitalize service}}}"
+                            href="https://www.linkedin.com/shareArticle?mini=true&amp;url={{getVar 'encodedUrl'}}&amp;title={{getVar 'encodedTitle'}}&amp;summary={{getVar 'encodedTitle'}}&amp;source={{getVar 'encodedUrl'}}"
+                            target="_blank"
+                            rel="noopener"
+                            {{{annotation}}}
+                            >
+                                <img alt="QRFS on LinkedIn" title="QRFS on LinkedIn" src="https://cdn11.bigcommerce.com/s-eplfis85ct/product_images/uploaded_images/linkedin-72px.png">
+                            </a>
+                            {{else if service '===' 'pinterest'}}
+                        {{!--  <a class="socialLinks__link icon icon--{{service}}"
+                            title="{{{capitalize service}}}"
+                            href="https://pinterest.com/pin/create/button/?url={{getVar 'encodedUrl'}}&amp;description={{getVar 'encodedTitle'}}"
+                            target="_blank"
+                            rel="noopener"
+                            {{{annotation}}}
+                            >
+                                <span class="aria-description--hidden">{{{capitalize service}}}</span>
+                                <svg>
+                                    <use xlink:href="#icon-pinterest"/>
+                                </svg>
+                            </a>
+                            --}}
+                            {{/if}}
+                        </li>
+        {{/if}}
+                    {{/if}}
+                {{/each}}
+            </ul>
+        {{/if}}
+        {{#if settings.facebook_like_button.enabled}}
+            <iframe
+                class="facebook{{#if settings.facebook_like_button.verb '===' 'recommend'}}Recommend{{else}}Like{{/if}}Btn"
+                style="border:none; overflow:hidden; margin: 0; padding: 0; height: 20px; margin-top: .75rem; max-width: 100%"
+                src="https://www.facebook.com/plugins/like.php?href={{settings.facebook_like_button.href}}&amp;layout=button_count{{#if settings.facebook_like_button.verb '===' 'recommend'}}&amp;action=recommend{{/if}}&amp;colorscheme=light&amp;height=20"
+                scrolling="no"
+                frameborder="0"
+                allowTransparency="true">
+            </iframe>
+        {{/if}}
+        <!-- <div class="fast-ship-modal-link">
+            <a href="#" data-reveal-id="modal-shipping-description"><p>{{lang 'products.fast_shipping_and_easy_return'}}</p></a>
+        </div> -->
+    </div>
+{{/or}}
+

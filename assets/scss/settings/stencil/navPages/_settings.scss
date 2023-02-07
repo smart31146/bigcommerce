@@ -1,0 +1,9 @@
+// =============================================================================
+// NAV PAGES (Settings)
+// =============================================================================
+
+
+$navPages-backgroundColor:                  stencilColor("navPages-backgroundColor"); // papathemes-beautify
+$navPage-borderColor:                       stencilColor("navPages-subMenu-separatorColor");
+$navPage-childList-borderColor:             $navPage-borderColor;
+$navPages-list--user-borderColor:           $navPage-borderColor;

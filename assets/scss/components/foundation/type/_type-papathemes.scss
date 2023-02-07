@@ -1,0 +1,31 @@
+body {
+	-webkit-font-smoothing: $font-smoothing;
+}
+
+[aria-selected],
+[aria-hidden] {
+	@include breakpoint("medium") {
+		outline: none;
+	}
+}
+
+a {
+	text-underline-position: under;
+}
+
+.papathemes-categoryPage-mainImage,
+.papathemes-brandPage-mainImage {
+	display: block;
+	margin: 0 auto spacing("single");
+
+	// papathemes-beautify
+	@media (max-width: screenSize("medium") - 1px) {
+		text-align: center;
+	}
+}
+
+.u-hiddenVisually {
+	margin: 0 !important;
+	// papathemes-beautify: fix accessibility
+	visibility: hidden;
+}

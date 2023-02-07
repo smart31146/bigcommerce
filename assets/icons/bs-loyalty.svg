@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg version="1.1" id="Layer_1" x="0px" y="0px" width="64px" height="64px" viewBox="0 0 64 64" enable-background="new 0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <title>gift</title>
+  <polyline id="Stroke-264" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" points="&#10;&#9;4.069,30.965 4.069,62 59.932,62 59.932,30.965 " style="stroke: rgb(90, 103, 112);"/>
+  <polyline id="Stroke-265" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" points="&#10;&#9;24.759,30.965 2,30.965 2,15.448 10.276,15.448 " style="stroke: rgb(90, 103, 112);"/>
+  <polyline id="Stroke-266" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" points="&#10;&#9;53.725,15.448 62,15.448 62,30.965 39.241,30.965 " style="stroke: rgb(90, 103, 112);"/>
+  <line id="Stroke-267" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" x1="24.759" y1="18.552" x2="24.823" y2="61.418" style="stroke: rgb(90, 103, 112);"/>
+  <line id="Stroke-268" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" x1="39.241" y1="18.552" x2="39.307" y2="61.869" style="stroke: rgb(90, 103, 112);"/>
+  <path id="Stroke-269" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" d=" M39.241,17.517c1.938,2.829,5.593,5.172,9.311,5.172s5.173-2.748,5.173-5.172c0-2.424-2.068-4.041-2.068-5.172 c0-1.131,2.068-2.748,2.068-5.172C53.725,4.749,52.27,2,48.552,2s-7.372,2.344-9.311,5.172" style="stroke: rgb(90, 103, 112);"/>
+  <path id="Stroke-270" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" d=" M24.759,17.517c-1.941,2.829-5.593,5.172-9.311,5.172c-3.718,0-5.172-2.748-5.172-5.172c0-2.424,2.069-4.041,2.069-5.172 c0-1.131-2.069-2.748-2.069-5.172C10.276,4.749,11.73,2,15.448,2c3.718,0,7.37,2.344,9.311,5.172" style="stroke: rgb(90, 103, 112);"/>
+  <path id="Stroke-271" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" d=" M39.241,13.379c0,5.141-3.241,9.31-7.241,9.31s-7.241-4.169-7.241-9.31S28,4.069,32,4.069S39.241,8.238,39.241,13.379z" style="stroke: rgb(90, 103, 112);"/>
+</svg>

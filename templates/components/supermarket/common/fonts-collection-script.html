@@ -1,0 +1,33 @@
+<!-- Begin loading fonts -->
+<script type="text/plain" id="themeFontsCollection">{{ getFontsCollection }}</script>
+{{!--
+<script>
+(function() {
+    var el = document.getElementById('themeFontsCollection');
+
+    var txt = document.createElement('textarea');
+    txt.innerHTML = el.innerHTML;
+
+    var div = document.createElement('div');
+    div.innerHTML = txt.value;
+
+    for (var i = 0; i < div.childNodes.length; i++) {
+        var node = div.childNodes[i];
+        if (node.nodeType === 1) {
+            if (node.tagName === 'LINK') {
+                node.media = 'none';
+                node.onload = function() {
+                    node.media = 'all';
+                    node.onload = null;
+                }
+            }
+            el.parentNode.insertBefore(node, el);
+        }
+    }
+})();
+</script>
+--}}
+{{!-- Minify the script: --}}
+<script>!function(){var e=document.getElementById("themeFontsCollection"),n=document.createElement("textarea");n.innerHTML=e.innerHTML;var t=document.createElement("div");t.innerHTML=n.value;for(var o=0;o<t.childNodes.length;o++){var a=t.childNodes[o];1===a.nodeType&&("LINK"===a.tagName&&(a.media="none",a.onload=function(){a.media="all",a.onload=null}),e.parentNode.insertBefore(a,e))}}();</script>
+<noscript>{{ getFontsCollection }}</noscript>
+<!-- End loading fonts -->

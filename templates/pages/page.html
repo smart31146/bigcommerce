@@ -1,0 +1,53 @@
+---
+blog:
+    recent_posts:
+        limit: {{theme_settings.homepage_blog_posts_count}}
+customer:
+    recently_viewed_products:
+        limit: {{theme_settings.product_recently_viewed}}
+shop_by_brand:
+    limit: {{theme_settings.sidebar_shop_by_brand}}
+---
+{{#partial "page"}}
+
+{{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+<h1 class="page-heading">{{ page.title }}</h1>
+
+<main class="page{{#if page.sub_pages}} page--hasRightSidebar{{/if}}">
+    {{#if page.sub_pages}}
+        <div class="page-sidebar page-sidebar--right">
+            {{> components/supermarket/sidebar/subpages}}
+        </div>
+    {{/if}}
+
+    <div class="page-content {{#if theme_settings.layout '!==' 'left-sidebar'}}{{#unless page.sub_pages}}page-content--centered{{/unless}}{{/if}}">
+        <div class="page-content-body">
+            {{{region name="page_builder_content--global"}}}
+            {{{region name="page_builder_content"}}}
+
+            {{#replace '%%Syndicate%%' page.content}}
+                {{> components/page/rss_feed}}
+            {{else}}
+                {{{page.content}}}
+            {{/replace}}
+
+            {{#if page.feed}}
+                <ul>
+                    {{#each page.feed}}
+                        <li>
+                            <h6><a href="{{url}}" target="_blank">{{title}}</a></h6>
+                            <p>{{content}}</p>
+                        </li>
+                    {{/each}}
+                </ul>
+            {{/if}}
+
+            {{{region name="page_builder_bottom"}}}
+            {{{region name="page_builder_bottom--global"}}}
+        </div>
+    </div>
+</main>
+
+{{/partial}}
+
+{{> layout/base}}

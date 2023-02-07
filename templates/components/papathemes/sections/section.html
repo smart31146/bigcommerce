@@ -1,0 +1,60 @@
+{{#if section '===' '-'}}
+
+{{else if section '===' 'slideshow'}}
+    {{#if carousel}}
+        {{> components/carousel}}
+    {{/if}}
+
+{{else if section '===' 'blog_recent'}}
+    {{#if theme_settings.homepage_blog_posts_position '===' 'content'}}
+    {{#if theme_settings.homepage_blog_posts_count '>' 0}}
+    {{> components/beautify/recent-blog posts=blog.recent_posts}}
+    {{/if}}
+    {{/if}}
+
+{{else if section '===' 'new_products'}}
+    {{#if products.new}}
+        <div class="beautify__section {{#if index}}beautify__section--index{{index}}{{/if}} beautify__section--newProducts beautify__section--displayType-grid">
+        <div class="container">
+        {{> components/products/new 
+            products=products.new
+            columns=theme_settings.product_new_col
+            display_type=theme_settings.product_new_type}}
+        </div>
+        </div>
+    {{/if}}
+
+{{else if section '===' 'featured_products'}}
+    {{#if products.featured}}
+        <div class="beautify__section {{#if index}}beautify__section--index{{index}}{{/if}} beautify__section--featuredProducts beautify__section--displayType-grid">
+        <div class="container featured-product">
+        {{> components/products/featured 
+            products=products.featured 
+            columns=theme_settings.product_featured_col 
+            display_type=theme_settings.product_featured_type}}
+        </div>
+        </div>
+    {{/if}}
+
+{{else if section '===' 'popular_products'}}
+    {{#if products.top_sellers}}
+        <div class="beautify__section {{#if index}}beautify__section--index{{index}}{{/if}} beautify__section--topProducts beautify__section--displayType-grid">
+        <div class="container">
+        {{> components/products/top 
+            products=products.top_sellers 
+            columns=theme_settings.product_top_col
+            display_type=theme_settings.product_top_type}}
+        </div>
+        </div>
+    {{/if}}
+
+{{else if section '===' 'newsletter'}}
+    {{#if settings.show_newsletter_box}}
+        {{> components/beautify/section-home-newsletter}}
+    {{/if}}
+
+{{else if section '===' 'instagram'}}
+    <div class="beautify__section {{#if index}}beautify__section--index{{index}}{{/if}} beautify__section--instagram">
+        {{> components/beautify/section-home-instagram}}
+    </div>
+{{/if}}

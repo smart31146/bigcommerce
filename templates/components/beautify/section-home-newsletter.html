@@ -1,0 +1,74 @@
+{{#if settings.show_newsletter_box}}
+    <div class="beautify__section {{#if index}}beautify__section--index{{index}}{{/if}} beautify__newsletter">
+        {{#if theme_settings.footer-secondary-backgroundImg '==' 'cosmetics'}}
+            {{> components/common/responsive-img-url image=(cdn 'img/beautify/cosmetic-newsletter-bg.jpg') alt=(lang 'newsletter.subscribe') class="_bgImg"}}
+        {{else if theme_settings.footer-secondary-backgroundImg '==' 'custom'}}
+            {{#if theme_settings.footer-secondary-backgroundImgFile}}
+                {{> components/common/responsive-img-url image=(getImageManagerImage theme_settings.footer-secondary-backgroundImgFile) alt=(lang 'newsletter.subscribe') class="_bgImg"}}
+            {{/if}}
+        {{/if}}
+        <div class="footer-section">
+        <div class="Footer-news container pl-0">
+            <div class="footer-head">
+            <span>Address building fire protection system issues <em>before</em> they are cited. Learn how by subscribing to the QRFS Newsletter.</span>
+        </div>
+            {{#if settings.show_newsletter_summary}}
+                {{#if settings.newsletter_summary}}
+                    <p>{{{settings.newsletter_summary}}}</p>
+                {{/if}}
+            {{/if}}
+            <div class="news-form">
+            <form class="form" action="{{urls.subscribe.action}}" method="post">
+                <fieldset class="form-fieldset">
+                    <input type="hidden" name="action" value="subscribe">
+                    <input type="hidden" name="nl_first_name" value="">
+                    <input type="hidden" name="check" value="1">
+                    <div class="form-field">
+                        
+                        <label class="form-label is-srOnly" for="nl_email">{{lang 'common.email_address'}}</label>
+                        <input class="form-input" id="nl_email" name="nl_email" type="email" value="{{customer.email}}" placeholder="{{lang 'newsletter.email_placeholder'}}">
+                    
+                        <button class="button news-button" id="news_button" type="submit">{{lang 'newsletter.subscribe_submit'}}</button>
+                    </div>
+                </fieldset>
+            </form> 
+            <span class='err_msg1'>This is required field.</span>
+            <div class="terms-wrapper">
+                <input id="termsCheck" required name="terms" type="checkbox">
+                <label for="terms">I have read, understand and consent to the <a href="https://www.qrfs.com/terms-of-use">Terms of Use</a> and the <a href="https://www.qrfs.com/privacy-policy/">Privacy Policy</a>.</label>
+            </div>
+            <div class="">
+                <span class='err_msg'>This is required field.</span>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
+{{/if}}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type='text/javascript'>
+$(".err_msg1").hide();
+$(".err_msg").hide();
+$("#news_button").on("click",function(e){
+    var c=0;
+    
+    if($("#nl_email").val()!="")
+    {
+        $(".err_msg1").hide();
+
+    }else{
+            $(".err_msg1").css({"color":"#e02b27",'float':'left'}).show();
+            c++;
+            e.preventDefault();
+    }
+
+    if($("#termsCheck").is(":checked"))
+    {
+        $(".err_msg").hide();
+    }else{
+            $(".err_msg").css({"color":"#e02b27",'float':'left'}).show();
+            c++;
+            e.preventDefault();
+    }
+});
+</script>

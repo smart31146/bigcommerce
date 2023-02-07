@@ -1,0 +1,12 @@
+<div class="sidebarBlock sidebarBlock--navList sidebarBlock--brands sidebarBlock--mobileCollapsible">
+    <h3 class="sidebarBlock-heading is-open" href="#" data-collapsible="#brands-navList" tabindex="0" aria-expanded="true">
+        {{lang 'footer.brands'}}
+        <svg class="icon"><use xlink:href="#icon-keyboard-arrow-down"></use></svg>
+    </h3>
+    <ul id="brands-navList" class="beautify__navList is-open" aria-hidden="false">
+        {{#each shop_by_brand}}
+        <li class="navList-item"><a class="navList-action" data-instantload href="{{url}}" title="{{name}}">{{name}}</a></li>
+        {{/each}}
+        <li class="navList-item"><a class="navList-action" data-instantload href="{{urls.brands}}">{{lang 'common.view_all'}}</a></li>
+    </ul>
+</div> 

@@ -1,0 +1,17 @@
+.container .account {
+    padding: 0 $container-padding / 2;
+
+    .account-body {
+        margin: 0;
+    }
+}
+
+.account--fixed {
+    @include breakpoint("medium") {
+        width: 80%;
+    }
+
+    @include breakpoint("large") {
+        width: 60%;
+    }
+}

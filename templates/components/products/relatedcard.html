@@ -1,0 +1,32 @@
+
+<a href="{{url}}" {{#if settings.data_tag_enabled}} data-event-type="product-click" {{/if}} data-instantload data-entity-id="{{id}}">
+    <figure class="product-image">
+        <div class="card-img-container">
+            {{> components/common/responsive-img
+                image=image
+                class="card-image"
+                fallback_size=theme_settings.productgallery_size
+                lazyload=theme_settings.lazyload_mode
+                default_image=theme_settings.default_image_product
+            }}
+            {{#if theme_settings.card_showHoverImage}}
+                {{#each (limit images 2)}}
+                    {{#if @index '>' 0}}
+                        {{> components/common/responsive-img
+                            image=this
+                            class="card-image"
+                            fallback_size=../../theme_settings.productgallery_size
+                            lazyload=../../theme_settings.lazyload_mode
+                            default_image=../../theme_settings.default_image_product
+                        }}
+                    {{/if}}
+                {{/each}}
+            {{/if}}
+        </div>
+</figure>
+{{#filter custom_fields 'SKU Option' property='name'}}
+    <div class="options-box-sku">
+        <span class="options-box-value">{{{value}}}</span>
+    </div>
+{{/filter}}
+</a>

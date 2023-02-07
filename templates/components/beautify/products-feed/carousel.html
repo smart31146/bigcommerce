@@ -1,0 +1,54 @@
+<section class="productCarousel " data-list-name="Products Feed Widget"
+    data-slick='{
+        "dots": true,
+        "arrows": false,
+        "infinite": true,
+        "mobileFirst": true,
+        "slidesToShow": 2,
+        "slidesToScroll": 1,
+        "swipeToSlide": true,
+        "touchThreshold": 10,
+        "autoplay": true,
+        "autoplaySpeed": 2000,
+        "responsive": [
+            {
+                "breakpoint": 1260,
+                "settings": {
+                    "dots": false,
+                    "arrows": true,
+                    "slidesToShow": {{ theme_settings.widget_products_feed_col }}
+                }
+            },
+            {
+                "breakpoint": 800,
+                "settings": {
+                    "dots": false,
+                    "arrows": true,
+                    "slidesToShow": {{ theme_settings.widget_products_feed_col }}
+                }
+            },
+            {
+                "breakpoint": 550,
+                "settings": {
+                    "slidesToShow": 2
+                }
+            }
+        ]
+    }'
+>
+    {{#each category.products}}
+        <div class="productCarousel-slide" data-product-id="{{id}}">
+            {{> components/products/card settings=../settings show_rating=../settings.show_product_rating theme_settings=../theme_settings customer=../customer event="list" position=(add @index 1)}}
+        </div>
+    {{/each}}
+    {{#each brand.products}}
+        <div class="productCarousel-slide" data-product-id="{{id}}">
+            {{> components/products/card settings=../settings show_rating=../settings.show_product_rating theme_settings=../theme_settings customer=../customer event="list" position=(add @index 1)}}
+        </div>
+    {{/each}}
+    {{#each product_results.products}}
+        <div class="productCarousel-slide" data-product-id="{{id}}">
+            {{> components/products/card settings=../settings show_rating=../settings.show_product_rating theme_settings=../theme_settings customer=../customer event="list" position=(add @index 1)}}
+        </div>
+    {{/each}}
+</section>

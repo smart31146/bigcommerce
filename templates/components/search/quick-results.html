@@ -1,0 +1,18 @@
+{{{region name="quick_search_top--global"}}}
+{{#if product_results.products}}
+    <p class="quickSearchResults-more"><a href="{{forms.search.product_url}}" class="button button--primary">{{lang 'search.quick_search.show_all'}}</a></p>
+    {{{region name="quick_search_above_products--global"}}}
+    <ul class="productGrid productGrid--maxCol4" {{#if settings.data_tag_enabled}} data-list-name="Quick Search Results" {{/if}}>
+
+        {{#each product_results.products}}
+        <li class="product">
+            {{> components/products/card show_compare=../show_compare theme_settings=../theme_settings customer=../customer settings=../settings event="list" position=(add @index 1)}}
+        </li>
+        {{/each}}
+    </ul>
+{{else}}
+    <p class="quickSearchMessage">
+        {{{lang 'search.results.quick_count' count=pagination.product_results.total search_query=(sanitize forms.search.query)}}}
+    </p>
+{{/if}}
+{{{region name="quick_search_bottom--global"}}}

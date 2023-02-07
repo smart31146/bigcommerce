@@ -1,0 +1,182 @@
+<nav>
+    {{#if theme_settings.layout '===' 'left-sidebar'}}
+        {{> components/supermarket/sidebar/categories-menu}}
+    {{/if}}
+    {{#if category.subcategories}}
+    <div class="sidebarBlock sidebarBlock--mobileCollapsible">
+        <h3 class="sidebarBlock-heading is-open" data-collapsible="#categories-navList" tabindex="0" aria-expanded="true">
+            {{category.name}}
+            <svg class="icon"><use xlink:href="#icon-keyboard-arrow-down"></use></svg>
+        </h3>
+        <ul id="categories-navList" class="beautify__navList is-open" aria-hidden="false">
+            {{#each category.subcategories}}
+            <li class="navList-item finish-item">
+                <a class="navList-action navList-action--checkbox" data-instantload href="{{url}}" title="{{name}}">{{name}}</a>
+            </li>
+            {{/each}}
+        </ul>
+    </div>
+    {{/if}}
+    {{#if category.faceted_search_enabled}}
+        {{> components/faceted-search/index category}}
+    {{else}}
+        {{#if theme_settings.show_shop_by_price '!=' 'hide'}}
+            {{> components/category/shop-by-price shop_by_price=category.shop_by_price category_url=category.url}}
+        {{/if}}
+        {{#if shop_by_brand}}
+            {{#if theme_settings.sidebar_shop_by_brand '>' 9}}
+                {{> components/supermarket/sidebar/brands}}
+            {{/if}}
+        {{/if}}
+
+    {{/if}}
+</nav>
+<div id='test_chk' style="display: none;">
+    {{{sanitize (json category.facets)}}}
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    var dd="";
+    var mod_Category ='{{{sanitize (json category.facets)}}}';
+    var swatchesAttribute ={};
+            function checkFileExist(u_rl) {
+                var a=false;
+                    if(u_rl){
+                        $.ajax({
+                            url:u_rl,
+                            async:false,
+                            error: function(err)
+                            {
+                                //file not exists
+                                a=false;
+                            },
+                            success: function(data)
+                            {
+                                //file exists
+                                a=true;
+                            }
+                        });
+
+                    } else {
+                         a=false;
+                    }
+            return a;
+        }
+        
+            $.each($("a .toggleLink-text.toggleLink-text--off"),function(ind,vak){ 
+                var target_elem=$(this);
+                var target=$(this).parent("a").prev("ul");
+                var attr_name=$(this).parent("a").prev("ul").attr("data-facet"); 
+                var url=window.origin+window.location.pathname+"?list_all="+attr_name;
+                if(attr_name!="" && url!=""){
+                    $.ajax({
+                        url:url,
+                        type:'get',
+                        async:false,
+                        error: function(err)
+                        {
+                            console.log(err);
+                        },
+                        success: function(result)
+                        {
+                            var parser = new DOMParser(); 
+                            var htmlDoc = parser. parseFromString(result, 'text/html');
+                            if(htmlDoc!="")
+                                {
+                                   dd=$(htmlDoc).find("#test_chk").html();
+                                    content=$(htmlDoc).find("body .page ul.navList[data-facet='"+attr_name+"']").html();
+                                    if(content!="")
+                                    {
+                                        $(target).html(content);
+                                        $(target_elem).hide();
+                                    }
+                                }   
+                        }
+                    });
+
+                } 
+            });
+            
+
+            if(mod_Category!=undefined & mod_Category!="")
+            {
+                customAttributes=JSON.parse(mod_Category);
+                if(dd!=undefined && dd!=""){
+                   customAttributes=dd;
+                   customAttributes=customAttributes.trim();
+                  customAttributes=JSON.parse(customAttributes);
+                }
+
+                if(customAttributes!=undefined &&  customAttributes.length>0)
+                {
+                    for(var p in customAttributes)
+                    {
+                        for(var a in customAttributes[p])
+                        {
+                            if(a=="facet" && customAttributes[p].facet.indexOf("Finish")!== -1)
+                            {
+                                if(customAttributes[p].items!=undefined)
+                                {   
+                                    var swatchesAttribute=customAttributes[p].items;
+                                }
+                            }  
+                        }
+                    }
+                }
+                if(swatchesAttribute!=null)
+                {
+                    for(var pro in swatchesAttribute)
+                    {
+                        if(swatchesAttribute[pro].param_name!=undefined && swatchesAttribute[pro].param_name!=null)
+                        {
+                            $.each($("#facetedSearch-navList ._accordion-block ul[data-facet='"+swatchesAttribute[pro].param_name+"'] li.navList-item"), function() {
+                                    var aElement=$(this).find("a");
+                                    var textElement=null;
+                                    var anchorValue = $(aElement).contents().filter(function() {
+
+                                            if(this.nodeName == "SPAN"){
+                                                    $(this).remove();
+                                                }
+                                             if(this.nodeType == Node.TEXT_NODE) {
+                                                    return this;
+                                                }
+                                    })
+                                    
+                                    if($(anchorValue).text().trim().indexOf(swatchesAttribute[pro].param_value)!==-1)
+                                    {
+                                        if(swatchesAttribute[pro].param_value!=null)
+                                        {
+                                            var swatchData=swatchesAttribute[pro].param_value;
+                                            
+                                          
+                                            if(swatchData!=undefined && swatchData!="")
+                                            {
+                                             
+                                               swatchData=swatchData.toLowerCase();
+                                                var filename=swatchData.trim().toLowerCase();
+                                                if(filename.indexOf(" ")!==-1)
+                                                {
+                                                    filename=filename.replaceAll(" ","_");
+                                                }
+                                                if(filename.indexOf(",")!==-1)
+                                                {
+                                                    filename=filename.replaceAll(",","-");
+                                                }
+                                                 
+                                                 var path1="{{cdn 'webdav:swatches/finish'}}/"+filename+".png";
+                                                 $(aElement).prepend("<div style='width:30px;height:30px'><img src='"+path1+"' class='swatches_prp_img finish-wrap' alt='"+swatchData+"' test-path='"+path1+"' title='"+swatchData+"' width='28px' height='28px'/></div>");
+                                                    $(textElement).nodeValue="";
+                                                    $(anchorValue).remove();
+                                                    $(anchorValue).hide();  
+                                                     
+                                            }
+                                        }
+                                }
+                            });
+
+                        }
+                    }
+                }
+            }
+   
+</script>

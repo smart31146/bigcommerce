@@ -1,0 +1,45 @@
+<div id="modal-shipping-description" class="modal" data-reveal>
+    <div class="modal-header">
+        <h2 class="modal-header-title">{{lang 'products.fast_shipping_and_easy_return'}}</h2>
+        <a href="#" class="modal-close" aria-label="{{lang 'common.close'}}" role="button">
+            <svg class="icon"><use xlink:href="#icon-close" /></svg>
+        </a>
+    </div>
+    <div class="modal-body">
+        <div class="fast-shipping-desciption"></div>  
+    </div>
+</div>
+<script>
+    var url=window.origin+"/fast-shipping-and-easy-return/"; 
+    
+        if(window.origin!=undefined && window.origin!="")
+        {   
+            $.get(url, function(result){
+                var content="";
+                          if(result!="")
+                          {
+                            var parser = new DOMParser(); 
+                            var htmlDoc = parser. parseFromString(result, 'text/html');
+                            if(htmlDoc!="")
+                                {
+                                    content=$(htmlDoc).find("body .page-content-body").html();
+                                    if(content!=undefined && content!="")
+                                    {
+                                        $(".fast-shipping-desciption").html(content);
+                                    }else{
+                                        content=$(htmlDoc).find("body").html();
+                                        if(content!=undefined && content!=""){
+                                             $(".fast-shipping-desciption").html(content);
+                                        }else{
+                                            $(".fast-shipping-desciption").html("<h2>Page not found! Please create a web page for shipping and easy return</h2>"); 
+                                        }  
+                                 }
+                                    
+                                }
+                          }else{
+                            $(".fast-shipping-desciption").html("<h2>Page not found! Please create a web page for shipping and easy return</h2>");
+                          }
+                      
+              });
+        }           
+  </script>

@@ -1,0 +1,45 @@
+{{#if is_ajax}}
+    {{#or (if theme_settings.sidebar_shop_by_brand '==' 9) (unless shop_by_brand)}}
+        {{#unless category.faceted_search_enabled}}
+            {{#unless category.subcategories}}
+                {{assignVar 'hide_sidebar_on_desktop' 1}}
+            {{/unless}}
+        {{/unless}}
+    {{/or}}
+{{/if}}
+
+{{#all (if theme_settings.show_shop_by_price '==' 'slider') shop_by_price (getVar 'hide_sidebar_on_desktop')}}
+    <div class="beautify__shopByPrice-horizontal u-hideMobile u-hideTablet" data-beautify-shop-by-price="{{JSONstringify shop_by_price}}">
+        <div class="form-label">{{lang 'category.shop_by_price'}}:</div>
+        <div class="beautify__shopByPrice-slider" data-slider></div>
+        <fieldset class="form-fieldset">
+            <div class="form-minMaxRow">
+                <div class="form-field form-field--input">
+                    <input
+                        data-input-min
+                        placeholder="{{lang 'search.faceted.range.min-placeholder'}}"
+                        min="0"
+                        class="form-input form-input--small"
+                        type="tel"
+                        value=""
+                    /><span class="_currency">{{settings.money.currency_token}}</span>
+                </div>
+                <div class="form-field form-field--input">
+                    <input
+                        data-input-max
+                        placeholder="{{lang 'search.faceted.range.max-placeholder'}}"
+                        min="0"
+                        class="form-input form-input--small"
+                        type="tel"
+                        value=""
+                    /><span class="_currency">{{settings.money.currency_token}}</span>
+                </div>
+            </div>
+        </fieldset>
+        <div class="_actions">
+            <button class="_action" data-cancel style="display:none">{{lang 'common.cancel'}}</button>
+            <a href="{{category_url}}" class="_action" data-clear style="display:none">{{lang 'search.faceted.clear'}}</a>
+            <button class="_action" data-apply>{{lang 'search.faceted.range.update'}}</button>
+        </div>
+    </div>
+{{/all}}

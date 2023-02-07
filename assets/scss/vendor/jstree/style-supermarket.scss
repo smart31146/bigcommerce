@@ -1,0 +1,16 @@
+.jstree-default .jstree-themeicon {
+    display: none;
+}
+
+.jstree-anchor {
+    &:link,
+    &:visited,
+    &:active {
+        color: $color-textBase; // papathemes-beautify edited
+    }
+
+    &:hover,
+    &:focus {
+        color: $color-textBase-hover; // papathemes-beautify edited
+    }
+}

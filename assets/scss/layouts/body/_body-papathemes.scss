@@ -1,0 +1,135 @@
+.body {
+    margin-bottom: spacing("double");
+    margin-top: 0;
+}
+
+.page {
+    display: flex;
+    flex-direction: column;
+
+    margin-left: -(container("padding") / 2);
+    margin-right: -(container("padding") / 2);
+
+    @include breakpoint("medium") {
+        margin-left: -$column-gutter / 2;
+        margin-right: -$column-gutter / 2;
+        display: block;
+    }
+}
+
+.main {
+    // padding: 0 $container-padding / 2 - container("padding") / 2; // papathemes-beautify commented
+
+    @include breakpoint("medium") {
+        padding: 0;
+    }
+}
+
+.page-content {
+    order: 2;
+}
+
+.page-content--centered {
+    @include breakpoint("medium") {
+        width: 60%;
+    }
+}
+
+.page-content--sticky {
+    @include breakpoint("medium") {
+        position: sticky;
+        top: 0;
+    }
+}
+
+.page-sidebar {
+    order: 3;
+    margin-top: spacing("single");
+    
+
+    @include breakpoint("medium") {
+        width: grid-calc(2, 10);
+        color: $color-textSecondary;
+        
+
+        @if $theme-style == "compact" {
+            margin-top: spacing("half");
+        }
+        @else {
+            margin-top: spacing("single");
+
+            // when layout is fixed left sidebar
+            .supermarket-layout--left-sidebar & {
+                // papathemes-beautify
+                margin-top: 0;
+            }
+
+            // Category page & Show Subcategories Menu is enabled.
+            .supermarket-pageType--category.supermarket--showSubcategoriesMenu & {
+                margin-top: spacing("single");
+                z-index: zIndex("lower"); // lower header
+            }
+
+            // no pages navigation
+            .supermarket-layout--left-sidebar.supermarket--hideContentNav & {
+                margin-top: 0;
+            }
+        }
+
+        
+        + .page-content {
+            width: grid-calc(8, 10);
+            float: right;
+        }
+
+        + .page-sidebar + .page-content {
+            width: grid-calc(6, 10);
+        }
+    }
+
+    // fix margin issue of child elements
+    > nav {
+        border-top: 0.5px solid transparent;
+    }
+}
+
+.page-sidebar--top {
+    order: 1;
+    margin-top: 0;
+
+    @include breakpoint("medium") {
+        @if $theme-style == "compact" {
+            margin-top: spacing("half");
+        }
+    }
+}
+
+.page-sidebar--bottom {
+    clear: left;
+
+    @include breakpoint("medium") {
+        &,
+        .supermarket-layout--left-sidebar & {
+            margin-top: spacing("single");
+        }
+    }
+}
+
+.page-sidebar--right {
+    float: right;
+    
+    .supermarket-layout--left-sidebar & {
+        margin-top: if($theme-style == "compact", spacing("half"), spacing("single"));
+
+        @include breakpoint("medium") {
+            z-index: zIndex("low") - 1; // same header's z-index - 1
+        }
+    }
+}
+
+.page-sidebar--sticky {
+    @include breakpoint("medium") {
+        position: sticky;
+        top: 0;
+    }
+}

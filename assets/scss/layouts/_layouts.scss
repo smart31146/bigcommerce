@@ -1,0 +1,75 @@
+// =============================================================================
+// LAYOUTS
+// =============================================================================
+
+
+// Global layouts
+// -----------------------------------------------------------------------------
+
+// Header
+@import "header/header";
+@import "header/header-papathemes";
+
+// Page
+@import "body/body";
+// @import "body/body-papathemes";
+
+// Footer
+@import "footer/footer";
+@import "footer/footer-papathemes";
+
+// Container
+@import "container/container";
+@import "container/container-papathemes";
+
+
+// Page content layouts
+// -----------------------------------------------------------------------------
+
+// Blog
+@import "blog/blog";
+@import "blog/blog-papathemes";
+
+// Sidebar blocks
+@import "sidebar/block";
+// @import "sidebar/block-papathemes";
+
+// Brand grid
+@import "brands/brandGrid";
+@import "brands/brandGrid-supermarket";
+
+// Brand product list
+@import "brands/brand";
+
+// Product grid
+@import "products/productGrid";
+@import "products/productGrid-papathemes";
+
+// Product list
+@import "products/productList";
+@import "products/productList-papathemes";
+
+// Product view
+@import "products/productView";
+@import "products/productView-papathemes";
+
+// Product Sale Badges
+@import "products/productSaleBadges";
+@import "products/productSaleBadges-papathemes";
+
+// Product view
+@import "products/productSwatch";
+@import "products/productSwatch-papathemes";
+
+// Product overrides
+@import "products/products-supermarket";
+
+// Account
+@import "account/account";
+@import "account/account-papathemes";
+
+// Static Pages
+@import "page/page-supermarket";
+
+// Search - papathemes supermarket
+@import "search/search";

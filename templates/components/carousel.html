@@ -1,0 +1,58 @@
+{{inject 'hasMainCarousel' true}}
+<section class="heroCarousel-container">
+    <div class="heroCarousel heroCarousel--{{theme_settings.homepage_carousel_style}}"
+        data-slick='{
+            "dots": true,
+            "mobileFirst": true,
+            "slidesToShow": 1,
+            "slidesToScroll": 1,
+            "autoplay": true,
+            "autoplaySpeed": {{carousel.swap_frequency}},
+            "lazyLoad": "anticipated"
+        }'>
+        {{#each carousel.slides}}
+        <div class="heroCarousel-slide heroCarousel-slide--{{@index}}{{#if @first}} heroCarousel-slide--first{{/if}}">
+            <div class="heroCarousel-image-wrapper{{#and image_height image_width}} heroCarousel-image-wrapper--sized{{/and}}">
+                <a href="{{url}}">
+                    <div class="heroCarousel-image-box" style="{{#if image_width}}width:{{image_width}}px{{/if}}">
+                        {{#and image_height image_width}}<div class="heroCarousel-image-box-padding" style="padding-bottom:{{multiply (divide image_height image_width) 100}}%">{{/and}}
+                            {{#if @first}}
+                                {{> components/common/responsive-img
+                                    image=stencil_image
+                                    class="heroCarousel-image"
+                                    fallback_size='1920w'
+                                    lazyload='disabled'
+                                    otherAttributes=(concat (concat (concat (concat 'width="' image_width) '" height="') image_height) '"')
+                                }}
+                            {{else}}
+                                {{> components/common/responsive-img
+                                    image=stencil_image
+                                    class="heroCarousel-image"
+                                    fallback_size='1920w'
+                                    lazyload='lazyload'
+                                    otherAttributes=(concat (concat (concat (concat 'width="' image_width) '" height="') image_height) '"')
+                                }}
+                            {{/if}}
+                        {{#and image_height image_width}}</div>{{/and}}
+                    </div>
+                    
+                    {{#if heading}}
+                        {{> components/carousel-content show_background=true theme_settings=../../theme_settings}}
+                    {{else}}
+                        {{#if text}}
+                            {{> components/carousel-content show_background=true theme_settings=../../../theme_settings}}
+                        {{else}}
+                            {{#if button_text}}
+                                {{> components/carousel-content show_background=false theme_settings=../../../../theme_settings}}
+                            {{/if}}
+                        {{/if}}
+                    {{/if}}
+                </a>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+    <div class="beautify__heroCarouselMobile">
+        {{{region name="home_carousel_mobile"}}}
+    </div>
+</section>

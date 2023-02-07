@@ -1,0 +1,32 @@
+// =============================================================================
+// LOGIN (CSS)
+// =============================================================================
+
+.login {
+    @if $theme-style == "compact" {
+        margin-top: spacing("half");
+
+        @include breakpoint("medium") {
+            margin-top: spacing("single");
+        }
+    }
+}
+
+.login-row {
+    @if $theme-style == "compact" {
+        @include breakpoint("medium") {
+            margin-top: spacing("single");
+        }
+    }
+}
+
+.login-form {
+    .form-actions {
+        text-align: left;
+
+        input,
+        a {
+            vertical-align: middle;
+        }
+    }
+}

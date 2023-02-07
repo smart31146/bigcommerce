@@ -1,0 +1,26 @@
+{{inject 'contactEmail' (lang 'forms.validate.contact.email_address')}}
+{{inject 'contactQuestion' (lang 'forms.validate.contact.question')}}
+<div class="ch__contactForm">
+    <div class="container">
+        <h2 class="page-heading">{{lang 'forms.contact_us.form_heading'}}</h2>
+        <div class="_body">
+            <div class="_formContainer" data-contact-form-url="/contact-us/"></div>
+            <div class="_info">
+                <div class="_map">
+                    <img class="lazyload" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='556' height='234'%3E%3C/svg%3E" data-src="{{#if in_development}}https://cdn11.bigcommerce.com/s-jqwssthhhd/images/stencil/original/image-manager/map.jpg{{else}}{{getImageManagerImage 'map.jpg'}}{{/if}}" alt="">
+                </div>
+                <ul class="_contactList">
+                    <li class="_contactList-item"><svg class="icon"><use xlink:href="#icon-contact-store"></use></svg>{{settings.store_logo.title}}, {{settings.address}}</li>
+                    {{#if theme_settings.footer_email}}
+                        <li class="_contactList-item"><svg class="icon"><use xlink:href="#icon-contact-mail"></use></svg> <a href="mailto:{{theme_settings.footer_email}}">{{theme_settings.footer_email}}</a></li>
+                    {{else if in_development}}
+                        <li class="_contactList-item"><svg class="icon"><use xlink:href="#icon-contact-mail"></use></svg> <a href="mailto:help@mydomain.com">help@mydomain.com</a></li>
+                    {{/if}}
+                    {{#if settings.phone_number}}
+                        <li class="_contactList-item"><svg class="icon"><use xlink:href="#icon-contact-phone"></use></svg> <a href="tel:{{settings.phone_number}}">{{settings.phone_number}}</a></li>
+                    {{/if}}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

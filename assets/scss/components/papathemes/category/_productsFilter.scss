@@ -1,0 +1,36 @@
+.papathemes-productsFilter {
+
+    @include breakpoint("medium") {
+        @if $theme-style == "compact" {
+            .form-field {
+                margin-bottom: 0;
+            }
+
+            .form-option {
+                margin-top: spacing("quarter");
+                margin-bottom: spacing("quarter");
+                padding: 0;
+            }
+        }
+    }
+
+    .page-sidebar & {
+        @include breakpoint("medium") {
+            display: none;
+        }
+    }
+
+    .sidebarBlock + & {
+        margin-top: spacing("single");
+    }
+
+    .sidebarBlock--verticalCategories + & {
+        margin-top: 0;
+    }
+}
+
+.papathemes-productsFilter--faceted {
+    .sidebarBlock + & {
+        // margin-top: 0;
+    }
+}

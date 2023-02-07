@@ -1,0 +1,78 @@
+// Product view layout
+// -----------------------------------------------------------------------------
+
+.productView {
+	margin: 0 (-(spacing("half")));
+
+	.supermarket-layout--left-sidebar & {
+		margin: 0 (-(spacing("half")));
+	}
+
+	@include breakpoint("medium") {
+		margin: 0 (-(spacing("half")));
+	}
+}
+
+.productView--quickView {
+	@media (max-width: screenSize("medium") - 1px) {
+		.supermarket-layout--left-sidebar & {
+			margin: 0 (-(spacing("half")));
+		}
+	}
+}
+
+.productView-detailsWrapper {
+	@include breakpoint("medium") {
+		@include clearfix;
+		position: relative;
+	}
+}
+
+
+.productView-beforeAlsoBought {
+	display: flex;
+	flex-direction: column;
+
+	@include breakpoint("medium") {
+		display: inline;
+	}
+}
+
+.productView-details {
+	order: 2;
+	padding: 0 spacing("half");
+}
+
+.productView-images {
+	order: 1;
+	position: relative;
+	padding: 0 spacing("half");
+
+	&[data-sidebar-sticky] {
+		@include breakpoint("medium") {
+			position: sticky;
+			top: 0;
+		}
+	}
+}
+
+.productView-descriptionWrapper {
+	display: inline;
+}
+
+.productView-description {
+	padding: 0 spacing("half");
+}
+
+.productView-productTabs {
+
+	padding: 0;
+
+	.supermarket-layout--left-sidebar & {
+		padding: 0;
+	}
+
+	@include breakpoint("medium") {
+		padding: 0;
+	}
+}

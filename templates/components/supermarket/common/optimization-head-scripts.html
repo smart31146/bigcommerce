@@ -1,0 +1,19 @@
+{{!--
+    Custom Fonts & Icons
+--}}
+{{{stylesheet '/assets/css/fonts-icons.css' rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"}}}
+<noscript>{{{stylesheet '/assets/css/theme.css'}}}</noscript>
+
+{{!--
+    Vendor or external fonts & icons
+--}}
+<link rel="preload" href="{{cdn 'assets/vendor/fontawesome/font-awesome.css'}}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="{{cdn 'assets/vendor/fontawesome/font-awesome.css'}}"></noscript>
+
+{{!--
+    Lazyload config
+--}}
+<script>
+    window.lazySizesConfig.loadHidden = false;
+    window.lazySizesConfig.expand = 0;
+</script>

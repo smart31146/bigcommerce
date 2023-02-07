@@ -1,0 +1,12 @@
+<section class="papathemes-hotNews">
+	<h3 class="papathemes-hotNews-heading">{{lang 'papathemes.hot_news'}}</h3>
+	<ul class="papathemes-hotNews-list" data-papathemes-hot-news-carousel>
+	    {{#each posts}}
+	        <li class="papathemes-hotNews-item">
+	            <article class="papathemes-hotNews-post">
+	                <h4 class="papathemes-hotNews-title"><a href="{{url}}">{{title}}</a></h4>
+	            </article>
+	        </li>
+	    {{/each}}
+	</ul>
+</section>

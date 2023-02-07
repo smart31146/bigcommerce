@@ -1,0 +1,29 @@
+// =============================================================================
+// HEADER (CSS)
+//
+// Custom header for theme papathemes. Inherits css from the base theme.
+//
+// -----------------------------------------------------------------------------
+
+
+// papathemes-beautify deleted .header
+
+.header-logo-text {
+    letter-spacing: letterSpacing("base");
+    font-weight: fontWeight("normal");
+    margin: 0;
+}
+
+// .is-sticky {
+//     @include breakpoint("medium") {
+//         .header-logo-image-container:after {
+//             padding-bottom: calc(#{unquote(get-height(stencilString('logo_size')))} / 2);
+//         }
+//         .header-logo-image {
+//             max-height: 100%;
+//         }
+//     }
+// }
+
+
+// papathemes-beautify deleted .mobileMenu-toggle

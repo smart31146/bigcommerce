@@ -1,0 +1,34 @@
+<nav class="navPages">
+
+    <ul class="navPages-list navPages-list--categories">
+        {{#each categories}}
+            <li class="navPages-item">
+                <a class="navPages-action" {{#if children}}has-subMenu{{/if}} href="{{url}}" data-instantload {{#if id '==' ../category.id}}data-current-category{{/if}}>
+                    {{name}}
+                    {{#if children}}<i class="icon navPages-action-moreIcon" aria-hidden="true"><svg><use xlink:href="#icon-chevron-down" /></svg></i>{{/if}}
+                </a>
+            </li>
+        {{/each}}
+    </ul>
+    
+    {{#unless theme_settings.hide_content_navigation}}
+        {{#unless theme_settings.manual_content_nav}}
+        <ul class="navPages-list">
+            {{#each pages}}
+                <li class="navPages-item">
+                    <a class="navPages-action" {{#if children}}has-subMenu{{/if}} href="{{url}}" data-instantload>
+                        {{name}}
+                        {{#if children}}<i class="icon navPages-action-moreIcon" aria-hidden="true"><svg><use xlink:href="#icon-chevron-down" /></svg></i>{{/if}}
+                    </a>
+                </li>
+            {{/each}}
+        </ul>
+        {{/unless}}
+    {{/unless}}
+
+    {{#if theme_settings.social_icon_placement_top}}
+    <div class="navPages-socials">
+        {{> components/common/social-links style="dark"}}
+    </div>
+    {{/if}}
+</nav>

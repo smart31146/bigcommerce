@@ -1,0 +1,30 @@
+<div class="sidebarBlock sidebarBlock--verticalCategories">
+    <div class="papathemes-navPages-verticalCategories-container">
+        <a class="navPages-action has-subMenu" data-collapsible="papathemes-verticalCategories-sidebar"
+            data-collapsible-disabled-breakpoint="medium"
+            data-collapsible-disabled-state="open"
+            data-collapsible-enabled-state="closed">{{lang 'category.label'}}</a>
+        <div class="papathemes-verticalCategories papathemes-verticalCategories--open" id="papathemes-verticalCategories-sidebar" aria-hidden="false" tabindex="-1">
+            <ul class="navPages-list navPages-list--categories">
+                {{#if theme_settings.navPages_type '==' 'standard'}}
+                    {{#each categories}}
+                        <li class="navPages-item navPages-item--standard">
+                            {{> components/common/navigation-list idSuffix='-sidebar' theme_settings=../theme_settings category=../category menu_type='standard'}}
+                        </li>
+                    {{/each}}
+                {{else}}
+                    {{#each categories}}
+                        <li class="navPages-item">
+                            {{> components/common/navigation-list idSuffix='-sidebar' theme_settings=../theme_settings category=../category menu_type='mega'}}
+                        </li>
+                    {{/each}}
+                {{/if}}
+            </ul>
+        </div>
+    </div>
+</div>
+{{#if page_type "===" "category"}}
+    {{inject "enableVerticalCurrentCategory" true}}
+{{else if page_type "===" "product"}}
+    {{inject "enableVerticalCurrentCategory" true}}
+{{/if}}

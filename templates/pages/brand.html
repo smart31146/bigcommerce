@@ -1,0 +1,106 @@
+---
+brand:
+    products:
+        limit: {{theme_settings.brandpage_products_per_page}}
+shop_by_brand:
+    limit: {{theme_settings.sidebar_shop_by_brand}}
+customer:
+    recently_viewed_products:
+        limit: {{theme_settings.product_recently_viewed}}
+---
+{{inject "brandProductsPerPage" theme_settings.brandpage_products_per_page}}
+{{#partial "head"}}
+    {{#if pagination.brand.previous}}
+        <link rel="prev" href="{{pagination.brand.previous}}">
+    {{/if}}
+    {{#if pagination.brand.next}}
+        <link rel="next" href="{{pagination.brand.next}}">
+    {{/if}}
+{{/partial}}
+
+{{#partial "page"}}
+
+{{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+<h1 class="page-heading">{{brand.name}}</h1>
+
+{{{region name="brand_below_header--global"}}}
+{{{region name="brand_below_header"}}}
+<div class="page">
+    <aside class="page-sidebar page-sidebar--top beautify__filters" id="sidebar-top">
+        <div class="_header">
+            <h2 class="_heading">{{lang 'search.faceted.filter_results'}}</h2>
+            <a href="#" class="_close" data-toggle="sidebar-top"><svg class="icon"><use xlink:href="#icon-close"></use></svg><span class="sr-only">{{lang 'common.close'}}</span></a>
+        </div>
+        <div class="_body" id="faceted-search-container">
+            {{{region name="brand_sidebar_top--global"}}}
+            {{{region name="brand_sidebar_top"}}}
+            {{> components/brand/sidebar}}
+            {{> components/supermarket/sidebar/recently-viewed-products}}
+            {{{region name="brand_sidebar_bottom--global"}}}
+            {{{region name="brand_sidebar_bottom"}}}
+        </div>
+    
+    </aside>
+
+    <main class="page-content">
+        {{{region name="brand_above_image--global"}}}
+        {{{region name="brand_above_image"}}}
+
+        {{#if brand.image}}
+            <div class="brand-image-container papathemes-brandPage-mainImage">
+                <img alt="{{brand.name}}" title="{{brand.name}}"
+                    {{#if theme_settings.lazyload_mode '===' 'disabled'}}
+                        src="{{getImage brand.image 'original'}}"
+                    {{else}}
+                        {{#if theme_settings.lazyload_mode '===' 'lazyload+lqip'}}
+                            src="{{getImageSrcset brand.image 1x='80w'}}"
+                        {{else}}
+                            src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+                        {{/if}}
+                        data-src="{{getImage brand.image 'brand_main_size'}}" class="lazyload"
+                    {{/if}}
+                />
+            </div>
+        {{/if}}
+        {{{region name="brand_above_products--global"}}}
+        {{{region name="brand_above_products"}}}
+
+        <div id="product-listing-container" class="
+            {{#if theme_settings.product_list_display_mode '===' 'grid2'}}mode-2
+            {{else if theme_settings.product_list_display_mode '===' 'grid3'}}mode-3
+            {{else if theme_settings.product_list_display_mode '===' 'grid6'}}mode-6
+            {{else if theme_settings.product_list_display_mode '===' 'list'}}{{#if theme_settings.show_bulk_order_mode}}mode-bo{{else}}mode-1{{/if}}{{/if}}
+        ">
+            {{#if brand.products}}
+                {{> components/brand/product-listing}}
+            {{else}}
+                <p>{{lang 'brands.no_products'}}</p>
+            {{/if}}
+        </div>
+
+        {{{region name="brand_below_products--global"}}}
+        {{{region name="brand_below_products"}}}
+    </main>
+</div>
+
+<div class="page-bottom">
+        {{{region name="brand_above_description--global"}}}
+        {{{region name="brand_above_description"}}}
+    
+        {{#if brand.description}}
+            <div class="supermarket-brandPage-description">
+                {{{brand.description}}}
+            </div>
+        {{/if}}
+    
+        {{{region name="brand_below_content--global"}}}
+        {{{region name="brand_below_content"}}}
+    </div>
+
+{{/partial}}
+{{#and theme_settings.instantload is_ajax}}
+    {{> layout/instantload-base}}
+{{else}}
+    {{> layout/base}}
+{{/and}}
+

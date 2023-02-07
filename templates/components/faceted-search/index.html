@@ -1,0 +1,27 @@
+<div id="facetedSearch" class="facetedSearch sidebarBlock aa"
+    {{#if shop_by_price}}data-beautify-faceted-shop-by-price="{{JSONstringify shop_by_price}}"{{/if}}
+    >
+    {{> components/faceted-search/selected-facets this.selected}}
+    {{#any facets visible=true}}
+        <div
+            id="facetedSearch-navList"
+            class="facetedSearch-navList blocker-container">
+            <div class="_accordion _accordion--navList">
+                {{#each facets}}
+                    {{#if visible}}
+                        {{{dynamicComponent 'components/faceted-search/facets'}}}
+                    {{/if}}
+                {{/each}}
+            </div>
+
+            <div class="blocker" style="display: none;"></div>
+        </div>
+    {{/any}}
+
+    {{#if this.selected.remove_all_url}}
+        <a class="button button--block u-hideDesktop is-open" href="{{ this.selected.remove_all_url }}" data-faceted-search-facet data-toggle="sidebar-top">
+            {{lang 'search.faceted.selected.clear-all'}}
+        </a>
+    {{/if}}
+    <a href="#" class="button button--primary button--block u-hideDesktop is-open" data-toggle="sidebar-top">{{lang 'search.faceted.apply_filters'}}</a>
+</div>

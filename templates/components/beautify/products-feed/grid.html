@@ -1,0 +1,35 @@
+<ul class="productGrid productGrid--maxCol{{theme_settings.widget_products_feed_col}}" data-list-name="Products Feed Widget">
+    {{#each category.products}}
+        <li class="product">
+            {{> components/products/card 
+                settings=../settings 
+                show_rating=../settings.show_product_rating 
+                theme_settings=../theme_settings 
+                customer=../customer 
+                event="list"
+                position=(add @index 1)}}
+        </li>
+    {{/each}}
+    {{#each brand.products}}
+        <li class="product">
+            {{> components/products/card 
+                settings=../settings 
+                show_rating=../settings.show_product_rating 
+                theme_settings=../theme_settings 
+                customer=../customer 
+                event="list"
+                position=(add @index 1)}}
+        </li>
+    {{/each}}
+    {{#each product_results.products}}
+        <li class="product">
+            {{> components/products/card 
+                settings=../settings 
+                show_rating=../settings.show_product_rating 
+                theme_settings=../theme_settings 
+                customer=../customer 
+                event="list"
+                position=(add @index 1)}}
+        </li>
+    {{/each}}
+</ul>

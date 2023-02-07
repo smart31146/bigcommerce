@@ -1,0 +1,204 @@
+@font-face {
+  font-family: 'papathemesicons';
+  src:  url('#{$icomoon-font-path}/papathemesicons.eot?jpwbml');
+  src:  url('#{$icomoon-font-path}/papathemesicons.eot?jpwbml#iefix') format('embedded-opentype'),
+    url('#{$icomoon-font-path}/papathemesicons.woff2?jpwbml') format('woff2'),
+    url('#{$icomoon-font-path}/papathemesicons.ttf?jpwbml') format('truetype'),
+    url('#{$icomoon-font-path}/papathemesicons.woff?jpwbml') format('woff'),
+    url('#{$icomoon-font-path}/papathemesicons.svg?jpwbml#papathemesicons') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+[class^="papathemes-icon-"], [class*=" papathemes-icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'papathemesicons' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.papathemes-icon-elegant-search {
+  &:before {
+    content: $papathemes-icon-elegant-search;
+  }
+}
+.papathemes-icon-elegant-gift {
+  &:before {
+    content: $papathemes-icon-elegant-gift;
+  }
+}
+.papathemes-icon-elegant-bag {
+  &:before {
+    content: $papathemes-icon-elegant-bag;
+  }
+}
+.papathemes-icon-elegant-cart {
+  &:before {
+    content: $papathemes-icon-elegant-cart;
+  }
+}
+.papathemes-icon-ui-head-phone {
+  &:before {
+    content: $papathemes-icon-ui-head-phone;
+  }
+}
+.papathemes-icon-listing-box {
+  &:before {
+    content: $papathemes-icon-listing-box;
+  }
+}
+.papathemes-icon-location-pin {
+  &:before {
+    content: $papathemes-icon-location-pin;
+  }
+}
+.papathemes-icon-linear-inbox {
+  &:before {
+    content: $papathemes-icon-linear-inbox;
+  }
+}
+.papathemes-icon-linear-phone-handset {
+  &:before {
+    content: $papathemes-icon-linear-phone-handset;
+  }
+}
+.papathemes-icon-linear-heart {
+  &:before {
+    content: $papathemes-icon-linear-heart;
+  }
+}
+.papathemes-icon-linear-map-marker {
+  &:before {
+    content: $papathemes-icon-linear-map-marker;
+  }
+}
+.papathemes-icon-linear-bus {
+  &:before {
+    content: $papathemes-icon-linear-bus;
+  }
+}
+.papathemes-icon-cart3 {
+  &:before {
+    content: $papathemes-icon-cart3;
+  }
+}
+.papathemes-icon-linear-user {
+  &:before {
+    content: $papathemes-icon-linear-user;
+  }
+}
+.papathemes-icon-linear-banknote {
+  &:before {
+    content: $papathemes-icon-linear-banknote;
+  }
+}
+.papathemes-icon-credit-card {
+  &:before {
+    content: $papathemes-icon-credit-card;
+  }
+}
+.papathemes-icon-coin-dollar {
+  &:before {
+    content: $papathemes-icon-coin-dollar;
+  }
+}
+.papathemes-icon-compare {
+  &:before {
+    content: $papathemes-icon-compare;
+  }
+}
+.papathemes-icon-cart2 {
+  &:before {
+    content: $papathemes-icon-cart2;
+  }
+}
+.papathemes-icon-gift {
+  &:before {
+    content: $papathemes-icon-gift;
+  }
+}
+.papathemes-icon-present {
+  &:before {
+    content: $papathemes-icon-present;
+  }
+}
+.papathemes-icon-linear-magnifier {
+  &:before {
+    content: $papathemes-icon-linear-magnifier;
+  }
+}
+.papathemes-icon-linear-cart {
+  &:before {
+    content: $papathemes-icon-linear-cart;
+  }
+}
+.papathemes-icon-search3 {
+  &:before {
+    content: $papathemes-icon-search3;
+  }
+}
+.papathemes-icon-heart {
+  &:before {
+    content: $papathemes-icon-heart;
+  }
+}
+.papathemes-icon-login {
+  &:before {
+    content: $papathemes-icon-login;
+  }
+}
+.papathemes-icon-bag {
+  &:before {
+    content: $papathemes-icon-bag;
+  }
+}
+.papathemes-icon-sign-in {
+  &:before {
+    content: $papathemes-icon-sign-in;
+  }
+}
+.papathemes-icon-heart-o {
+  &:before {
+    content: $papathemes-icon-heart-o;
+  }
+}
+.papathemes-icon-search2 {
+  &:before {
+    content: $papathemes-icon-search2;
+  }
+}
+.papathemes-icon-shopping-bag {
+  &:before {
+    content: $papathemes-icon-shopping-bag;
+  }
+}
+.papathemes-icon-compare_arrows {
+  &:before {
+    content: $papathemes-icon-compare_arrows;
+  }
+}
+.papathemes-icon-search {
+  &:before {
+    content: $papathemes-icon-search;
+  }
+}
+.papathemes-icon-shopping_cart {
+  &:before {
+    content: $papathemes-icon-shopping_cart;
+  }
+}
+.papathemes-icon-cart {
+  &:before {
+    content: $papathemes-icon-cart;
+  }
+}
+

@@ -1,0 +1,350 @@
+.productGrid {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    margin-bottom: spacing("double");
+    justify-content: flex-start;
+
+    &:before,
+    &:after {
+        display: none;
+    }
+    
+    .product {
+        flex: 0 1 50%;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        padding-left: 0;
+        padding-right: 0;
+
+        @include breakpoint("medium") {
+            flex-basis: 20%;
+        }
+
+        @include ie-only() {
+            display: block;
+        }
+    }
+}
+
+.productCarousel,
+.productGrid {
+    .card {
+        padding: spacing("quarter");
+        border: container("border");
+        border-color: transparent;
+        flex: 1;
+        position: relative;
+
+        // papathemes-beautify commented out
+        // @include breakpoint("small") {
+        //     padding-bottom: spacing("quarter") + spacing("base") + buttonSize("small", "verticalPadding") * 2 + spacing("quarter");
+        // }
+
+        @include breakpoint("medium") {
+            padding: spacing("half");
+
+            &:hover .card-buttons {
+                visibility: visible;
+                clip: auto;
+                opacity: 1;
+                padding-top: 0;
+                z-index: zIndex("lower"); // equal badge's z-index
+            }
+        }
+
+        .dropdown--quickSearch & {
+            background-color: container("fill");
+        }
+    }
+
+    .card-buttons {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        padding: spacing("half");
+        display: none;
+
+        @include breakpoint("small") {
+            display: flex;
+            align-items: flex-start;
+        }
+
+        @include breakpoint("medium") {
+            visibility: hidden;
+            clip: rect(0, 0, 0, 0);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        
+        @mixin icon($icon) {
+            &:before {
+                text-indent: 0;
+                float: left;
+                font-family: FontAwesome;
+                font-size: fontSize("base");
+                content: '"' + unquote($icon) + '"';
+                padding-right: spacing("quarter");
+            }
+
+            &.button--small {
+                padding: buttonSize("small", "verticalPadding");
+            }
+        }
+
+        @mixin hideText() {
+            font-size: 0 !important;
+            text-indent: -9999px;
+
+            &:before {
+                padding-right: 0;
+            }
+        }
+
+        .card-figcaption-button {
+            // @include icon(\f07a); // papathemes-beautify commented
+            flex: 1;
+            // margin-left: spacing("quarter"); // papathemes-beautify commented
+            font-size: fontSize("smaller");
+            letter-spacing: 0;
+
+            @include breakpoint("medium") {
+                font-size: fontSize("base");
+            }
+
+            &:first-child {
+                margin-left: 0;
+            }
+        }
+
+        // papathemes-beautify: commented out
+        // .card-figcaption-button.quickview {
+        //     @include icon(\f002);
+        //     white-space: nowrap;
+        // }
+    }
+
+
+    .card-buttons--alt {
+        position: absolute;
+        bottom: auto;
+        top: 50%;
+        left: 0;
+        right: 0;
+        width: auto;
+        padding: 0;
+        transform: translateY(-50%);
+        justify-content: center;
+
+        // hide by default
+        visibility: hidden;
+        clip: rect(0, 0, 0, 0);
+        opacity: 0;
+        transition: opacity 0.5s ease;
+
+        @at-root .card:hover .card-buttons--alt {
+            visibility: visible;
+            clip: auto;
+            opacity: 1;
+        }
+
+        .card-figcaption-button {
+            flex: 0 1 auto;
+        }
+    }
+}
+
+
+// Product when sidebar is present
+// -----------------------------------------------------------------------------
+//
+// 1. When the sidebar is visible, still show 4 products per row
+//
+// -----------------------------------------------------------------------------
+
+.page-sidebar + .page-content {
+
+    .productGrid {
+        // scss-lint:disable SelectorDepth, NestingDepth
+        .product { // 1
+            @include breakpoint("small") {
+                width: grid-calc(3, $total-columns);
+            }
+        }
+    }
+
+    .productGrid--maxCol5 {
+        // scss-lint:disable SelectorDepth, NestingDepth
+        .product { // 1
+            @include breakpoint("medium") {
+                width: 20%;
+            }
+        }
+    }
+
+    .productGrid--maxCol6 {
+        // scss-lint:disable SelectorDepth, NestingDepth
+        .product { // 1
+            @include breakpoint("medium") {
+                width: grid-calc(2, $total-columns);
+            }
+        }
+    }
+
+    .productGrid--maxCol3 {
+        // scss-lint:disable SelectorDepth, NestingDepth
+        .product { // 1
+            @include breakpoint("medium") {
+                width: grid-calc(4, $total-columns);
+            }
+        }
+    }
+    .productGrid--maxCol2 {
+        // scss-lint:disable SelectorDepth, NestingDepth
+        .product { // 1
+            @include breakpoint("medium") {
+                width: grid-calc(6, $total-columns);
+            }
+        }
+    }
+}
+
+
+
+
+// ============================================================================
+// VARIATIONS
+// ============================================================================
+
+// .productGrid--maxCol5,
+// .productGrid--maxCol6 {
+//     @include breakpoint("medium") {
+//         .card {
+//             padding-bottom: spacing("half");
+
+//             &:hover .card-buttons {
+//                 visibility: visible;
+//                 clip: auto;
+//                 opacity: 1;
+//             }
+//         }
+
+//         .card-buttons {
+//             visibility: hidden;
+//             clip: rect(0, 0, 0, 0);
+//             opacity: 0;
+//             transition: opacity 0.5s ease;
+//         }
+//     }
+// }
+
+
+.mode-2 .productGrid,
+.productGrid--maxCol2 {
+    .no-csscolumns & {
+        // scss-lint:disable SelectorDepth, NestingDepth
+        .product {
+            @include breakpoint("medium") {
+                width: grid-calc(1, 2);
+                flex-basis: 50%;
+            }
+        }
+    }
+
+    .csscolumns & {
+        @include breakpoint("medium") {
+            width: auto;
+            padding: 0;
+            float: none;
+
+            // scss-lint:disable SelectorDepth, NestingDepth
+            .product {
+                width: grid-calc(1, 2);
+                flex-basis: 50%;
+            }
+        }
+    }
+}
+
+.mode-3 .productGrid,
+.productGrid--maxCol3 {
+    .no-csscolumns & {
+        // scss-lint:disable SelectorDepth, NestingDepth
+        .product {
+            @include breakpoint("medium") {
+                width: grid-calc(1, 3);
+                flex-basis: width('4/12');
+            }
+        }
+    }
+
+    .csscolumns & {
+        @include breakpoint("medium") {
+            width: auto;
+            padding: 0;
+            float: none;
+
+            // scss-lint:disable SelectorDepth, NestingDepth
+            .product {
+                width: grid-calc(1, 3);
+                flex-basis: width('4/12');
+            }
+        }
+    }
+}
+
+.mode-5 .productGrid,
+.productGrid--maxCol5 {
+    .no-csscolumns & {
+        // scss-lint:disable SelectorDepth, NestingDepth
+        .product {
+            @include breakpoint("medium") {
+                width: grid-calc(1, 5);
+                flex-basis: 20%;
+            }
+        }
+    }
+
+    .csscolumns & {
+        @include breakpoint("medium") {
+            width: auto;
+            padding: 0;
+            float: none;
+
+            // scss-lint:disable SelectorDepth, NestingDepth
+            .product {
+                width: grid-calc(1, 5);
+                flex-basis: 20%;
+            }
+        }
+    }
+}
+
+.mode-6 .productGrid,
+.productGrid--maxCol6 {
+    .no-csscolumns & {
+        // scss-lint:disable SelectorDepth, NestingDepth
+        .product {
+            @include breakpoint("medium") {
+                flex-basis: grid-calc(1, 6);
+            }
+        }
+    }
+
+    .csscolumns & {
+        @include breakpoint("medium") {
+            padding: 0;
+            width: auto;
+            float: none;
+
+            // scss-lint:disable SelectorDepth, NestingDepth
+            .product {
+                flex-basis: grid-calc(1, 6);
+            }
+        }
+    }
+}
+
+// papathemes-beautify deleted .mode-1

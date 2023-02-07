@@ -1,0 +1,76 @@
+.sale-flag-side {
+    font-weight: fontWeight("medium"); // papathemes-beautify added
+    
+    // papathemes-beautify customized
+    @include breakpoint("medium") {
+        $y: spacing("single");
+        $h: beautify__fontSize(14) * 1.25 + remCalc(5px) + 2 * spacing("third"); // papathemes-beautify edited
+        font-size: beautify__fontSize(14); // papathemes-beautify edited
+    
+        top: $y;
+    
+        + .sale-flag-side {
+            top: $y + $h;
+        }
+    
+        + .sale-flag-side + .sale-flag-side {
+            top: $y + $h * 2;
+        }
+    
+        + .sale-flag-side + .sale-flag-side + .sale-flag-side {
+            top: $y + $h * 3;
+        }
+    }
+    @media (max-width: screenSize("medium") - 1px) {
+        $y: spacing("half");
+        $h: remCalc(fontSize("smallest") * 1.25 + 5px) + 2 * spacing("quarter");
+        padding: spacing("quarter") spacing("half");
+        font-size: fontSize("smallest");
+
+        top: $y;
+
+        + .sale-flag-side {
+            top: $y + $h;
+        }
+
+        + .sale-flag-side + .sale-flag-side {
+            top: $y + $h * 2;
+        }
+
+        + .sale-flag-side + .sale-flag-side + .sale-flag-side {
+            top: $y + $h * 3;
+        }
+    }
+}
+
+.sale-flag-side--custom {
+    background-color: stencilColor("color_badge_product_custom_badges");
+    color: stencilColor("color_text_product_custom_badges");
+
+    .product:hover & {
+        background-color: stencilColor("color_badge_product_custom_badges");
+    }
+}
+
+
+.sale-flag-star,
+.sale-flag-star:before,
+.sale-flag-star:after {
+	left: auto;
+	right: 0;
+}
+
+.starwrap {
+	right: spacing("base") + remCalc(10px);
+}
+
+.sale-text-burst {
+	font-size: fontSize("smallest");
+}
+
+.sale-flag-sash {
+	left: auto;
+	right: spacing("base") - remCalc(35px);
+	transform: rotate(45deg);
+	font-size: fontSize("smallest");
+}

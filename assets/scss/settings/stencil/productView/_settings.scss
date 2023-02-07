@@ -1,0 +1,19 @@
+// =============================================================================
+// PRODUCT VIEW (Settings)
+// =============================================================================
+
+
+// papathemes-beautify edited
+$productView-brand-link-color:                  stencilColor("color-primary"); // papathemes-beautify edited
+$productView-brand-link-color--hover:           $color-textLink;
+$productView-brand-link-color--active:          $color-textLink;
+
+$productOptions-list-border:                    1px solid stencilColor("input-border-color");
+$productOptions-list-item-borderTop:            $productOptions-list-border;
+$productOptions-list-item-padding:              spacing("single");
+$productOptions-list-item-figure-width:         spacing("double");
+$productOptions-list-item-content-paddingLeft:  spacing("base") + spacing("sixth");
+$productOptions-list-item-firstChild-padding:   $productOptions-list-item-padding + $productOptions-list-item-figure-width + $productOptions-list-item-content-paddingLeft;
+$productOptions-disable-opacity:                0.3;
+$productOptions-disable-background-color:       #ddd;
+$productOptions-strikethrough-color:            #000;

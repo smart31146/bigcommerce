@@ -1,0 +1,13 @@
+{{#if page.sub_pages}}
+<div class="sidebarBlock sidebarBlock--navList sidebarBlock--mobileCollapsible">
+    <h3 class="sidebarBlock-heading sidebarBlock-heading--subpages is-open" data-collapsible="#subpages-navList" tabindex="0" aria-expanded="true">
+        {{lang 'page.subpages'}}
+        <svg class="icon"><use xlink:href="#icon-keyboard-arrow-down"></use></svg>
+    </h3>
+    <ul id="subpages-navList" class="beautify__navList is-open" aria-hidden="false">
+        {{#each page.sub_pages}}
+        <li class="navList-item"><a class="navList-action" href="{{url}}" title="{{title}}">{{title}}</a></li>
+        {{/each}}
+    </ul>
+</div>
+{{/if}}

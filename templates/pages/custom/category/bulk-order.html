@@ -1,0 +1,175 @@
+{{inject "useBulkOrder" true}}
+{{inject "categoryProductsPerPage" theme_settings.categorypage_products_per_page}}
+{{#partial "head"}}
+    {{#if pagination.category.previous}}
+        <link rel="prev" href="{{pagination.category.previous}}">
+    {{/if}}
+    {{#if pagination.category.next}}
+        <link rel="next" href="{{pagination.category.next}}">
+    {{/if}}
+{{/partial}}
+
+{{#partial "page"}}
+
+{{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+<h1 class="page-heading">{{category.name}}</h1>
+
+{{{region name="category_below_header--global"}}}
+{{{region name="category_below_header"}}}
+
+{{#if category.description}}
+    <div class="supermarket-categoryPage-description">
+        {{{category.description}}}
+        {{{snippet 'categories'}}}
+    </div>
+{{/if}}
+
+{{{region name="category_below_description--global"}}}
+{{{region name="category_below_description"}}}
+
+{{#or banners.top_metadata theme_settings.instantload}}
+<div class="beautify__category-banner" data-banner-location="top">
+    {{#if settings.data_tag_enabled}}
+        {{#each banners.top_metadata}}
+            <div class="banner">
+                {{{this.content}}}
+            </div>
+        {{/each}}
+    {{else}}
+        {{#each banners.top_metadata}}
+            <div class="banner" data-event-type="promotion" data-entity-id="{{this.id}}" data-name="{{this.banner-name}}" data-position="{{this.location}}" data-banner-id="{{this.banner-name}}">
+                <div data-event-type="promotion-click">
+                    {{{this.content}}}
+                </div>
+            </div>
+        {{/each}}
+    {{/if}}
+</div>
+{{/or}}
+
+<div class="page">    
+    <aside class="page-sidebar page-sidebar--top beautify__filters
+        {{!--
+            Don't show the sidebar on desktop if no block except price range slider
+        --}}
+        {{#or (if theme_settings.sidebar_shop_by_brand '==' 9) (unless shop_by_brand)}}
+            {{#unless category.faceted_search_enabled}}
+                {{#unless category.subcategories}}
+                    {{assignVar 'hide_sidebar_on_desktop' 1}}
+                    u-hideDesktop
+                {{/unless}}
+            {{/unless}}
+        {{/or}}
+    " id="sidebar-top">
+        <div class="_header">
+            <h2 class="_heading">{{lang 'search.faceted.filter_results'}}</h2>
+            <a href="#" class="_close" data-toggle="sidebar-top"><svg class="icon"><use xlink:href="#icon-close"></use></svg><span class="sr-only">{{lang 'common.close'}}</span></a>
+        </div>
+        <div class="_body">
+            {{{region name="category_sidebar_top--global"}}}
+            {{{region name="category_sidebar_top"}}}
+            {{#if theme_settings.categorypage_search '===' 'show'}}
+                <form class="categoryPage-searchInCategory-form {{#unless category.faceted_search_enabled}}noFaceted{{/unless}} categoryPage-searchInCategory-form--sidebar">
+                    <fieldset class="form-fieldset">
+                        <div class="form-field">
+                            <input class="form-input" type="text" name="q" placeholder="{{lang 'search.actionbar.input_placeholder'}}" value="{{forms.search.query}}" data-search-in-category>
+                            <button class="button button--small" type="button" data-clear>{{lang 'search.actionbar.clear_all'}}</button>
+                        </div>
+                    </fieldset>
+                </form>
+            {{/if}}
+            <div id="faceted-search-container">
+                {{> components/category/sidebar}}
+            </div>
+            {{{region name="category_sidebar_bottom--global"}}}
+            {{{region name="category_sidebar_bottom"}}}
+        </div>
+    </aside>
+    
+    <main class="page-content">
+        {{{region name="category_above_image--global"}}}
+        {{{region name="category_above_image"}}}
+
+        {{!--  
+            {{#if category.image}}
+                <div class="papathemes-categoryPage-mainImage">
+                    <img alt="{{category.name}}" title="{{category.name}}"
+                        {{#if theme_settings.lazyload_mode '===' 'disabled'}}
+                            src="{{getImage category.image 'original'}}"
+                        {{else}}
+                            {{#if theme_settings.lazyload_mode '===' 'lazyload+lqip'}}
+                                src="{{getImageSrcset category.image 1x='80w'}}"
+                            {{else}}
+                                src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+                            {{/if}}
+                            data-src="{{getImage category.image 'category_size'}}" class="lazyload"
+                        {{/if}}
+                    />
+                </div>
+            {{/if}}
+        --}}
+
+        {{{region name="category_below_image--global"}}}
+        {{{region name="category_below_image"}}}
+
+        {{#if theme_settings.show_subcategories_grid}}
+            {{#if category.subcategories}}
+            <ul class="beautify-subcategories-grid">
+                {{#each category.subcategories}}
+                    <li class="beautify-subcategories-grid-item">
+                        {{#if image}}
+                            <a href="{{url}}" class="beautify-subcategories-image" data-instantload>
+                                {{> components/common/responsive-img
+                                    image=image
+                                    fallback_size=theme_settings.category_card_size
+                                    lazyload=theme_settings.lazyload_mode
+                                }}
+                            </a>
+                        {{/if}}
+                        <a href="{{url}}" class="beautify-subcategories-name" data-instantload>{{name}}</a>
+                    </li>
+                {{/each}}
+            </ul>
+            {{/if}}
+        {{/if}}
+
+        {{{region name="category_below_subcategories_grid--global"}}}
+        {{{region name="category_below_subcategories_grid"}}}
+
+        {{#and (if theme_settings.categorypage_search '===' 'show') (getVar 'hide_sidebar_on_desktop')}}
+            <form class="categoryPage-searchInCategory-form {{#unless category.faceted_search_enabled}}noFaceted{{/unless}} {{#unless category.description}}noDesc{{/unless}}">
+                <fieldset class="form-fieldset">
+                    <div class="form-field">
+                        <input class="form-input" type="text" name="q" placeholder="{{lang 'search.actionbar.input_placeholder'}}" value="{{forms.search.query}}" data-search-in-category>
+                        <button class="button button--small" type="button" data-clear>{{lang 'search.actionbar.clear_all'}}</button>
+                    </div>
+                </fieldset>
+            </form>
+        {{/and}}
+
+        {{{region name="category_above_products--global"}}}
+        {{{region name="category_above_products"}}}
+
+        <div id="product-listing-container" class="mode-bo is-bulkOrderTemplate">
+            {{#if category.products}}
+                {{> components/category/product-listing show_bulk_order_mode=true}}
+            {{else}}
+                <p>{{lang 'categories.no_products'}}</p>
+            {{/if}}
+        </div>
+        {{{region name="category_below_products--global"}}}
+        {{{region name="category_below_products"}}}
+    </main>
+</div>
+
+<div class="page-bottom">
+    {{{region name="category_below_content--global"}}}
+    {{{region name="category_below_content"}}}
+</div>
+
+{{/partial}}
+{{#and theme_settings.instantload is_ajax}}
+    {{> layout/instantload-base}}
+{{else}}
+    {{> layout/base}}
+{{/and}}

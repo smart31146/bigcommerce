@@ -1,0 +1,124 @@
+@if stencilString("swatch_option_display_type") != 'default' {
+    .chiara__dropdownSwatches.selectize-control {
+        .form-field & {
+            margin-bottom: spacing("half");
+        }
+        .selectize-dropdown,
+        .selectize-input,
+        .selectize-input input {
+            // font-size: $input-font-size;
+            font-size: fontSize("smaller");
+            color: $input-font-color;
+            line-height: inherit;
+        }
+
+        .selectize-input {
+            border: $input-border-width $input-border-style $input-border-color;
+            border-radius: $select-borderRadius;
+            background-color: $select-bg-color;
+            padding: spacing("half") spacing("base");
+            box-shadow: $select-boxShadow;
+            
+            &:hover {
+                background-color: $select-hover-bg-color;
+                border-color: $select-hover-borderColor;
+            }
+            
+            &:focus,
+            &.focus {
+                border-color: $select-focus-borderColor;
+                box-shadow: $select-focus-boxShadow;
+            }
+
+            input {
+                min-height: 26px !important; // 1
+                font-size: fontSize("base");
+                &::placeholder {
+                    font-size: fontSize("smaller");
+                }
+            }
+
+            ._item {
+                display: inline-flex;
+                align-items: center;
+                vertical-align: middle;
+                ._img {
+                    border: 1px solid rgba($input-border-color, 0.3);
+                    margin-right: spacing("half");
+                }
+                .form-option-variant--color,
+                .form-option-variant--pattern {
+                    width: 24px; // 1
+                    height: 24px; // 1
+                    padding: 0;
+                    vertical-align: middle;
+                    background-size: 100%;
+                }
+                &.unavailable {
+                    ._img {
+                        position: relative;
+                        overflow: hidden;
+                        background-color: rgba(stencilColor("color-black"), 0.3);
+                        &:before {
+                            content: '';
+                            position: absolute;
+                            top: 0;
+                            right: 0;
+                            width: 141%;
+                            height: 2px;
+                            transform: rotate(-45deg);
+                            transform-origin: right top;
+                            background-color: rgba(color("blacks"), .3);
+                        }
+                    }
+                    .form-option-variant--color,
+                    .form-option-variant--pattern {
+                        opacity: .5;
+                    }
+                }
+            }
+        }
+
+        .selectize-dropdown-content {
+            ._option {
+                display: flex;
+                align-items: center;
+                vertical-align: middle;
+                padding: spacing("quarter") spacing("base");
+                ._img {
+                    border: 1px solid rgba($input-border-color, 0.3);
+                    box-shadow: 0 2px 4px rgba(stencilColor("color-black"), 0.1);
+                    margin-right: spacing("half");
+                }
+                .form-option-variant--color,
+                .form-option-variant--pattern {
+                    padding: 0;
+                    vertical-align: middle;
+                    background-size: 100%;
+                }
+                &.unavailable {
+                    ._img {
+                        position: relative;
+                        overflow: hidden;
+                        background-color: rgba(stencilColor("color-black"), 0.15);
+                        &:before {
+                            content: '';
+                            position: absolute;
+                            top: 0;
+                            right: 0;
+                            width: 141%;
+                            height: 2px;
+                            transform: rotate(-45deg);
+                            transform-origin: right top;
+                            background-color: rgba(color("blacks"), .3);
+                        }
+                    }
+                    .form-option-variant--color,
+                    .form-option-variant--pattern {
+                        opacity: .5;
+                    }
+                }
+            }
+        }
+    }
+}

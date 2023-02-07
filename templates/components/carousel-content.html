@@ -1,0 +1,7 @@
+<div class="heroCarousel-content{{#unless show_background}} heroCarousel-content--empty{{/unless}}">
+    <h2 class="heroCarousel-title">{{#replace "&lt;br&gt;" heading}}<br>{{else}}{{heading}}{{/replace}}</h2>
+    <p class="heroCarousel-description">{{#replace "&lt;br&gt;" text}}<br>{{else}}{{text}}{{/replace}}</p>
+    {{#if button_text}}
+        <span class="heroCarousel-action button button--{{theme_settings.carousel-button-style}} button--large">{{{button_text}}}</span>
+    {{/if}}
+</div>

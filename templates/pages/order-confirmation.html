@@ -1,0 +1,129 @@
+{{#partial "head"}}
+{{{ checkout.checkout_head }}}
+{{{ stylesheet '/assets/css/optimized-checkout.css' }}}
+{{ getFontsCollection }}
+
+<script type="text/javascript">
+    window.language = {{{langJson 'optimized_checkout'}}};
+</script>
+
+{{{head.scripts}}}
+
+<style>
+    @media print {
+        .layout {
+            padding-bottom: 0;
+        }
+        .checkoutHeader {
+            min-height: auto;
+            -webkit-print-color-adjust: exact;
+            color-adjust: exact;
+        }
+        .checkoutHeader-content {
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+        }
+        .cart {
+            display: block
+        }
+        .cartDrawer {
+            display: none;
+        }
+        .layout-cart {
+            page-break-before: auto;
+        }
+    }
+</style>
+
+{{/partial}}
+
+{{#partial "page"}}
+<header class="checkoutHeader optimizedCheckout-header">
+    <div class="checkoutHeader-content">
+        <h1 class="is-srOnly">{{lang 'checkout.title'}}</h1>
+        <h2 class="checkoutHeader-heading">
+            <a class="checkoutHeader-link" href="{{urls.home}}">
+                {{#if checkout.header_image}}
+                    <img alt="{{settings.store_logo.title}}" class="checkoutHeader-logo" id="logoImage" src="{{ checkout.header_image }}"/>
+                {{ else }}
+                    <span class="header-logo-text">{{settings.store_logo.title}}</span>
+                {{/if}}
+            </a>
+        </h2>
+    </div>
+</header>
+<div id="po_number_section_block"></div>
+
+{{{ checkout.order_confirmation_content }}}
+
+<div id="checkout_orderId" data-test-orderId="{{checkout.order.id}}"></div>
+<script>window.__webpack_public_path__ = "{{cdn 'assets/dist/'}}";</script>
+<script src="{{cdn 'assets/dist/theme-bundle.main.js'}}"></script>
+<script>
+    {{!-- Exported in app.js --}}
+    window.stencilBootstrap("{{page_type}}", {{jsContext}}).load();
+</script>
+
+{{{ footer.scripts }}}
+
+{{/partial}}
+
+{{> layout/empty}}
+
+<script type="text/javascript">
+    // let orgVal = sessionStorage.getItem('orgNotesVal');
+    let orgOriginalVal = sessionStorage.getItem('orgOriginalVal');
+    
+    let organizationType = ["Assembly (Church, Stadiums, Museum)", "Contractor, Fire (Alarm, Extinguisher, Sprinkler)", "Contractor, Non-Fire (Drywall, Plumbing, General)", "Correctional (Prison, Jail)", "Distributor or Reseller (Amazon Seller, MRO)", "Education (School, University, Daycare)",
+"Fire Department or Fire Marshal", "Government or Military", "Health (Hospital, Pharmacy)", "Hospitality (Hotel, Resort)", "Individual, No Business or Organization", "Manufacturing or Warehousing", "Professional Services (Finance, Legal)", "Property or Facility Management", "Recreation (Casino, Golf Course, Gym)", "Residential (Apartments, Assisted Living)", "Restaurant or Bar", "Retail (Mall, Grocery)", "Transportation (Airport, Marina)","Utility (Water, Gas, Cable)", "Other",]
+    
+    let custid = '{{customer.id}}';
+    let orderid = '{{checkout.order.id}}';
+    console.log(custid);
+    console.log(orderid);
+    if(orgOriginalVal != '' && orgOriginalVal != null) {
+    let orgVal = organizationType[parseInt(orgOriginalVal)];
+        if(custid != ''){
+            let data = {
+                "CustomerID": custid,
+                "OrgVal": orgVal
+            };
+            var settings = {
+              "url": "https://qrfscustomapp.kensiumcommerce.com/api/sandboxupdateOrganisationType",
+              "method": "post",
+              "headers": {
+                "Content-Type": "application/json"
+              },
+              "data": JSON.stringify(data),
+            };
+            $.ajax(settings).done(function (response) {
+                console.log(response);
+                sessionStorage.removeItem('orgNotesVal');
+                sessionStorage.removeItem('orgOriginalVal');
+                sessionStorage.removeItem('customerInfo');
+            });
+
+        } 
+    }
+    // else{
+    //     let data = {
+    //         "OrderID": orderid,
+    //         "OrgVal": orgVal
+    //     };
+    //     var settings = {
+    //       "url": "https://qrfscustomapp.kensiumcommerce.com/api/updateOrganisationTypeGuest",
+    //       "method": "post",
+    //       "headers": {
+    //         "Content-Type": "application/json"
+    //       },
+    //       "data": JSON.stringify(data),
+    //     };
+    //     $.ajax(settings).done(function (response) {
+    //         console.log(response);
+    //         sessionStorage.removeItem('orgNotesVal');
+    //         sessionStorage.removeItem('orgOriginalVal');
+             
+    //     });
+    // }
+    
+</script>

@@ -1,0 +1,15 @@
+<nav>
+    {{#if theme_settings.layout '===' 'left-sidebar'}}
+        {{> components/supermarket/sidebar/categories-menu}}
+    {{/if}}
+
+    {{#if brand.faceted_search_enabled}}
+        {{> components/faceted-search/index brand}}
+    {{else}}
+        {{#if shop_by_brand}}
+            {{#if theme_settings.sidebar_shop_by_brand '>' 9}}
+                {{> components/supermarket/sidebar/brands}}
+            {{/if}}
+        {{/if}}
+    {{/if}}
+</nav>

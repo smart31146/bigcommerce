@@ -1,0 +1,51 @@
+// =============================================================================
+// BODY (CSS)
+//
+// 1. Header is fixed on small screens, use the content body to create the whitespace
+//    between it and the header on all situations. If you change the spacing here,
+//    please update .heroCarousel too.
+//
+// =============================================================================
+
+
+// papathemes-beautify delete .body
+
+
+.page {
+    @include grid-row(
+        $behavior: nest
+    );
+}
+
+.page-content,
+.page-content--full {
+    @include grid-column(12);
+}
+
+.page-content--centered {
+
+    @include breakpoint("medium") {
+        @include grid-column(
+            $columns: 12, // papathemes-beautify
+            $center: true
+        );
+    }
+}
+
+.page-content--textCenter {
+    text-align: center;
+}
+
+.page-sidebar {
+    @include grid-column(12);
+    position: relative;
+
+    @include breakpoint("medium") {
+        @include grid-column(3);
+
+        + .page-content {
+            @include grid-column(9);
+            border-left: container("border"); // papathemes-beautify added
+        }
+    }
+}

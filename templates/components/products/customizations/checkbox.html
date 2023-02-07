@@ -1,0 +1,9 @@
+<div class="form-field">
+    <input class="form-checkbox" type="checkbox" id="customization_{{this.id}}_{{../id}}" {{#if required}}required {{/if}}name="ProductFields[{{this.id}}]" {{#if value}}checked{{/if}}>
+    <label class="form-label form-label--alternate form-label--inlineSmall" for="customization_{{this.id}}_{{../id}}">
+        {{ this.display_name }}
+        {{#if required}}
+            <small class="_required" title="{{lang 'common.required'}}">{{lang 'common.required_symbol'}}</small>
+        {{/if}}
+    </label>
+</div>

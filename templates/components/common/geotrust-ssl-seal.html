@@ -1,0 +1,107 @@
+<table width="135" border="0" cellpadding="2" cellspacing="0" title="Click to Verify - This site chose GeoTrust SSL for secure e-commerce and confidential communications.">
+    <tr>
+        <td width="135" align="center" valign="top">
+            {{!--
+            <script src="https://seal.geotrust.com/getgeotrustsslseal?host_name={{settings.secure_host}}&amp;size={{theme_settings.geotrust_ssl_seal_size}}&amp;lang={{locale_name}}"></script><br />
+            --}}
+
+            <a href="https://sealsplash.geotrust.com/splash?&amp;dn={{settings.secure_host}}" tabindex="-1" onmousedown="return gts_mDown(event);" target="GEOTRUST_SSL_Splash"><img name="gts_seal" border="true" class="lazyload" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='135' height='55'%3E%3C/svg%3E" data-src="https://seal.geotrust.com/getgeotrustsslseal?at=0&amp;sealid=0&amp;dn={{settings.secure_host}}&amp;lang=en&amp;gmtoff=0" oncontextmenu="return false;" alt="Click to Verify - This site has chosen a GeoTrust SSL Certificate to improve Web site security"></a>
+            
+            {{!--
+            <script>
+                (function() {
+                    var dn = "{{settings.secure_host}}";
+                    var at = "0";
+                    var lang = "en";
+                    var sealid = 0;
+                    var gts_splash_url = "https://sealsplash.geotrust.com";
+                    var gts_seal_url = "https://seal.geotrust.com";
+    
+                    var gmt_offset = 0;
+                    var gts_u1 = gts_splash_url + "/splash?&dn=" + dn;
+                    var gts_u2 = gts_seal_url + "/getgeotrustsslseal?at=" + at + "&sealid=" + sealid + "&dn=" + dn + "&lang=en&gmtoff=0";
+                    var ver = -1;
+                    var v_ua = navigator.userAgent.toLowerCase();
+                    var re = new RegExp("msie ([0-9]{1,}[\.0-9]{0,})");
+                    if (re.exec(v_ua) != null) {
+                        ver = parseFloat(RegExp.$1);
+                    }
+                    var v_old_ie = (v_ua.indexOf("msie") != -1);
+                    if (v_old_ie) {
+                        v_old_ie = ver < 5;
+                    }
+    
+                    window.geotrust_ssl_splash = function() {
+                        tbar = "location=yes,status=yes,resizable=yes,scrollbars=yes,width=516,height=500";
+                        sw = window.open(gts_u1, 'GEOTRUST_SSL_Splash', tbar);
+                        if (sw) {
+                            sw.focus();
+                        }
+                    }
+    
+                    window.gts_mact = function(e) {
+                        if (document.addEventListener) {
+                            var s = (e.target.name == "gts_seal");
+                            if (s) {
+                                geotrust_ssl_splash();
+                                return false;
+                            }
+                        } else if (document.captureEvents) {
+                            var tgt = e.target.toString();
+                            var s = (tgt.indexOf("splash") != -1);
+                            if (s) {
+                                geotrust_ssl_splash();
+                                return false;
+                            }
+                        }
+                        return true;
+                    }
+    
+                    window.gts_mDown = function(event) {
+                        if (document.addEventListener) {
+                            return true;
+                        }
+                        event = (event || window.event);
+                        if (event) {
+                            if (event.button == 1) {
+                                if (v_old_ie) {
+                                    return true;
+                                } else {
+                                    geotrust_ssl_splash();
+                                    return false;
+                                }
+                            } else if (event.button == 2) {
+                                geotrust_ssl_splash();
+                                return false;
+                            }
+                        } else {
+                            return true;
+                        }
+                    }
+                    if (document.addEventListener) {
+                        document.addEventListener('mouseup', gts_mact, true);
+                    } else {
+                        if (document.layers) {
+                            document.captureEvents(Event.MOUSEDOWN);
+                            document.onmousedown = gts_mact;
+                        }
+                    }
+    
+                    window.gts_resized = function() {
+                        if (pageWidth != innerWidth || pageHeight != innerHeight) {
+                            self.history.go(0);
+                        }
+                    }
+                    if (document.layers) {
+                        pageWidth = innerWidth;
+                        pageHeight = innerHeight;
+                        window.onresize = gts_resized;
+                    }
+                })();
+            </script>
+            --}}
+            {{!-- Minified version --}}
+            <script>!function(){var e=-1,t=navigator.userAgent.toLowerCase();null!=new RegExp("msie ([0-9]{1,}[.0-9]{0,})").exec(t)&&(e=parseFloat(RegExp.$1));var s=-1!=t.indexOf("msie");s&&(s=e<5),window.geotrust_ssl_splash=function(){tbar="location=yes,status=yes,resizable=yes,scrollbars=yes,width=516,height=500",sw=window.open("https://sealsplash.geotrust.com/splash?&dn={{settings.secure_host}}","GEOTRUST_SSL_Splash",tbar),sw&&sw.focus()},window.gts_mact=function(e){if(document.addEventListener){if("gts_seal"==e.target.name)return geotrust_ssl_splash(),!1}else if(document.captureEvents){if(-1!=e.target.toString().indexOf("splash"))return geotrust_ssl_splash(),!1}return!0},window.gts_mDown=function(e){return!!document.addEventListener||(!(e=e||window.event)||(1==e.button?!!s||(geotrust_ssl_splash(),!1):2==e.button?(geotrust_ssl_splash(),!1):void 0))},document.addEventListener?document.addEventListener("mouseup",gts_mact,!0):document.layers&&(document.captureEvents(Event.MOUSEDOWN),document.onmousedown=gts_mact),window.gts_resized=function(){pageWidth==innerWidth&&pageHeight==innerHeight||self.history.go(0)},document.layers&&(pageWidth=innerWidth,pageHeight=innerHeight,window.onresize=gts_resized)}();</script>
+        </td>
+    </tr>
+</table>

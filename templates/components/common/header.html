@@ -1,0 +1,162 @@
+{{#or banners.top_metadata theme_settings.instantload}}
+<div class="banners" data-banner-location="top">
+    {{#if settings.data_tag_enabled}}
+        {{#each banners.top_metadata}}
+            <div class="banner">
+                {{{this.content}}}
+            </div>
+        {{/each}}
+    {{else}}
+        {{#each banners.top_metadata}}
+            <div class="banner" data-event-type="promotion" data-entity-id="{{this.id}}" data-name="{{this.banner-name}}" data-position="{{this.location}}" data-banner-id="{{this.banner-name}}">
+                <div data-event-type="promotion-click">
+                    {{{this.content}}}
+                </div>
+            </div>
+        {{/each}}
+    {{/if}}
+</div>
+{{/or}}
+<header class="header" role="banner" {{#if theme_settings.header_sticky}} data-sticky-header{{/if}}>
+
+    <div class="beautify__topHeader">
+        <div class="container">
+            {{#if theme_settings.topHeader-global-message}}
+                <div class="_announce">
+                {{{region name="header_top_announcement--global"}}}
+                {{#if in_development}}
+                {{> components/beautify/demo/region-header-top-announcement}}
+                {{/if}}
+                </div>
+            {{/if}}
+          
+        </div>
+    </div>
+    <div class="beautify__mainHeader{{#if settings.store_logo.image}} _hasImg{{/if}} _{{theme_settings.logo_position}}">
+        <div class="main-header">
+            {{#if template_file '===' 'pages/home'}}
+                <div class="header-logo logo-section{{#if settings.store_logo.image}} _isImg{{/if}}">
+                    {{> components/common/store-logo}}
+                </div>
+            {{else}}
+                <div class="header-logo{{#if settings.store_logo.image}} _isImg{{/if}}">
+                    {{> components/common/store-logo}}
+                </div>
+            {{/if}}
+          
+            <ul class="navUser-section user-section">
+                <div class="wrapper-phone"><a class="phone-number" href="tel:8883616662">888-361-6662</a>
+                    <div class="links-wrapper">
+                    	 {{#if customer}}
+                        	<a href="{{urls.account.index}}">Orders</a>
+                         {{else}}
+                         	<a href="{{urls.auth.login}}">Orders</a>
+                         	{{/if}}
+                        <a href="/contact-qrfs-by-phone-or-email/">Contact Us</a>
+                    </div>
+                    </div>
+                {{#if settings.phone_number}}
+                <li class="navUser-item navUser-item--phone">
+                    <a class="navUser-action" href="tel:{{settings.phone_number}}" title="{{lang 'header.call_us' phone_number=settings.phone_number}}">
+                        <span class="_label">{{lang 'header.call_us' phone_number=settings.phone_number}}</span>
+                    </a>
+                </li>
+                {{/if}}
+
+                <li class="navUser-item navUser-item--account">
+                    {{#if customer}}
+                        <a class="navUser-action" href="{{urls.account.index}}">
+                            <img class="pro-icon" src="https://cdn11.bigcommerce.com/s-eplfis85ct/images/stencil/original/image-manager/acnticon.png" alt="Account" title="Account">
+                            <span class="_label">{{lang 'common.account'}}</span>
+                        </a>
+                    {{else}}
+                        <a class="navUser-action" href="{{urls.auth.login}}">
+                          <img class="pro-icon" src="https://cdn11.bigcommerce.com/s-eplfis85ct/images/stencil/original/image-manager/acnticon.png" alt="Account" title="Account">
+                            <span class="_label">
+                                {{lang 'common.login'}}
+                               
+                            </span>
+                        </a>
+                    {{/if}}
+                </li>
+            
+                {{#if customer.store_credit.value '>' 0}}
+                    <li class="navUser-item">
+                        <a class="navUser-action navUser-action--storeCredit"
+                            data-dropdown="storeCredit-dropdown"
+                            data-options="align:bottom"
+                            href="{{urls.cart}}">
+                            <svg class="icon"><use xlink:href="#icon-credit" /></svg>
+                            <span class="_label">{{lang 'common.store_credit_overview' credit=customer.store_credit.formatted}}</span>
+                        </a>
+                        <div class="dropdown-menu" id="storeCredit-dropdown" data-dropdown-content aria-hidden="true">
+                            {{{lang 'common.store_credit' store_credit=customer.store_credit.formatted}}}
+                        </div>
+                    </li>
+                {{/if}}
+            
+                <li class="navUser-item navUser-item--compare">
+                    <a class="navUser-action navUser-action--compare" href="{{urls.compare}}" data-compare-nav>
+                        <svg class="icon"><use xlink:href="#icon-compare" /></svg>
+                        <span class="_label">{{lang 'common.compare'}} <span class="countPill countPill--positive countPill--alt"></span></span>
+                        
+                    </a>
+                </li>
+                
+                {{#if settings.gift_certificates_enabled}}
+                    <li class="navUser-item navUser-item--giftCert">
+                        <a class="navUser-action navUser-action--giftCert" href="{{urls.gift_certificate.purchase}}">
+                            <svg class="icon"><use xlink:href="#icon-gift" /></svg>
+                            <span class="_label">{{{lang 'common.gift_cert'}}}</span>
+                        </a>
+                    </li>
+                {{/if}}
+            
+                <li class="navUser-item navUser-item--cart">
+                    <a
+                        class="navUser-action navUser-action--cart"
+                        data-cart-preview
+                        data-dropdown="cart-preview-dropdown"
+                        data-options="align:right"
+                        href="{{urls.cart}}"
+                        title="{{lang 'common.cart'}}">
+                        <span ><img class="pro-icon" src="https://cdn11.bigcommerce.com/s-eplfis85ct/product_images/uploaded_images/shopping-cart3.png" alt="cart-icon">
+                        <span class="_label">{{lang 'common.cart'}}</span> <span class="countPill cart-quantity"></span>
+                    </a>
+                    <div class="dropdown-menu" id="cart-preview-dropdown" data-dropdown-content aria-hidden="true"></div>
+                </li>
+            </ul>
+
+            <div class="_searchBar col-md-5">
+                <a href="#" class="mobileMenu-toggle" data-mobile-menu-toggle="menu">
+                    <span class="mobileMenu-toggleIcon"><span class="_icon"></span></span>
+                    <span class="_label">{{lang 'common.menu'}}</span>
+                </a>
+                {{> components/common/quick-search}}
+            </div>
+
+        </div>
+    </div>
+
+    <div class="navPages-container-overlay"></div>
+    <div class="navPages-container" id="menu" data-menu>
+        <div class="navPages-container-header">
+            <span class="_heading">Menu</span>
+            <a href="#" class="mobileMenu-toggle" data-mobile-menu-toggle="menu" title="{{lang 'common.close'}}"><span class="mobileMenu-toggleIcon"><span class="_icon"></span></span></a>
+        </div>
+        <div class="" id="bf-fix-menu-mobile">
+            {{> components/beautify/navigation-menu}}
+        </div>
+    </div>
+
+</header>
+
+<div class="dropdown dropdown--quickSearch" id="quickSearch" aria-hidden="true" tabindex="-1" data-prevent-quick-search-close>
+    <div class="container">
+        <section class="quickSearchResults" data-bind="html: results"></section>
+    </div>
+</div>
+<div class="papathemes-overlay"></div>
+
+{{{region name="header_bottom--global"}}}
+{{{region name="header_bottom"}}}

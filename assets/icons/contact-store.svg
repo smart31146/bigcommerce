@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg width="25px" height="25px" viewBox="0 0 25 25" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <title>warehouse-contact</title>
+  <polyline id="Stroke-411" points="5.823 23.797 5.823 11.797 18.851 11.797 18.851 23.797" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round" style=""/>
+  <line x1="5.823" y1="20.797" x2="18.851" y2="20.797" id="Stroke-412" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round" style=""/>
+  <line x1="5.823" y1="17.797" x2="18.851" y2="17.797" id="Stroke-413" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round" style=""/>
+  <line x1="5.823" y1="14.797" x2="18.851" y2="14.797" id="Stroke-414" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round" style=""/>
+  <path d="M 11.483 1.15 L 0.813 11.797 L 2.817 11.797 L 2.817 23.797 L 21.858 23.797 L 21.858 11.797 L 23.863 11.797 L 13.193 1.15 C 12.966 0.924 12.659 0.797 12.339 0.797 L 12.337 0.797 C 12.017 0.797 11.709 0.924 11.483 1.15 L 11.483 1.15 Z" id="Stroke-415" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round" style=""/>
+</svg>

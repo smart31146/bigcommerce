@@ -1,0 +1,7 @@
+{{#if product.related_products}}
+       {{#if settings.data_tag_enabled}}
+            {{> components/products/relatedcarousel products=product.related_products columns=6 list="Related Products"}}
+        {{else}}
+            {{> components/products/relatedcarousel products=product.related_products columns=6}}
+        {{/if}}
+{{/if}}

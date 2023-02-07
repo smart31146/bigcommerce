@@ -1,0 +1,63 @@
+<section class="productView-alsoBought productView-alsoBought--{{theme_settings.alsobought_position}} u-hiddenVisually" data-also-bought='{
+    {{#or customer (if theme_settings.restrict_to_login '!==' true)}}
+        "samplePriceWithTax": "{{product.price.with_tax.formatted}}",
+        "samplePriceWithoutTax": "{{product.price.without_tax.formatted}}",
+    {{/or}}
+    "requireLogin": {{#or customer (if theme_settings.restrict_to_login '!==' true)}}false{{else}}true{{/or}},
+    "includeTax": {{#if product.price.with_tax}}true{{else}}false{{/if}},
+    "showTaxLabel": {{#and product.price.with_tax product.price.without_tax}}true{{else}}false{{/and}}
+}'>
+    <div class="productView-alsoBought-heading"><h2 class="_heading">{{lang 'also_bought.heading'}}</h2></div>
+    <div class="productView-alsoBought-thumbnails" data-thumbnails>
+        {{#if product.can_purchase}}
+            <div class="productView-alsoBought-thumbnail-item is-checked" data-thumbnail-product-id="{{product.id}}">
+                {{> components/papathemes/also-bought/product-thumbnail}}
+            </div>
+        {{/if}}
+    </div>
+    {{#or customer (if theme_settings.restrict_to_login '!==' true)}}
+        <div class="productView-alsoBought-buttons" data-buttons>
+            <button type="button" class="button button--small button--primary" data-add-selected>{{lang 'also_bought.add_selected_to_cart'}}</button>
+            {{!-- <a class="button button--small button--primary" href="#" data-add-all>{{lang 'also_bought.add_all'}}</a> --}}
+            <div class="productView-alsoBought-total">
+                <div class="price-section price-section--withTax" data-total-with-tax>
+                    <span class="price price--withTax" data-price></span>
+                    <abbr title="{{lang 'products.including_tax'}}" data-tax-label>{{lang 'products.price_with_tax' tax_label=product.price.tax_label}}</abbr>
+                </div>
+                <div class="price-section price-section--withoutTax" data-total-without-tax>
+                    <span class="price price--withoutTax" data-price></span>
+                    <abbr title="{{lang 'products.excluding_tax'}}" data-tax-label>{{lang 'products.price_without_tax' tax_label=product.price.tax_label}}</abbr>
+                </div>
+            </div>
+        </div>
+    {{/or}}
+    <div class="productView-alsoBought-list">
+        {{#if product.can_purchase}}
+            <div class="productView-alsoBought-item _parent" data-product-id="{{product.id}}" data-parent-product>
+                {{> components/papathemes/also-bought/parent-product-details}}
+            </div>
+        {{/if}}
+        {{#if theme_settings.alsobought_product '==' 'related'}}
+            {{#each product.related_products}}
+                <div class="productView-alsoBought-item" data-product-id="{{id}}"></div>
+                {{inject 'enableAlsoBought' true}}
+            {{/each}}
+        {{else if theme_settings.alsobought_product '==' 'similar'}}
+            {{#each product.similar_by_views}}
+                <div class="productView-alsoBought-item" data-product-id="{{id}}"></div>
+                {{inject 'enableAlsoBought' true}}
+            {{/each}}
+        {{else}}
+            {{#each product.custom_fields}}
+                {{#if name '===' '__alsobought'}}
+                    <div class="productView-alsoBought-item" data-product-id="{{value}}"></div>
+                    {{inject 'enableAlsoBought' true}}
+                {{/if}}
+            {{/each}}
+        {{/if}}
+    </div>
+</section>
+{{inject 'enableAlsoBought' true}}
+
+<script type="text/javascript">
+</script>

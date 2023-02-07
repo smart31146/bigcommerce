@@ -1,0 +1,70 @@
+
+.navList-subSection .navList-item {
+	margin-left: spacing("half");
+
+	&:before {
+		content: '-';
+		float: left;
+		margin-left: -(spacing("half"));
+	}
+}
+
+.navBar--sub {
+	margin-bottom: spacing("single");
+
+	.navBar-item {
+		&.is-active {
+			font-weight: fontWeight("bold");
+		}
+		
+		.supermarket-page--pages-search & {
+			display: inline-block;
+		}
+	}
+
+	.navBar-action {
+		padding-top: spacing("quarter");
+		padding-bottom: spacing("quarter");
+
+		color: $color-textLink;
+
+		&:hover {
+			color: $color-textLink-hover;
+		}
+
+		&:active {
+			color: $color-textLink-active;
+		}
+	}
+
+	.navBar-action-color--active {
+		// font-weight: fontWeight("bold"); papathemes-beautify commented out
+		color: $color-textBase;
+
+		// papathemes-beautify added
+		padding: spacing("half");
+		display: block;
+	}
+	
+	// papathemes-beautify edited
+	.supermarket-page--pages-search & {
+		text-align: left;
+
+		.navBar-item:first-child {
+			margin-left: 0;
+		}
+	}
+
+	// papathemes-beautify
+	@media (max-width: screenSize("medium") - 1px) {
+		text-align: left;
+		.navBar-item {
+			margin-left: 0;
+			margin-right: spacing("single");
+			&.is-active {
+				padding-top: spacing("quarter");
+				padding-bottom: spacing("quarter");
+			}
+		}
+	}
+}

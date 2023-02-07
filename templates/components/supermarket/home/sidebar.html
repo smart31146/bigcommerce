@@ -1,0 +1,30 @@
+<nav class="navList navList--aside">
+    {{{region name="home_sidebar_top--global"}}}
+    {{{region name="home_sidebar_top"}}}
+    {{#if page.sub_pages}}
+        {{> components/supermarket/sidebar/subpages}}
+    {{/if}}
+
+    {{> components/supermarket/sidebar/categories-menu}}
+
+    {{{region name="home_sidebar_below_menu--global"}}}
+    {{{region name="home_sidebar_below_menu"}}}
+
+    {{#if theme_settings.sidebar_shop_by_brand '>' 9}}
+        {{> components/supermarket/sidebar/brands}}
+    {{/if}}
+
+    {{{region name="home_sidebar_below_brands--global"}}}
+    {{{region name="home_sidebar_below_brands"}}}
+
+    {{> components/supermarket/sidebar/recently-viewed-products}}
+
+    {{#if theme_settings.homepage_blog_posts_position '===' 'sidebar'}}
+    {{#if theme_settings.homepage_blog_posts_count '>' 0}}
+        {{> components/supermarket/sidebar/blog posts=blog.recent_posts}}
+    {{/if}}
+    {{/if}}
+
+    {{{region name="home_sidebar_bottom"}}}
+    {{{region name="home_sidebar_bottom--global"}}}
+</nav>

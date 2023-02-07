@@ -1,0 +1,96 @@
+---
+product:
+    videos:
+        limit: {{theme_settings.productpage_videos_count}}
+    reviews:
+        limit: {{theme_settings.productpage_reviews_count}}
+    related_products:
+        limit: {{theme_settings.productpage_related_products_count}}
+    similar_by_views:
+        limit: {{theme_settings.productpage_similar_by_views_count}}
+shop_by_brand:
+    limit: {{theme_settings.sidebar_shop_by_brand}}
+blog:
+    recent_posts:
+        limit: {{theme_settings.homepage_blog_posts_count}}
+customer:
+    recently_viewed_products:
+        limit: {{theme_settings.product_recently_viewed}}
+---
+{{#partial "page"}}
+
+    {{#if theme_settings.layout '===' 'left-sidebar'}}
+        <div class="page">
+            <div class="page-sidebar">
+                {{> components/supermarket/home/sidebar}}
+            </div>
+            <main class="page-content">
+    {{/if}}
+
+    {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+
+    {{#each product.shipping_messages}}
+        {{> components/common/alert-info message}}
+    {{/each}}
+
+    <div itemscope itemtype="http://schema.org/Product" class="productView-scope">
+        {{> components/products/product-view schema=true}}
+
+        {{{region name="product_below_content--global"}}}
+        {{{region name="product_below_content"}}}
+    </div>
+
+    {{#if theme_settings.show_yotpo}}
+        {{> components/yotpo/main-widget}}
+    {{/if}}
+    
+    <div class="productView-productTabs">
+        {{> components/products/tabs}}
+    </div>
+
+    {{#if theme_settings.layout '===' 'left-sidebar'}}
+            </main>
+        </div>
+    {{/if}}
+{{/partial}}
+{{#and theme_settings.instantload is_ajax}}
+    {{> layout/instantload-base}}
+{{else}}
+    {{> layout/base}}
+{{/and}}
+
+<script type="text/javascript"> 
+var _learnq = _learnq || []; 
+
+ var item = {
+   Name: "{{product.title}}", 
+   ProductID: "{{product.id}}",
+   ImageURL: "{{getImage product.main_image 'product_size' (cdn theme_settings.default_image_product)}}", 
+   URL: "{{product.url}}",
+   Brand: "{{product.brand.name}}", 
+   Price: "{{product.price.without_tax.value}}",
+   CompareAtPrice: "{{product.price.rrp_without_tax.value}}"
+  };
+
+_learnq.push(['track', 'Viewed Product', item]); 
+
+_learnq.push(['trackViewedItem', {
+   Title: item.Name, 
+   ItemId: item.ProductID,
+   ImageUrl: item.ImageURL, 
+   Url: item.URL,
+
+   Metadata: { 
+     Brand: item.Brand,
+     Price: item.Price, 
+     CompareAtPrice: item.CompareAtPrice
+ } 
+ }]);
+</script>
+
+<script text="text/javascript">
+    var _learnq = _learnq || [];
+    document.getElementById("form-action-addToCart").addEventListener('click',function (){
+        _learnq.push(['track', 'Added to Cart', item]);
+    });
+</script>

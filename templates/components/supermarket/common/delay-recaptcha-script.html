@@ -1,0 +1,40 @@
+{{#or forms.contact.recaptcha product.reviews.recaptcha forms.create_account.recaptcha}}
+<script>
+    {{!--
+        Inspired: https://medium.com/snips-ai/how-to-block-third-party-scripts-with-a-few-lines-of-javascript-f0b08b9c4c0
+    --}}
+    (function() {
+        var disabledNodes = [];
+        var mo = new MutationObserver(function(mutations) {
+            for (var i = 0; i < mutations.length; i++) {
+                if (mutations[i].addedNodes) {
+                    for (var j = 0; j < mutations[i].addedNodes.length; j++) {
+                        var node = mutations[i].addedNodes[j];
+                        if (node.nodeType == 1 && node.tagName == 'SCRIPT' && node.src == 'https://www.google.com/recaptcha/api.js') {
+                            node.type = 'javascript/blocked';
+                            node.addEventListener('beforescriptexecute', function(event) {
+                                event.preventDefault();
+                            });
+                            disabledNodes.push(node);
+                        }
+                    }
+                }
+            }
+        });
+        mo.observe(document.documentElement, { childList: true, subtree: true });
+        function load() {
+            mo.disconnect();
+            for (var i = 0; i < disabledNodes.length; i++) {
+                var node = disabledNodes[i];
+                var newNode = document.createElement('script');
+                newNode.async = true;
+                newNode.defer = true;
+                newNode.src = node.src;
+                node.parentNode.insertBefore(newNode, node);
+                node.parentNode.removeChild(node);
+            }
+        }
+        window.addEventListener('DOMContentLoaded', load);
+    })();
+</script>
+{{/or}}

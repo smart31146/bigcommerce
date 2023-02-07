@@ -1,0 +1,143 @@
+.card {
+	margin-bottom: spacing("half");
+	@include breakpoint("medium") {
+		margin-bottom: spacing("single");	
+	}
+}
+
+.card-body {
+	text-align: stencilString("card-textAlign");
+
+    .price {
+    	font-size: fontSize("base"); // papathemes-beautify modified
+		font-weight: $header-font-weight; // papathemes-beautify modified
+	}
+
+	.price-section {
+		display: inline;
+
+		+ .price-section {
+			margin-left: spacing("quarter");
+		}
+	}
+
+	.rrp-price--withTax,
+	.rrp-price--withoutTax {
+		+ .price-section {
+			margin-left: 0;
+		}
+	}
+
+	.card-text--summary {
+		color: $color-textBase;
+		// margin-top: spacing("half"); // papathemes-beautify commeted
+		
+		@if $theme-style == "compact" {
+			font-size: fontSize("smallest");
+		}
+		@else if $theme-style == "modern" {
+			font-size: fontSize("smaller");
+		}
+	}
+}
+
+.card-figcaption-body {
+	display: inline;
+	transform: none;
+	position: static;
+}
+
+.card-figure {
+	position: relative;
+	overflow: hidden;
+}
+
+.card-image ~ .card-image {
+	position: absolute;
+	top: 0;
+	left: 0;
+	opacity: 0;
+	transition: opacity 0.5s ease;
+	height: 100%;
+	background-color: container("fill");
+}
+.card:hover,
+.card:focus,
+.card:active {
+	.card-image ~ .card-image {
+		opacity: 1;
+	}
+}
+
+// papathemes-beautify deleted .card-figcaption-button.button--primary
+
+.card-figcaption-body-bottomGroup {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	background: stencilColor("card-figcaption-button-background");
+	padding: spacing("half") 0;
+
+	.card-figcaption-button {
+
+		&:first-child {
+			margin-top: 0;
+		}
+
+		&:hover {
+			background: stencilColor("card-figcaption-button-background");
+			opacity: 0.6;
+		}
+	}
+}
+
+.card-figcaption-body-rightGroup {
+	position: absolute;
+	top: 0;
+	right: 0;
+
+	.card-figcaption-button {
+		text-indent: -9999px;
+		font-size: 0;
+		padding: 5px;
+		line-height: fontSize("large");
+		border: 0;
+		background: transparent;
+	
+		&:before {
+			font-family: 'papathemesicons' !important;
+			font-style: normal;
+			content: $papathemes-icon-cart;
+			text-indent: 0;
+			float: left;
+			font-size: fontSize("large");
+		}
+
+		&:hover {
+			background: transparent;
+			opacity: 0.6;
+		}
+	}
+}
+
+
+
+.card-figcaption-button.quickview {
+
+}
+
+// papathemes-beatyfeature deleted .card-aside
+
+.card-text--summary {
+	display: none;
+}
+
+.card-title {
+	@if $theme-style == "compact" {
+		font-weight: inherit;
+	}
+}

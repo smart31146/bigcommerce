@@ -1,0 +1,68 @@
+{{#if shop_by_price}}
+    <div class="sidebarBlock sidebarBlock--shopByPrice sidebarBlock--mobileCollapsible">
+        <h3 class="sidebarBlock-heading is-open" data-collapsible="#shopByPrice-navList" tabindex="0" aria-expanded="true">
+            {{lang 'category.shop_by_price'}}
+            <svg class="icon"><use xlink:href="#icon-keyboard-arrow-down"></use></svg>
+        </h3>
+        {{#if theme_settings.show_shop_by_price '==' 'slider'}}
+            <div id="shopByPrice-navList" class="beautify__navList is-open" data-beautify-shop-by-price="{{JSONstringify shop_by_price}}" aria-hidden="false">
+                <div class="beautify__shopByPrice-slider" data-slider></div>
+                <form class="form" method="get" novalidate>
+                    <fieldset class="form-fieldset">
+                        <div class="form-minMaxRow">
+                            <div class="form-field form-field--input">
+                                <input
+                                    name="min_price"
+                                    placeholder="{{lang 'search.faceted.range.min-placeholder'}}"
+                                    min="0"
+                                    class="form-input form-input--small"
+                                    required
+                                    type="number"
+                                    value=""
+                                /><span class="_currency">{{settings.money.currency_token}}</span>
+                            </div>
+        
+                            <div class="form-field form-field--input">
+                                <input
+                                    name="max_price"
+                                    placeholder="{{lang 'search.faceted.range.max-placeholder'}}"
+                                    min="0"
+                                    class="form-input form-input--small"
+                                    required
+                                    type="number"
+                                    value=""
+                                /><span class="_currency">{{settings.money.currency_token}}</span>
+                            </div>
+        
+                            <div class="form-field">
+                                <button class="button button--outline button--small" type="submit">
+                                    {{lang 'search.faceted.range.update'}}
+                                </button>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+                <div class="navList-actions-inline">
+                    <button class="navList-action" data-cancel style="display:none">{{lang 'common.cancel'}}</button>
+                    <a href="{{category_url}}" class="navList-action" data-clear style="display:none">{{lang 'search.faceted.clear'}}</a>
+                </div>
+            </div>
+        {{else}}
+            <ul id="shopByPrice-navList" class="navList" aria-hidden="true">
+                {{#each shop_by_price}}
+                <li class="navList-item">
+                    <a class="navList-action {{#if selected }} is-active {{/if}}" data-instantload href="{{url}}" title="{{low.formatted}} - {{high.formatted}}">{{low.formatted}} - {{high.formatted}}</a>
+                </li>
+                {{/each}}
+
+                {{#any shop_by_price selected=true}}
+                    <li class="navList-item">
+                        <a data-instantload href="{{category_url}}" class="navList-action">
+                            {{lang 'category.reset'}}
+                        </a>
+                    </li>
+                {{/any}}
+            </ul>
+        {{/if}}
+    </div>
+{{/if}}

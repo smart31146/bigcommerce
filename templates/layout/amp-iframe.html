@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html class="no-js" lang="{{ locale_name }}">
+    <head>
+        <title>{{ head.title }}</title>
+        {{{ head.meta_tags }}}
+        {{{ head.config }}}
+        {{#block "head"}} {{/block}}
+        <link href="{{ head.favicon }}" rel="shortcut icon">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        {{{stylesheet '/assets/css/theme.css'}}}
+        {{{stylesheet '/assets/css/fonts-icons.css'}}}
+        <link rel="stylesheet" href="{{cdn 'assets/vendor/fontawesome/font-awesome.css'}}">
+        {{ getFontsCollection }}
+
+        <script>
+            // Change document class from no-js to js so we can detect this in css
+            document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
+        </script>
+
+        {{{ head.scripts }}}
+
+        {{!-- Theme settings: --}}
+        {{~inject 'add_to_cart_popup' theme_settings.add_to_cart_popup}}
+        {{~inject 'redirect_cart' theme_settings.redirect_cart}}
+        {{~inject 'alsobought_thumbnail_size' theme_settings.alsobought_thumbnail_size}}
+        {{~inject 'pdp_price_label' theme_settings.pdp-price-label}}
+        {{~inject 'pdp_sale_price_label' theme_settings.pdp-sale-price-label}}
+        {{~inject 'pdp_non_sale_price_label' theme_settings.pdp-non-sale-price-label}}
+        {{~inject 'pdp_retail_price_label' theme_settings.pdp-retail-price-label}}
+        {{~inject 'alsobought_checked' theme_settings.alsobought_checked}}
+        {{~inject 'homepage_show_carousel' theme_settings.homepage_show_carousel}}
+        {{~inject 'product_new_count' theme_settings.product_new_count}}
+        {{~inject 'product_featured_count' theme_settings.product_featured_count}}
+        {{~inject 'product_top_count' theme_settings.product_top_count}}
+        {{~inject 'homepage_blog_posts_count' theme_settings.homepage_blog_posts_count}}
+        {{~inject 'product_recently_viewed' theme_settings.product_recently_viewed}}
+        {{~inject 'sidebar_shop_by_brand' theme_settings.sidebar_shop_by_brand}}
+        {{~inject 'productpage_videos_count' theme_settings.productpage_videos_count}}
+        {{~inject 'productpage_reviews_count' theme_settings.productpage_reviews_count}}
+        {{~inject 'productpage_related_products_count' theme_settings.productpage_related_products_count}}
+        {{~inject 'productpage_similar_by_views_count' theme_settings.productpage_similar_by_views_count}}
+        {{~inject 'categorypage_products_per_page' theme_settings.categorypage_products_per_page}}
+        {{~inject 'brandpage_products_per_page' theme_settings.brandpage_products_per_page}}
+        {{~inject 'categorypage_search' theme_settings.categorypage_search}}
+        {{~inject 'categorypage_search_subs' theme_settings.categorypage_search_subs}}
+        {{~inject 'instantload' theme_settings.instantload}}
+        {{~inject 'navPages_animation' theme_settings.navPages_animation}}
+        {{~inject 'show_bulk_order_mode' theme_settings.show_bulk_order_mode}}
+        {{~inject 'swatch_option_display_type' theme_settings.swatch_option_display_type}}
+        {{~inject 'zoom_size' theme_settings.zoom_size}}
+        {{~inject 'product_size' theme_settings.product_size}}
+        {{~inject 'product_image_responsive' theme_settings.product_image_responsive}}
+        {{!-- // --}}
+        {{ inject 'isAMP' true }}
+        {{inject 'urls' urls}}
+        <style>
+            {{> components/amp/css/product-options}}
+        </style>
+    </head>
+    <body>
+        <div class="icons-svg-sprite">{{> components/amp/common/icon-defs }}</div>
+
+        {{#block "page"}} {{/block}}
+
+        <script>window.__webpack_public_path__ = "{{cdn 'assets/dist/'}}";</script>
+        <script src="{{cdn 'assets/dist/theme-bundle.main.js'}}"></script>
+
+        <script>
+            // Exported in app.js
+            window.stencilBootstrap("{{page_type}}", {{jsContext}}, false).load();
+        </script>
+        <script type="text/javascript" charset="utf-8">
+            function postHeight() {
+                window.parent.postMessage({
+                    sentinel: 'amp',
+                    type: 'embed-size',
+                    height: window.document.querySelector('body').offsetHeight
+                }, '*');
+            }
+
+            window.addEventListener("DOMContentLoaded", function () {
+                window.addEventListener('resize', postHeight);
+                postHeight();
+            }, false);
+        </script>
+
+    </body>
+</html>

@@ -1,0 +1,104 @@
+// Page Navigation
+// -----------------------------------------------------------------------------
+//
+// Purpose: Contains the styles for the page navigation, deals with 2 viewsdue to
+// responsive layout of that navigation
+//
+// 1. It's not exactly a grid row, as it's a little further down the DOM tree, but
+// I use it here to grab the max width centering.
+// 2. Prevent document scrolling by clipping its body
+// 3. Prevent inertia scrolling of document
+//
+// -----------------------------------------------------------------------------
+
+//
+// When navPages is open
+// -----------------------------------------------------------------------------
+
+.has-activeNavPages {
+    // scss-lint:disable VendorPrefix
+    overflow: hidden; // 2
+    -webkit-overflow-scrolling: auto; // 3
+}
+
+//
+// Top level Pages navigation container
+// -----------------------------------------------------------------------------
+
+// papathemes-beautify deleted .navPages-container
+
+
+//
+// Top level Pages navigation list styles
+// -----------------------------------------------------------------------------
+
+.navPages-action--storeCredit {
+    color: stencilColor("color-textSecondary");
+}
+
+.navPages-action--compare {
+    display: none;
+
+    &.show {
+        display: block;
+    }
+}
+
+// papathemes-beautify deleted
+
+
+//
+// Quick search inside the mobile nav
+// -----------------------------------------------------------------------------
+
+.navPages-quickSearch {
+    border-bottom: container("border");
+    margin-bottom: spacing("half");
+
+    @include breakpoint("medium") {
+        display: none;
+    }
+
+    > .container {
+        padding: 0;
+    }
+
+    .form {
+        margin: 0;
+    }
+
+    .form-field {
+        margin-bottom: 0;
+    }
+}
+
+
+//
+// NavPages user section for mobile nav panel
+// -----------------------------------------------------------------------------
+
+.navPages-list--user {
+    // papathemes-babesafety: hidden on desktop
+    @include breakpoint("medium") {
+        display: none;
+    }
+
+    // scss-lint:disable SelectorDepth, NestingDepth, IdSelector
+    #currencySelection2 {
+        background-color: color("whites", "bright");
+        border: container("border");
+
+        .dropdown-menu-item {
+            padding: 0;
+
+            // scss-lint:disable NestingDepth
+            &:not(:last-child) {
+                border-bottom: container("border");
+            }
+        }
+
+        a {
+            padding: spacing("half") spacing("single");
+        }
+    }
+}

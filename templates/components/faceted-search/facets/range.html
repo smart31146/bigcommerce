@@ -1,0 +1,72 @@
+<div class="_accordion-block">
+    <div
+        class="_accordion-navigation toggleLink {{#unless ../start_collapsed }} is-open {{/unless}}"
+        role="button"
+        tabindex="0"
+        data-collapsible="#facetedSearch-content--{{dashcase facet }}">
+        <h4 class="_accordion-title">
+            {{ title }}
+        </h4>
+
+        <div class="_accordion-navigation-actions">
+            {{#if selected}}
+                <a href="{{ remove_url }}" class="facetedSearch-clearLink" data-faceted-search-facet>{{lang 'search.faceted.clear'}}</a>
+            {{/if}}
+            <svg class="icon _accordion-indicator toggleLink-text toggleLink-text--off">
+                <use xlink:href="#icon-keyboard-arrow-down" />
+            </svg>
+            <svg class="icon _accordion-indicator toggleLink-text toggleLink-text--on">
+                <use xlink:href="#icon-keyboard-arrow-up" />
+            </svg>
+        </div>
+    </div>
+
+    <div id="facetedSearch-content--{{dashcase facet }}" class="_accordion-content {{#unless ../start_collapsed }} is-open {{/unless}}">
+        <div class="beautify__shopByPrice-slider" data-slider></div>
+        <form id="facet-range-form" class="form" method="get" data-faceted-search-range novalidate>
+            <input type="hidden" name="search_query" value="{{search_query}}">
+            {{#if this.sort}}
+                <input type="hidden" name="sort" value={{this.sort}}>
+            {{/if}}
+            <fieldset class="form-fieldset">
+                <div class="form-minMaxRow">
+                    <div class="form-field form-field--input">
+                        <input
+                            name="min_price"
+                            placeholder="{{lang 'search.faceted.range.min-placeholder'}}"
+                            min="0"
+                            class="form-input form-input--small"
+                            required
+                            type="number"
+                            value="{{ min_price }}"
+                        /><span class="_currency">{{settings.money.currency_token}}</span>
+                    </div>
+
+                    <div class="form-field form-field--input">
+                        <input
+                            name="max_price"
+                            placeholder="{{lang 'search.faceted.range.max-placeholder'}}"
+                            min="0"
+                            class="form-input form-input--small"
+                            required
+                            type="number"
+                            value="{{ max_price }}"
+                        /><span class="_currency">{{settings.money.currency_token}}</span>
+                    </div>
+
+                    <div class="form-field">
+                        <button class="button button--outline button--small" type="submit">
+                            {{lang 'search.faceted.range.update'}}
+                        </button>
+                    </div>
+                </div>
+
+                <div class="form-inlineMessage"></div>
+            </fieldset>
+        </form>
+        <div class="navList-actions-inline">
+            <button class="navList-action" data-cancel style="display:none">{{lang 'common.cancel'}}</button>
+            <a href="{{remove_url}}" class="navList-action" data-faceted-search-facet data-clear style="display:none">{{lang 'search.faceted.clear'}}</a>
+        </div>
+    </div>
+</div>

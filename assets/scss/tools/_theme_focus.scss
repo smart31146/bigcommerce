@@ -1,0 +1,46 @@
+// =============================================================================
+// THEME FOCUS (global)
+// =============================================================================
+
+$outline-width:  2px;
+$outline-style:  solid;
+$outline-color:  #0F7FFF;
+$outline-offset: 1px;
+
+input,
+button,
+textarea,
+select,
+details,
+[href],
+[tabindex]:not([tabindex="-1"]),
+[contenteditable="true"] {
+    :focus {
+        outline: $outline-width $outline-style $outline-color !important;
+        outline-offset: $outline-offset !important;
+    }
+    &:focus:not(:focus-visible) {
+        outline: 0 !important;
+    }
+
+    &:focus-visible {
+        outline: $outline-width $outline-style $outline-color !important;
+        outline-offset: $outline-offset !important;
+    }
+}
+
+label {
+    input:focus + & {
+        outline: $outline-width $outline-style $outline-color !important;
+        outline-offset: $outline-offset !important;
+    }
+
+    input:focus:not(:focus-visible) + & {
+        outline: 0 !important;
+    }
+
+    input:focus-visible + & {
+        outline: $outline-width $outline-style $outline-color !important;
+        outline-offset: $outline-offset !important;
+    }
+}

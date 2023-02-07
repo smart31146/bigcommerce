@@ -1,0 +1,45 @@
+---
+products:
+    new:
+        limit: 5
+blog:
+    recent_posts:
+        limit: 10
+customer:
+    recently_viewed_products:
+        limit: {{theme_settings.product_recently_viewed}}
+---
+{{#partial "page"}}
+
+<div class="page u-papathemes-page-responsiveSidebar">
+
+    <main class="page-content">
+        <div class="page-content-header">
+            {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+            <h1 class="page-heading">{{ blog.post.title }}</h1>
+        </div>
+        <div class="page-content-body">
+            {{{region name="blog_post_content--global"}}}
+            {{{region name="blog_post_content"}}}
+            {{> components/blog/post post=blog.post show_tags=true single=true}}
+
+            {{{region name="blog_post_before_products--global"}}}
+            {{{region name="blog_post_before_products"}}}
+
+    		<div class="papathemes-blog-bottomSection">
+                {{> components/beautify/recent-blog posts=(limit blog.recent_posts theme_settings.homepage_blog_posts_count)}}
+            </div>
+
+            {{{region name="blog_post_bottom"}}}
+            {{{region name="blog_post_bottom--global"}}}
+        </div>
+    </main>
+
+</div>
+
+{{/partial}}
+{{#and theme_settings.instantload is_ajax}}
+    {{> layout/instantload-base}}
+{{else}}
+    {{> layout/base}}
+{{/and}}

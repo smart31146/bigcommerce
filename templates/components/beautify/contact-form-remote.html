@@ -1,0 +1,33 @@
+<form data-contact-form class="form" action="{{urls.contact_us_submit}}" method="post">
+    {{#if forms.contact.error}}
+        <div id="contact-us-error">{{> components/common/alert-error forms.contact.error}}</div>
+    {{/if}}
+    <input type="hidden" name="page_id" id="page_id" value="{{forms.contact.page_id}}">
+    
+    {{#if forms.contact.name}}
+        <div class="form-field">
+            <label class="form-label" for="contact_fullname">{{lang 'forms.contact_us.full_name'}}</label>
+            <input class="form-input" type="text" id="contact_fullname" name="contact_fullname" value="{{customer.name}}" placeholder="{{lang 'forms.contact_us.full_name'}}">
+        </div>
+    {{/if}}
+
+    <div class="form-field">
+        <label class="form-label" for="contact_email">{{lang 'forms.contact_us.email'}}
+            <small class="_required" title="{{lang 'common.required'}}">{{lang 'common.required_symbol'}}</small>
+        </label>
+        <input class="form-input" type="text" id="contact_email" name="contact_email" value="{{customer.email}}" placeholder="{{lang 'forms.contact_us.email'}}">
+    </div>
+
+    <div class="form-field">
+        <label class="form-label" for="contact_question">{{lang 'forms.contact_us.question'}}
+            <small class="_required" title="{{lang 'common.required'}}">{{lang 'common.required_symbol'}}</small>
+        </label>
+        <textarea name="contact_question" id="contact_question" rows="3" cols="50" class="form-input" placeholder="{{lang 'forms.contact_us.question'}}"></textarea>
+    </div>
+
+    {{{forms.contact.recaptcha.markup}}}
+
+    <div class="form-actions">
+        <input class="button button--primary" type="submit" value="{{lang 'forms.contact_us.submit' }}">
+    </div>
+</form>

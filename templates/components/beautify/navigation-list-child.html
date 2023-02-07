@@ -1,0 +1,28 @@
+{{#if children}}
+    <a class="navPages-action-toggle" href="#"
+        data-collapsible="navPages-{{#if page_type '==' 'page'}}page-{{getVar 'navWebPageCount'}}{{/if}}{{id}}{{idSuffix}}">
+        <span class="_more">{{lang 'common.nav_more'}} <svg class="icon"><use xlink:href="#icon-add"></use></svg></span>
+        <span class="_less">{{lang 'common.nav_less'}} <svg class="icon"><use xlink:href="#icon-remove"></use></svg></span>
+    </a>
+    <a
+        class="navPage-childList-action has-subMenu" 
+        href="{{url}}"
+        {{#if menu_type '!=' 'vertical'}}data-instantload{{/if}}
+        {{#if id '==' category_id}}data-current-category{{/if}}
+    >{{name}}</a>
+    <a class="navPages-action-toggle-desktop" href="#" data-collapsible="navPages-{{#if page_type '==' 'page'}}page-{{getVar 'navWebPageCount'}}{{/if}}{{id}}{{idSuffix}}" title="{{lang 'common.nav_more'}}"><svg class="icon"><use xlink:href="#icon-caret-down"></use></svg></a>
+    <ul class="navPage-childList" id="navPages-{{#if page_type '==' 'page'}}page-{{getVar 'navWebPageCount'}}{{/if}}{{id}}{{idSuffix}}">
+        {{#each children}}
+            <!-- {{incrementVar 'navWebPageCount'}} -->
+            <li class="navPage-childList-item">
+                {{> components/beautify/navigation-list-child 
+                    category_id=../category_id 
+                    idSuffix=../idSuffix 
+                    theme_settings=../theme_settings
+                    menu_type=../menu_type}}
+            </li>
+        {{/each}}
+    </ul>
+{{else}}
+    <a class="navPage-childList-action" data-instantload href="{{url}}" {{#if id '==' category_id}}data-current-category{{/if}}>{{name}}</a>
+{{/if}}

@@ -1,0 +1,223 @@
+    {{#or banners.bottom theme_settings.instantload}}
+    <div class="container">
+        {{#if settings.data_tag_enabled}}
+            <div class="banners--bottom" data-banner-location="bottom">
+                {{#each (limit banners.bottom_metadata 1)}}
+                    <div class="banner" data-event-type="promotion" data-entity-id="{{this.id}}" data-name="{{this.banner-name}}" data-position="{{this.location}}" data-name="{{this.banner-name}}">
+                        <div data-event-type="promotion-click">
+                            {{{this.content}}}
+                        </div>
+                    </div>
+                {{/each}}
+            </div>
+        {{else}}
+            <div class="banners--bottom" data-banner-location="bottom">
+                <div class="banner">
+                    {{{limit banners.bottom 1}}}
+                </div>
+            </div>
+        {{/if}}
+    </div>
+    {{/or}}
+
+    {{{region name="footer_before"}}}
+    {{{region name="footer_before--global"}}}
+
+    {{#and settings.show_newsletter_box theme_settings.footer_show_newsletter}}
+        {{> components/beautify/section-home-newsletter}}
+    {{/and}}
+    {{{region name="footer_below_newsletter"}}}
+    {{{region name="footer_below_newsletter--global"}}}
+
+    <footer class="footer" role="contentinfo">
+        <h2 class="is-srOnly">{{lang 'footer.footer_start'}}</h2>
+        <div class="container">
+            <section class="footer-info justify-content-between">
+
+                {{#if theme_settings.footer_show_aboutus}}
+                    <article class="footer-info-col footer-info-col--about" data-section-type="storeInfo">
+                        {{#if theme_settings.footer_show_logo}}
+                            
+                        {{/if}}
+                        {{{region name="footer_below_logo--global"}}}
+
+                        {{#if theme_settings.footer_show_contact}}
+                           
+                                <span class="footer-info-heading footer-title">{{lang 'footer.customer'}}</span>
+                                <ul class="footer-info-list">
+                                    {{#if theme_settings.footer_show_pages '>' -1}}
+                                        {{#each (limit pages theme_settings.footer_show_pages)}}
+                                            <li>
+                                                <a href="{{url}}">{{name}}</a>
+                                            </li>
+                                        {{/each}}
+                                    {{else}}
+                                        {{#each pages}}
+                                            {{#if name '==' 'Customer Support'}}
+                                                {{#each children}}
+                                                    <li>
+                                                        <a href="{{url}}">{{name}}</a>
+                                                    </li>
+                                                {{/each}}
+                                           {{/if}}
+                                            
+                                        {{/each}}
+                                    {{/if}}
+
+                                </ul>
+                                {{{region name="footer_below_col2--global"}}}
+
+                        {{/if}}
+
+                        {{!-- {{#if theme_settings.social_icon_placement_bottom}}
+                            {{> components/common/social-links style="alt"}}
+                        {{/if}} --}}
+
+                        {{{region name="footer_below_col1--global"}}}
+                    </article>
+                {{/if}}
+                {{#if theme_settings.footer_show_pages '>' -2}}
+                    <article class="footer-info-col" data-section-type="footer-webPages">
+                        <span class="footer-info-heading footer-title">{{lang 'footer.navigate'}}</span>
+                        <ul class="footer-info-list">
+                            {{#if theme_settings.footer_show_pages '>' -1}}
+                                {{#each (limit pages theme_settings.footer_show_pages)}}
+                                {{#if name '==' 'Company Info'}}
+                                        {{#each children}}
+
+                                            <li>
+                                                <a href="{{url}}">{{name}}</a>
+                                            </li>
+                                        {{/each}}
+                                {{/if}}
+                                {{/each}}
+                            {{else}}
+                                {{#each pages}}
+                                    {{#if name '==' 'Company Info'}}
+                                            {{#each children}}
+                                                <li>
+                                                    <a href="{{url}}">{{name}}</a>
+                                                </li>
+                                            {{/each}}
+                                    {{/if}}
+                                {{/each}}
+                            {{/if}}
+                            <li>
+                                <a href="{{urls.sitemap}}">{{lang 'sitemap.page_title'}}</a>
+                            </li>
+                        </ul>
+                        {{{region name="footer_below_col2--global"}}}
+                    </article>
+                {{/if}}
+
+                {{#if theme_settings.footer_shop_by_brand}}
+                    <article class="footer-info-col footer-info-col--brands" data-section-type="footer-brands">
+                        <span class="footer-info-heading footer-title">{{lang 'footer.services'}}</span>
+                         <ul class="footer-info-list">
+                            {{#each pages}}
+                                    {{#if name '==' 'Service'}}
+                                            {{#each children}}
+                                                <li>
+                                                    <a href="{{url}}">{{name}}</a>
+                                                </li>
+                                            {{/each}}
+                                    {{/if}}
+                                {{/each}}
+                        </ul>
+                        {{{region name="footer_below_col3--global"}}}
+                    </article>
+                {{/if}}
+
+                {{#if theme_settings.footer_show_categories '>' -1}}
+                    <article class="footer-info-col footer-member-block" data-section-type="footer-categories">
+                        <span class="footer-info-heading footer-title">{{lang 'footer.member'}}</span>
+                        <div class="footer-img-block">
+                            <a target="_blank" href="https://nfpa.org/">
+                        <img class="member-img" src="https://cdn11.bigcommerce.com/s-purzv0arv9/product_images/uploaded_images/nfpa-footer-gray.png?t=1639648254&_gl=1*148akuv*_ga*MTgxMTMxMDM5NC4xNjM3NjcxODEw*_ga_WS2VZYPC6G*MTYzOTY0NjgzNy42NS4xLjE2Mzk2NDgyNzAuNjA." alt="NFPA" title="NFPA"></a>
+                        <a target="_blank" href="https://nfsa.org/">
+                        <img class="member-img" src="https://cdn11.bigcommerce.com/s-purzv0arv9/product_images/uploaded_images/nfsa-gray.png?t=1639648268&_gl=1*1o439w*_ga*MTgxMTMxMDM5NC4xNjM3NjcxODEw*_ga_WS2VZYPC6G*MTYzOTY0NjgzNy42NS4xLjE2Mzk2NDgyNzAuNjA." alt="NFSA" title="NFSA">
+                    </a>
+                    </div>
+                        
+                        <br />
+                        <span class="footer-info-heading footer-title">{{lang 'footer.member_2'}}</span>
+                        {{{region name="footer_below_col4--global"}}}
+                        <ul class="socialIcons">
+                            <li><a href="https://www.facebook.com/quickresponsefiresupply" target="_blank"><img alt="QRFS on Facebook" title="QRFS on Facebook" src="https://cdn11.bigcommerce.com/s-eplfis85ct/product_images/uploaded_images/facebook-72px.png" /></a> </li>
+                            <li><a href="https://twitter.com/QuickResponseFS" target="_blank"><img alt="QRFS on Twitter" title="QRFS on Twitter"  src="https://cdn11.bigcommerce.com/s-eplfis85ct/product_images/uploaded_images/twitter-72px.png" /></a> </li>
+                            <li><a href="https://www.linkedin.com/company/quick-response-fire-supply-llc" target="_blank"><img alt="QRFS on LinkedIn" title="QRFS on LinkedIn"  src="https://cdn11.bigcommerce.com/s-eplfis85ct/product_images/uploaded_images/linkedin-72px.png" /></a> </li>
+                        </ul>
+
+                    </article>
+                {{/if}}
+
+                {{#if theme_settings.footer_show_categories '>' -1}}
+                <article class="footer-info-col" data-section-type="footer-categories">
+                  <img class="footer-logo-img" src="https://cdn11.bigcommerce.com/s-purzv0arv9/product_images/uploaded_images/qrfs-logo-svg.png?t=1639403837&_gl=1*1v2ryuo*_ga*MTgxMTMxMDM5NC4xNjM3NjcxODEw*_ga_WS2VZYPC6G*MTYzOTU1OTkzMi42MC4xLjE2Mzk1NjAyNDAuNTQ." alt="Quick Response Fire Supply" title="Quick Response Fire Supply">
+                   
+                    {{#if theme_settings.footer_show_contact}}
+                    <ul class="footer-info-list">
+                        {{#if settings.phone_number}}
+                        <li><a href="tel:{{settings.phone_number}}">{{lang 'footer.call_us' phone_number=settings.phone_number}}</a></li>
+                        {{/if}}
+
+                        <li><address>Monday-Friday: <br />
+                            8 am - 6 pm EST </address></li>
+
+                       <li><address>{{settings.address}}</address></li>
+
+                   </ul>
+                   {{/if}}
+                    {{{region name="footer_below_col4--global"}}}
+                </article>
+            {{/if}}
+            </section>
+            {{{region name="footer_below_columns--global"}}}
+        </div>
+
+        <div class="footer-copyright">
+            <div class="container">
+                 {{> components/beautify/footer-icons}} 
+                <ul class="footer-info-list-horizontal">
+                    {{#each pages}}
+                            {{#if name '==' 'footer copyright'}}
+                                    {{#each children}}
+                                        <li>
+                                            <a href="{{url}}">{{name}}</a>
+                                        </li>
+                                    {{/each}}
+                            {{/if}}
+                        {{/each}}
+                </ul>
+                
+                <div class="powered-by">
+                    <div class="_col">
+                        {{#if theme_settings.show_copyright_footer}}
+                            &copy; <span id="copyright_year"></span> {{settings.store_name}}.
+                            <script>
+                                document.getElementById("copyright_year").innerHTML = new Date().getFullYear();
+                            </script>
+                            <span>All Rights Reserved.</span>
+                        {{/if}}
+                      </div>
+                    <div class="_col">
+                        {{{region name="footer_copyright--global"}}}
+                        {{!--
+                        {{#if in_development}}
+                            <img class="_img lazyload" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='137' height='40'%3E%3C/svg%3E" data-src="//via.placeholder.com/137x40" data-sizes="auto" width="137" height="40" alt="">
+                        {{/if}}
+                        --}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script> (function(){ var s = document.createElement('script'); var h = document.querySelector('head') || document.body; s.src = 'https://acsbapp.com/apps/app/dist/js/app.js'; s.async = true; s.onload = function(){ acsbJS.init({ statementLink : '', footerHtml : '', hideMobile : false, hideTrigger : false, disableBgProcess : false, language : 'en', position : 'right', leadColor : '#146FF8', triggerColor : '#146FF8', triggerRadius : '50%', triggerPositionX : 'right', triggerPositionY : 'bottom', triggerIcon : 'people', triggerSize : 'bottom', triggerOffsetX : 20, triggerOffsetY : 20, mobile : { triggerSize : 'small', triggerPositionX : 'right', triggerPositionY : 'bottom', triggerOffsetX : 20, triggerOffsetY : 20, triggerRadius : '20' } }); }; h.appendChild(s); })();</script>
+    </footer>
+
+    {{{region name="footer_bottom--global"}}}
+    <style type="text/css">
+        
+        .footer-info-list, .socialIcons, .footer-img-block {
+                margin-top: 30px !important; 
+        }
+    </style>

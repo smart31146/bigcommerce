@@ -1,0 +1,39 @@
+// Slick Carousel
+// -----------------------------------------------------------------------------
+//
+// Purpose: Settings for the vendor carousel, Slick
+//
+// -----------------------------------------------------------------------------
+
+$slick-font-path:               "./fonts/";
+$slick-font-family:             inherit;
+$slick-loader-path:             null;
+$slick-arrow-color:             stencilColor("carousel-arrow-color");
+// $slick-arrow-bgColor:           rgba(stencilColor("carousel-arrow-bgColor"), 0.9); papathemes mods
+$slick-arrow-bgColor:           rgba(stencilColor("carousel-arrow-bgColor"), 0);
+// $slick-arrow-prev:              url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='42' viewBox='0 0 24 42'%3E%3Cpath d='M22.4572074 1.00746147l-21 20.02482143 20.9479397 19.9751786' stroke='#{str-replace(#{$slick-arrow-color}, "#", "%23")}' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' fill='none' fill-rule='evenodd' /%3E%3C/svg%3E"); // papathemes-beautify
+$slick-arrow-prev:              url("data:image/svg+xml,%3Csvg width='22' height='40' viewBox='0 0 22 40' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M 19.554 0 C 19.953 0 20.352 0.152 20.657 0.456 C 21.268 1.066 21.269 2.055 20.66 2.666 L 4.466 18.894 C 3.855 19.504 3.855 20.496 4.464 21.105 L 20.66 37.334 C 21.269 37.945 21.268 38.934 20.657 39.543 C 20.047 40.153 19.057 40.152 18.448 39.541 L 2.254 23.313 C 0.427 21.487 0.427 18.513 2.255 16.685 L 18.448 0.459 C 18.753 0.153 19.153 0 19.554 0 Z' fill='#{str-replace(#{$slick-arrow-color}, "#", "%23")}'/%3E%3C/svg%3E");
+// $slick-arrow-next:              url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='42' viewBox='0 0 24 42'%3E%3Cpath d='M1.45679 1.00746147l21 20.02482143L1.50885 41.0074615' stroke='#{str-replace(#{$slick-arrow-color}, "#", "%23")}' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' fill='none' fill-rule='evenodd' /%3E%3C/svg%3E"); // papathemes-beautify
+$slick-arrow-next:              url("data:image/svg+xml,%3Csvg width='22' height='40' viewBox='0 0 22 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2.44628 40C2.04698 40 1.64753 39.8479 1.34261 39.5435C0.731749 38.934 0.730733 37.9447 1.34026 37.3339L17.5343 21.106C18.1447 20.4957 18.1447 19.5044 17.5355 18.8952L1.34026 2.6662C0.730733 2.05534 0.731749 1.06605 1.34261 0.456514C1.95331 -0.153017 2.94261 -0.152079 3.5523 0.45878L19.7464 16.6866C21.5728 18.5131 21.5728 21.4869 19.7452 23.3146L3.5523 39.5412C3.24706 39.8471 2.84667 40 2.44628 40Z' fill='#{str-replace(#{$slick-arrow-color}, "#", "%23")}'/%3E%3C/svg%3E");
+$slick-dot-color:               stencilColor("carousel-dot-color");
+$slick-dot-color-active:        stencilColor("carousel-dot-color-active");
+$slick-dot-bgColor:             stencilColor("carousel-dot-color"); // papathemes-beautify mod
+$slick-prev-character:          "";
+$slick-next-character:          "";
+$slick-dot-character:           "";
+$slick-dot-size:                60px;
+$slick-opacity-default:         1;
+$slick-opacity-on-hover:        0.8;
+$slick-opacity-not-active:      0.6;
+
+
+// Stencil Additional Settings
+// -----------------------------------------------------------------------------
+//
+// Purpose: Additional settings for the slick plugin
+//
+// -----------------------------------------------------------------------------
+
+$carousel-bgColor:              stencilColor("carousel-bgColor");
+$carousel-description-color:    stencilColor("carousel-description-color");
+$carousel-title-color:          stencilColor("carousel-title-color");

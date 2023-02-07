@@ -1,0 +1,28 @@
+// =============================================================================
+// PRICE (CSS)
+// =============================================================================
+
+.price-section {
+	// color: $color-textSecondary;
+
+	[itemprop="priceSpecification"] {
+		display: inline;
+	}
+}
+
+.price-section--saving {
+	.price {
+		// color: $color-primary; // papathemes-beautify commented
+	}
+}
+
+.price {
+	color: stencilColor("color-price");
+}
+
+.price--rrp,
+.price--non-sale,
+.price--discounted {
+	color: color("greys", "light"); // papathemes-beautify edited
+	// font-weight: fontWeight("thin");
+}

@@ -1,0 +1,9 @@
+<span class="yotpo bottomLine"
+  data-product-id="{{ id }}">
+</span>
+{{#if show_write}}
+  <a role="button" class="productView-reviewLink" onclick="
+    document.querySelector('.write-review-button').click();
+    document.getElementById('write-review-tabpanel').scrollIntoView(true);
+  ">{{lang 'products.reviews.write_a_review'}}</a>
+{{/if}}

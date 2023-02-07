@@ -1,0 +1,8 @@
+<div class="form-field" id="{{id}}" data-validation="{{validation}}">
+    <label class="form-label" for="{{id}}_input">{{label}}
+        {{#if required}}
+            <small class="_required" title="{{lang 'common.required'}}">{{lang 'common.required_symbol'}}</small>
+        {{/if}}
+    </label>
+    <textarea name="{{name}}" id="{{id}}_input" data-label="{{label}}" rows="{{rows}}" aria-required="{{required}}" class="form-input" {{#if private_id}}data-field-type="{{private_id}}"{{/if}}>{{{sanitize value}}}</textarea>
+</div>

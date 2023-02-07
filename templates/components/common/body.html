@@ -1,0 +1,43 @@
+<div class="body" data-currency-code="{{currency_selector.active_currency_code}}">
+    {{#block "hero"}} {{/block}}
+    <div class="container">
+        {{#block "page"}} {{/block}}
+    </div>
+    {{> components/common/modal}}
+    {{> components/common/alert-modal}}
+</div>
+
+<div class="scrollToTop">
+    <a href="#topOfPage" class="button u-hiddenVisually" id="scrollToTopFloatingButton" title="{{lang 'common.top_of_page'}}"><i class="fa fa-chevron-up"></i></a>
+</div>
+
+
+<script type="text/javascript">
+    let pagetype = '{{page_type}}';
+    if(pagetype == 'login' || pagetype == 'forgotpassword' || pagetype == 'getnewpassword') {
+        //console.log(pagetype);
+        sessionStorage.removeItem('orgVal');
+    }
+    let custid = '{{customer.id}}';
+    if(custid != '' && pagetype != 'orderconfirmation') {
+        $('#loader-overlay').css("display", "block");
+        let data = {
+            "CustomerID": custid
+        };
+        var settings = {
+          "url": "https://qrfscustomapp.kensiumcommerce.com/api/sandboxgetOrganisationType",
+          "method": "post",
+          "headers": {
+            "Content-Type": "application/json"
+          },
+          "data": JSON.stringify(data),
+        };
+        $.ajax(settings).done(function (response) {
+            //console.log(response);
+            sessionStorage.setItem('orgVal', response);         
+        });
+
+    } else {
+        //console.log('Do nothing');
+    }  
+</script>

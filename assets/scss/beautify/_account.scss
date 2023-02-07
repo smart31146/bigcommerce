@@ -1,0 +1,112 @@
+.supermarket-pageType--account .body {
+    @media (max-width: screenSize("medium") - 1px) {
+        margin-bottom: spacing("double");
+    }
+    @include breakpoint("medium") {
+        margin-bottom: spacing("single") * 3;
+        
+    }
+}
+
+.account {
+    @media (max-width: screenSize("medium") - 1px) {
+        margin-bottom: spacing("double");
+    }
+    @include breakpoint("medium") {
+        margin-bottom: spacing("single") * 3;
+        
+    }
+
+    .supermarket-pageType--account & {
+        margin-bottom: 0;
+    }
+}
+
+.account .form-row {
+    margin-left: -(spacing("single"));
+    margin-right: -(spacing("single"));
+    overflow: hidden;
+    .form-row {
+        margin-left: -(spacing("half"));
+        margin-right: -(spacing("half"));
+    }
+}
+
+.beautify__orderDetails {
+    @include breakpoint("medium") {
+        display: grid;
+        grid-template-columns: 66.6666% 33.3333%;
+    }
+}
+
+.beautify__orderDetails-main {
+    @include breakpoint("medium") {
+        grid-column: 1;
+        padding-right: spacing("single");
+    }
+    .account-orderTotal {
+        float: none;
+        width: 100%;
+    }
+}
+
+.beautify__orderDetails-sidebar {
+    @include breakpoint("medium") {
+        grid-column: 2;
+        padding-left: spacing("single");
+    }   
+}
+
+.account-orderTotal {
+    font-weight: $header-font-weight;
+}
+
+.account-orderTotal-key,
+.account-orderTotal-value  {
+    padding: spacing("half") 0;
+}
+
+.navBar--sub {
+    border: container("border");
+    border-radius: $global-radius;
+    // background-color: container("fill", "dark");
+    padding: 0 spacing("half");
+    .navBar-section {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .navBar-item {
+        border-right: container("border");
+        margin: 0;
+        &.is-active {
+            padding: spacing("half");
+            border-bottom: 0;
+            .navBar-action {
+                padding: 0;
+            }
+        }
+        @media (max-width: screenSize("medium") - 1px) {
+            width: 100%;
+            border-right: 0;
+            border-bottom: container("border");
+            &.is-active {
+                border-bottom: container("border");
+            }
+        }
+    }
+    .navBar-action {
+        padding: spacing("half");
+    }
+}
+
+.account-orderStatus-label {
+    font-weight: $header-font-weight;
+    text-transform: uppercase;
+}
+
+.account-product-title {
+    font-size: fontSize("base");
+    a:focus {
+        outline-offset: -($outline-width) !important;
+    }
+}

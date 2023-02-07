@@ -1,0 +1,13 @@
+
+.button {
+	text-transform: uppercase;
+}
+.button--primary {
+	background: #1698d8 !important;
+	border: 1px solid #1698d8;
+	padding: 14px 26px;
+	&:hover{
+		background:#3cb4e5;
+		border: 1px solid #3cb4e5;
+	}
+}

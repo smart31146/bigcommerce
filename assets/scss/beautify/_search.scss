@@ -1,0 +1,66 @@
+.advancedSearch-form {
+    .sidebarBlock-heading {
+        display: none;
+        padding-bottom: 0;
+        border-bottom: 0;
+        &:after {
+            display: none;
+        }
+    }
+    .accordion {
+        border: 0;
+    }
+    .accordion-navigation {
+        border: 0;
+        .accordion-title {
+            padding: 0 20px 0 0;
+        }
+    }
+    .accordion-navigation-actions {
+        top: 0;
+        right: 0;
+    }
+    .accordion-title {
+        margin-bottom: spacing("half");
+        font-size: fontSize("base");
+    }
+    .accordion-content {
+        padding: 0;
+        margin-bottom: spacing("single");
+    }
+    .form-field-group {
+        margin-bottom: spacing("half");
+        padding: spacing("half");
+        overflow: auto;
+    }
+    .search-price-range {
+        label {
+            display: inline-block;
+            width: 100px;
+            + label {
+                margin-left: spacing("quarter");
+            }
+            span {
+                padding: 0;
+            }
+        }
+    }
+    .form-label {
+        font-size: fontSize("smaller");
+    }
+    .form-checkbox + .form-label,
+    .form-radio + .form-label {
+        font-size: fontSize("smaller");
+    }
+    #advancedSearch-content--setting {
+        .form-field {
+            margin-bottom: spacing("half");
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+    }
+    .form-actions .button {
+        width: 100%;
+    }
+}

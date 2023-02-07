@@ -1,0 +1,68 @@
+---
+brands:
+    limit: {{theme_settings.brandspage_brands_per_page}}
+blog:
+    recent_posts:
+        limit: {{theme_settings.homepage_blog_posts_count}}
+customer:
+    recently_viewed_products:
+        limit: {{theme_settings.product_recently_viewed}}
+shop_by_brand:
+    limit: {{theme_settings.sidebar_shop_by_brand}}
+---
+
+{{#partial "page"}}
+
+<main class="page">
+
+    {{#if theme_settings.layout '===' 'left-sidebar'}}
+    <div class="page-sidebar">
+        {{> components/supermarket/home/sidebar}}
+    </div>
+    {{/if}}
+
+    <div class="page-content">
+        {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+        <h1 class="page-heading">{{lang 'brand.label'}}</h1>
+        {{{region name="brands_below_header--global"}}}
+        {{{region name="brands_below_header"}}}
+
+        <ul class="brandGrid">
+            {{#each brands}}
+                <li class="brand">
+                    <article class="card {{#if alternate}}card--alternate{{/if}}">
+                        <figure class="card-figure">
+                            <a href="{{url}}" data-instantload title="{{name}}">
+                                <div class="card-img-container">
+                                    {{> components/common/responsive-img
+                                        image=image
+                                        class="card-image"
+                                        fallback_size=../theme_settings.brand_size
+                                        lazyload=../theme_settings.lazyload_mode
+                                        default_image=../theme_settings.default_image_brand
+                                        default_alt=name
+                                    }}
+                                </div>
+                            </a>
+                        </figure>
+                        <div class="card-body">
+                            <h2 class="card-title">
+                                <a href="{{url}}" data-instantload>{{name}}</a>
+                            </h4>
+                        </div>
+                    </article>
+                </li>
+            {{/each}}
+        </ul>
+        {{> components/common/paginator pagination.brands instantload=true}}
+        {{{region name="brands_below_content"}}}
+        {{{region name="brands_below_content--global"}}}
+    </div>
+</main>
+{{/partial}}
+{{#and theme_settings.instantload is_ajax}}
+    {{> layout/instantload-base}}
+{{else}}
+    {{> layout/base}}
+{{/and}}
+

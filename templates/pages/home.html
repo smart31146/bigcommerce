@@ -1,0 +1,294 @@
+---
+products:
+    new:
+        limit: {{theme_settings.product_new_count}}
+    featured:
+        limit: {{theme_settings.product_top_count}}
+    top_sellers:
+        limit: {{theme_settings.product_top_count}}
+carousel: {{theme_settings.homepage_show_carousel}}
+blog:
+    recent_posts:
+        limit: {{theme_settings.homepage_blog_posts_count}}
+customer:
+    recently_viewed_products:
+        limit: {{theme_settings.product_recently_viewed}}
+shop_by_brand:
+    limit: {{theme_settings.sidebar_shop_by_brand}}
+---
+{{#partial "hero"}}
+    {{{region name="home_below_menu"}}}
+ 
+    <div class="container ">
+        {{#each shipping_messages}}
+            {{> components/common/alert-info message}}
+        {{/each}}
+    </div>
+
+    <div class="container container--papathemes-section1-{{theme_settings.homepage_carousel_style}}" id="papathemes-section1-container">
+        <div class="papathemes-section1 papathemes-section1--{{theme_settings.homepage_carousel_style}}">
+            {{> components/papathemes/sections/section section="slideshow"}}
+        </div>
+    </div>
+    {{{snippet 'home_content'}}}
+
+    {{#if in_development}}
+        {{> components/beautify/demo/region-home-below-carousel}}
+    {{/if}}
+    {{{region name="home_below_carousel"}}}
+
+    
+    <div class="main full">
+        {{> components/papathemes/sections/section section=theme_settings.section1}}
+        {{{region name="home_below_section1"}}}
+        
+        {{{region name="wordpress_blog"}}}
+        
+        {{> components/papathemes/sections/section section=theme_settings.section2}}
+        {{#if in_development}}
+            {{> components/beautify/demo/region-home-below-section2}}
+        {{/if}}
+        {{{region name="home_below_section2"}}}
+        {{> components/papathemes/sections/section section=theme_settings.section3}}
+        {{{region name="home_below_section3"}}}
+        {{#if in_development}}
+            {{> components/beautify/demo/region-home-below-section3}}
+        {{/if}}
+        {{> components/papathemes/sections/section section=theme_settings.section4}}
+        {{{region name="home_below_section4"}}}
+        {{#if in_development}}
+            {{> components/beautify/demo/region-home-below-section4}}
+        {{/if}}
+        {{> components/papathemes/sections/section section=theme_settings.section5}}
+        {{{region name="home_below_section5"}}}
+        {{> components/papathemes/sections/section section=theme_settings.section6}}
+        {{{region name="home_below_section6"}}}
+    </div>
+{{/partial}}
+{{#and theme_settings.instantload is_ajax}}
+    {{> layout/instantload-base}}
+{{else}}
+    {{> layout/base}}
+{{/and}}
+<link rel="stylesheet" href="https://store-purzv0arv9.mybigcommerce.com/content/cookie/style.css" />
+<script src="https://store-purzv0arv9.mybigcommerce.com/content/cookie/browser/bundle.js"></script>
+<div class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h3>Cookies Policy</h3>
+            <p>Our website captures some information about you automatically utilizing background local storage and session storage technologies ("Cookies") in order to improve the user experience. Cookies are small files or other pieces of data which are downloaded or stored on your computer or other device, that can be tied to information about your use of the website (including certain third party services and features offered as part of our website). Examples of information of this type are your IP address, the browser you are using, the operating system you are using, the pages on the website that you visit and details of your transaction activity, such as the amount, date and time for each transaction.  When we use Cookies, we may use "session" Cookies that last until you close your browser or "persistent" cookies that last until you or your browser delete them. You may change your browser setting to decline the use of Cookies.</p>
+            <p>Pixel tags or clear GIFs, also known as web beacons, are transparent graphical images placed on a website. We use these items on our Site to permit us, for example, to count users who have visited those pages or opened an email and for other related website statistics (for example, recording the popularity of certain website content and verifying system and server integrity).</p>
+            <p>We may use third-party companies to help us tailor content to users or to serve ads or messages on our behalf. These companies may employ cookies and web beacons to measure advertising or messaging effectiveness (such as which web pages are visited, which messages are responded to, or what products are purchased and in what amount).</p>
+            <p>We use Google Analytics, a web analytics service of Google Inc. ("Google") which uses cookies to identify the frequency of use of certain areas of our website and to identify preferences. The information regarding your use of this website that is generated by the Cookie (including your truncated IP address) is transferred to a Google server in the United States and stored there. Google will use this information to analyze your use of the website, compile reports on activity for us, and perform further services associated with website use and Internet use. Google may also transmit this information to third parties where required by law or to the extent that third parties process these data on behalf of Google. You can deactivate Google Analytics using a browser add-on if you do not wish the analysis to take place. You can download the add-on here:  <a href="https://www.tools.google.com/dlpage/gaoptout">www.tools.google.com/dlpage/gaoptout</a>.</p>
+            <p>We operate social media pages on third party networks and have social media icons on our website. When you visit or link to our social media pages, data is processed both by us and the applicable social media provider. Social media providers are unaffiliated with us, and we are not responsible for the content or privacy practices of social media providers.  Social media providers have their own terms of use and privacy policies, and we encourage you to review those policies whenever you visit their websites or interact with their platforms.</p>
+            <p>To read the complete Privacy Policy and Terms and Conditions governing your use of QRFS.com, <a href="https://www.qrfs.com/terms-of-service" target="_blank">please click here</a>.
+        </div>
+    </div>
+
+    <div id="banner"></div>
+    <script>
+      GdprConsent.attachBanner(document.getElementById('banner'), {
+        cookieName: 'test_gdpr',
+        categories: {
+          analytics: function () {
+            console.info('Dropped analytics cookies')
+          },
+          necessary: function () {
+            console.info('Dropped necessary cookies')
+          }
+        }
+      })
+
+        // Custom Modal
+        const modal = document.querySelector(".modal");
+        const trigger = document.querySelector(".trigger");
+        const closeButton = document.querySelector(".close-button");
+
+        function toggleModal() {
+            modal.classList.toggle("show-modal");
+        }
+
+        function windowOnClick(event) {
+            if (event.target === modal) {
+                toggleModal();
+            }
+        }
+
+        trigger.addEventListener("click", toggleModal);
+        closeButton.addEventListener("click", toggleModal);
+        window.addEventListener("click", windowOnClick);
+
+    </script>
+<style type="text/css">
+    #featured-category {
+        flex-direction: column-reverse !important;
+        padding:  0 !important;
+    }
+    #featured-category .img-section{
+        background-size: cover;
+        background-position: center center;
+    }
+    #featured-category .content-area {
+        padding: 10px;
+    }
+    .featuredblog {
+        background-size: cover;
+        background-position: center center;
+            box-shadow: inset 0 0 0 2000px #ff6c0ebf !important;
+            border-radius: 0 !important;
+    }
+    #bc-carousel-container-0056a6bf-e0b2-496a-9968-4386009778ac .css-1csgxr0 > div {
+         padding-top: 0 !important;
+        padding-bottom: 0 !important;
+        justify-content: start !important;
+            padding: 0 !important;
+        width: 50%;
+    }
+    #bc-carousel-container-0056a6bf-e0b2-496a-9968-4386009778ac .css-1csgxr0 > div > div {
+        height: 100% !important;
+        width: 100% !important;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: start;
+        padding: 20px 100px !important;
+        text-align: left !important;
+    }
+    #bc-carousel-container-0056a6bf-e0b2-496a-9968-4386009778ac .css-1csgxr0 > div > div:nth-child(3) {
+            max-width: 300px !important;
+    } 
+    [data-test-id="carousel-cta-button"] div p {
+            text-transform: uppercase !important;
+            font-size: 16px !important;
+    }
+    [data-test-id="carousel-title"] p {
+        line-height: 0.91em !important;
+    }
+    [data-test-id="carousel-subtitle"] p {
+        line-height: 1.3em !important;
+    }
+    /* [data-test-id="carousel-subtitle"] p {
+        font-size: 18px !important;
+        line-height: 24px !important;
+        font-weight: 400 !important;
+        font-family: "Open Sans",Arial,Helvetica,sans-serif !important;
+    } */
+
+    #bc-carousel-container-0056a6bf-e0b2-496a-9968-4386009778ac .css-p3lncx .bc-carousel__bullet {
+        background-color: #f98d53 !important;
+        border-color: ##f98d53 !important;
+        width: 20px !important;
+        height: 20px !important;
+    }
+    #bc-carousel-container-0056a6bf-e0b2-496a-9968-4386009778ac .css-p3lncx .bc-carousel__bullet.bc-carousel__bullet-active {
+        background-color: #ff6c0e !important;
+        border-color: #ff6c0e !important;
+        width: 20px !important;
+        height: 20px !important;
+    }
+    #bc-carousel-container-0056a6bf-e0b2-496a-9968-4386009778ac .css-zv74ld button {
+        background-color: transparent !important;
+    }
+    #papathemes-section1-container {
+        display: none;
+    }
+    .firesprinkler .content-area p {
+        font-weight: 400 !important;
+            font-family: system-ui;
+    }
+    [data-content-region="home_below_section1"] {
+        max-width: 1400px !important;
+        margin:  auto;
+    }
+    [data-sub-layout=f2d1d2e9-b4ec-41bb-a013-5f0b66d8c9b2] {
+        top: 0 !important;
+            height: 100% !important;
+                padding: 0 200px 0 30px !important;
+    }
+    .new-template-btn {
+        padding: 9.5px 26px;
+    }
+    #sd-simple-text-editable-b3781a44-6a0b-40fb-9bf9-0a198564d63c p {
+            font-family: "Open Sans",Arial,Helvetica,sans-serif;
+        font-size: 30px;
+        font-weight: 700;
+    }
+    #buttonLink a{
+        text-transform: uppercase !important;
+            padding: 14px 26px !important;
+
+    }
+    #buttonLink a:hover {
+            background: #3cb4e5!important;
+            border-color: #3cb4e5!important;
+    }
+    #sd-carousel-0056a6bf-e0b2-496a-9968-4386009778ac {
+        max-width: 1400px !important;  
+        margin: auto !important;
+    }
+    button {
+        border: outset;
+    }
+    div[data-content-region=home_below_section4] {
+            max-width: 1400px !important;
+    }   
+    .fullbannerset {
+        padding: 0 !important;
+        background-size: cover;
+        background-position: center center;
+
+    }
+    @media only screen and (max-width: 1024px) {
+        [data-test-id="carousel-title"] p {
+            font-size: 25px !important;
+        }
+    }
+    #featured-category {
+        margin: 10px 0px;
+    }
+    @media only screen and (min-width: 1024px) {
+      .fullbannerset .content-area {
+             width: 50% !important;
+            padding: 0 200px 0 30px !important;
+        }
+    }
+    @media only screen and (max-width: 800px) {
+        #bc-carousel-container-0056a6bf-e0b2-496a-9968-4386009778ac .css-1csgxr0 > div {
+            width: 100%;
+        }
+        .fullbannerset .content-area {
+            padding: 20px !important;
+            background: rgba(85, 85, 85, 0.6);
+        }
+        .fullbannerset .content-area h2 {
+            font-size: 30px !important;
+        }
+        .fullbannerset .content-area p {
+            font-size: 16px !important;
+        }
+        .new-hero .content-area {
+            width: 100% !important;
+        }
+        .new-hero .img-section {
+            width: 100% !important;
+        }
+        .new-hero {
+            width: auto !important;
+        }
+    }
+    @media only screen and (max-width: 440px) {
+        /*#bc-carousel-container-0056a6bf-e0b2-496a-9968-4386009778ac .css-1csgxr0 > div {*/
+     /*       width: 100%;*/
+     /*   }*/
+        #bc-carousel-container-0056a6bf-e0b2-496a-9968-4386009778ac .css-1csgxr0 > div > div {
+            padding: 20px !important;
+        }
+        .featuredblog {
+            margin: 10px;
+        }
+        .fullbannerset .content-area h2 {
+            font-size: 20px !important;
+        }
+    }
+
+    /*  Cookie Content style */

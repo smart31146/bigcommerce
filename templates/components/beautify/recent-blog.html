@@ -1,0 +1,53 @@
+<div class="beautify__section beautify__recentBlog">
+    <div class="container">
+        <h2 class="page-heading product-heading">{{lang 'blog.recent_posts' }}</h2>
+        {{#if theme_settings.recent_blog_style '===' 'intro'}}
+            <div class="_intro">
+                {{#if in_development}}
+                    <img class="_bg lazyload" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='608' height='608'%3E%3C/svg%3E" data-src="https://cdn11.bigcommerce.com/s-5rdxj17/product_images/uploaded_images/blog-maternity-guide.jpg?t=1606299596" alt="Maternity Guide">
+                    <p class="_heading">Maternity Guide</p>
+                    <p class="_content">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia. </p>
+                    <p class="_action"><a href="/blog">Learn more <svg class="icon"><use xlink:href="#icon-pb-arrow-right"></use></svg></a></p>
+                {{else}}
+                    {{{region name="recent_blog_intro--global"}}}
+                {{/if}}
+            </div>
+        {{/if}}
+        <ul class="_list">
+            {{#each posts}}
+                <li class="_item">
+                    <div>
+                    <article class="_blog">
+                        {{#if thumbnail}}
+                            <div class="_blog-post-figure">
+                                <figure class="_blog-thumbnail">
+                                    <a data-instantload href="{{url}}">
+                                        {{> components/common/responsive-img
+                                            image=thumbnail
+                                            fallback_size=theme_settings.blog_size
+                                            lazyload=theme_settings.lazyload_mode
+                                        }}
+                                    </a>
+                                    <div class="_blog-post-body">
+                                        <header class="_blog-header">
+                                            <h3 class="_blog-title">
+                                                <a data-instantload href="{{url}}">{{title}}</a>
+                                            </h3>
+                                        </header>
+                                        <div class="_blog-post">
+                                            <!-- <p>{{{sanitize summary}}}</p> -->
+                                            <div class="_blog-readmore"><a data-instantload href="{{url}}">{{lang 'blog.read_more'}}</a></a></div>
+                                        </div>
+                                    </div>
+                                </figure>
+                                
+                            </div>
+                        {{/if}}
+                       
+                    </article>
+                </div>
+                </li>
+            {{/each}}
+        </ul>
+    </div>
+</div>

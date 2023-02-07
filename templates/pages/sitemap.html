@@ -1,0 +1,55 @@
+---
+blog:
+    recent_posts:
+        limit: {{theme_settings.homepage_blog_posts_count}}
+shop_by_brand:
+    limit: {{theme_settings.sidebar_shop_by_brand}}
+---
+{{#partial "page"}}
+
+<main class="page page--noBreadcrumbs">
+
+    {{#if theme_settings.layout '===' 'left-sidebar'}}
+    <div class="page-sidebar">
+        {{> components/supermarket/home/sidebar}}
+    </div>
+    {{/if}}
+
+    <div class="page-content">
+        <div class="page-content-header">
+            <h1 class="page-heading">{{lang 'sitemap.page_title'}}</h1>
+        </div>
+        <div class="page-content-body">
+            <ul>
+            {{#each sitemap}}
+                <li>
+                    <h3>{{label}}</h3>
+                    <ul>
+                        {{#each body}}
+                        <li>
+                            <a href="{{url}}">{{label}}</a>
+                            {{#if children}}
+                                <ul>
+                                {{#each children}}
+                                    {{> components/sitemap/links}}
+                                {{/each}}
+                                </ul>
+                            {{/if}}
+                        </li>
+                        {{/each}}
+                        {{#if show_all_link}}
+                        <li>
+                            <a href="{{subsection_url}}">{{lang 'sitemap.show_all_link'}}</a>
+                        </li>
+                        {{/if}}
+                    </ul>
+                </li>
+            {{/each}}
+            </ul>
+        </div>
+    </div>
+</main>
+
+{{/partial}}
+
+{{> layout/base}}

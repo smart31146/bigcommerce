@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg width="25px" height="17px" viewBox="0 0 25 17" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <title>mail-contact</title>
+  <path d="M 23.895 1.789 C 23.895 1.354 23.541 1 23.105 1 L 1.789 1 C 1.354 1 1 1.354 1 1.789 L 1 15.211 C 1 15.646 1.354 16 1.789 16 L 23.105 16 C 23.541 16 23.895 15.646 23.895 15.211 L 23.895 1.789 Z" id="Stroke-1270" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round" style=""/>
+  <path d="M 23.626 1.197 L 13.805 8.492 L 13.639 8.611 C 12.929 9.147 11.966 9.147 11.247 8.611 L 11.082 8.492 L 1.268 1.197" id="Stroke-1271" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round" style=""/>
+  <line x1="11.082" y1="8.492" x2="1.276" y2="15.811" id="Stroke-1272" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round" style=""/>
+  <line x1="23.618" y1="15.811" x2="13.805" y2="8.492" id="Stroke-1273" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round" style=""/>
+</svg>

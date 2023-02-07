@@ -1,0 +1,12 @@
+{{#if posts}}
+<div class="sidebarBlock sidebarBlock--blog">
+    <h3 class="sidebarBlock-heading">{{lang 'blog.recent_posts'}}</h3>
+    <ul class="navList">
+        {{#each posts}}
+        <li class="navList-item">
+            {{> components/blog/post post=this hide_social_icons=true settings=../settings hide_summary=../hide_summary hide_readmore=../hide_readmore}}
+        </li>
+        {{/each}}
+    </ul>
+</div>
+{{/if}}

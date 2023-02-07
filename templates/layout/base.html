@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html class="no-js" lang="{{ locale_name }}">
+    <head>
+        <title>{{ head.title }}</title>
+        {{{ resourceHints }}}
+        {{{ head.meta_tags }}}
+        {{{ head.config }}}
+        {{#block "head"}} {{/block}}
+
+        <link href="{{ head.favicon }}" rel="shortcut icon">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <script>
+            {{!-- Change document class from no-js to js so we can detect this in css --}}
+            document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
+        </script>
+
+        {{> components/common/polyfill-script }}
+        
+        {{!-- Load Lazysizes script ASAP so images will appear --}}
+        <script>
+            {{!-- Only load visible elements until the onload event fires, after which preload nearby elements. --}}
+            window.lazySizesConfig = window.lazySizesConfig || {};
+            window.lazySizesConfig.loadMode = 1;
+        </script>
+
+        <script async src="{{cdn 'assets/dist/theme-bundle.head_async.js'}}"></script>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+
+        <script>
+            WebFont.load({
+                custom: {
+                    families: ['Quicksand', 'Poppins', 'Roboto', 'Open Sans', 'Noto Sans', 'Lato', 'Montserrat', 'Source Sans Pro', 'Oswald', 'Raleway', 'PT Sans', 'Merriweather', 'Nunito', 'Rubik', 'Lora', 'Josefin Sans', 'Gibson']
+                },
+                classes: false
+            });
+        </script>
+
+        {{getFontsCollection}}
+        {{{stylesheet '/assets/css/theme.css'}}}
+
+        {{#if theme_settings.delayrecaptcha}}
+            {{> components/supermarket/common/delay-recaptcha-script}}
+        {{/if}}
+        
+        {{{head.scripts}}}
+
+
+        {{!-- Theme settings: --}}
+        {{~inject 'add_to_cart_popup' theme_settings.add_to_cart_popup}}
+        {{~inject 'redirect_cart' theme_settings.redirect_cart}}
+        {{~inject 'alsobought_thumbnail_size' theme_settings.alsobought_thumbnail_size}}
+        {{~inject 'pdp_price_label' theme_settings.pdp-price-label}}
+        {{~inject 'pdp_sale_price_label' theme_settings.pdp-sale-price-label}}
+        {{~inject 'pdp_non_sale_price_label' theme_settings.pdp-non-sale-price-label}}
+        {{~inject 'pdp_retail_price_label' theme_settings.pdp-retail-price-label}}
+        {{~inject 'alsobought_checked' theme_settings.alsobought_checked}}
+        {{~inject 'homepage_show_carousel' theme_settings.homepage_show_carousel}}
+        {{~inject 'product_new_count' theme_settings.product_new_count}}
+        {{~inject 'product_featured_count' theme_settings.product_featured_count}}
+        {{~inject 'product_top_count' theme_settings.product_top_count}}
+        {{~inject 'homepage_blog_posts_count' theme_settings.homepage_blog_posts_count}}
+        {{~inject 'product_recently_viewed' theme_settings.product_recently_viewed}}
+        {{~inject 'sidebar_shop_by_brand' theme_settings.sidebar_shop_by_brand}}
+        {{~inject 'productpage_videos_count' theme_settings.productpage_videos_count}}
+        {{~inject 'productpage_reviews_count' theme_settings.productpage_reviews_count}}
+        {{~inject 'productpage_related_products_count' theme_settings.productpage_related_products_count}}
+        {{~inject 'productpage_similar_by_views_count' theme_settings.productpage_similar_by_views_count}}
+        {{~inject 'categorypage_products_per_page' theme_settings.categorypage_products_per_page}}
+        {{~inject 'brandpage_products_per_page' theme_settings.brandpage_products_per_page}}
+        {{~inject 'categorypage_search' theme_settings.categorypage_search}}
+        {{~inject 'categorypage_search_subs' theme_settings.categorypage_search_subs}}
+        {{~inject 'instantload' theme_settings.instantload}}
+        {{~inject 'navPages_animation' theme_settings.navPages_animation}}
+        {{~inject 'show_bulk_order_mode' theme_settings.show_bulk_order_mode}}
+        {{~inject 'swatch_option_display_type' theme_settings.swatch_option_display_type}}
+        {{~inject 'zoom_size' theme_settings.zoom_size}}
+        {{~inject 'product_size' theme_settings.product_size}}
+        {{~inject 'product_image_responsive' theme_settings.product_image_responsive}}
+        {{!-- // --}}
+        {{~inject 'genericError' (lang 'common.generic_error')}}
+        {{~inject 'maintenanceMode' settings.maintenance}}
+        {{~inject 'urls' urls}}
+        {{~inject 'secureBaseUrl' settings.secure_base_url}}
+        {{~inject 'cartId' cart_id}}
+        {{~inject 'template' template}}
+        {{~inject 'pageType' page_type}}
+        {{~inject 'validationDictionaryJSON' (langJson 'validation_messages')}}
+        {{~inject 'validationFallbackDictionaryJSON' (langJson 'validation_fallback_messages')}}
+        {{~inject 'validationDefaultDictionaryJSON' (langJson 'default_messages')}}
+        {{~inject 'ajaxAddToCartEnterQty' (lang 'bulk_order.validate.enter_qty')}}
+        {{~inject 'bulkOrderEnterQty' (lang 'bulk_order.validate.enter_qty')}}
+        {{~inject 'compareAddonLang_compare' (lang 'common.compare')}}
+        {{~inject 'compareAddonLang_quick_view' (lang 'products.quick_view')}}
+        {{~inject 'compareAddonLang_remove' (lang 'compare.remove')}}
+        {{~inject 'compareAddonLang_clear_all' (lang 'compare.clear_all')}}
+        {{~inject 'categoryId' category.id}}
+        {{inject 'loadingImg' (cdn 'img/loading.svg')}}
+        {{inject 'money' settings.money}}
+        {{inject 'graphQLToken' settings.storefront_api.token}}
+        {{#if theme_settings.alsobought_position '!==' 'disable'}}
+            {{inject 'loginUrl' urls.auth.login}}
+            {{inject 'activeCurrencyCode' currency_selector.active_currency_code}}
+            {{inject 'defaultCurrencyCode' currency_selector.default_currency_code}}
+            {{inject 'defaultProductImage' (cdn theme_settings.default_image_product)}}
+            {{inject 'priceWithTaxTxt' (lang 'products.price_with_tax' tax_label=settings.tax_label)}}
+            {{inject 'priceWithoutTaxTxt' (lang 'products.price_without_tax' tax_label=settings.tax_label)}}
+            {{inject 'includingTaxTxt' (lang 'products.including_tax')}}
+            {{inject 'excludingTaxTxt' (lang 'products.excluding_tax')}}
+            {{inject 'chooseOptionsTxt' (lang 'products.choose_options')}}
+            {{inject 'loginForPriceTxt' (lang 'products.login_for_price')}}
+            {{inject 'txtAlsoBoughtNumberArray' (lang 'also_bought.number_array')}}
+            {{inject 'txtAlsoBoughtAllNumberArray' (lang 'also_bought.all_number_array')}}
+        {{/if}}
+        {{inject 'txtSelectOne' (lang 'products.select_one')}}
+        {{{snippet 'htmlhead'}}}
+    </head>
+    <body class="csscolumns supermarket-layout--{{theme_settings.layout}} 
+        supermarket-style--{{theme_settings.style}}
+        {{#startsWith 'account' page_type}}supermarket-pageType--account{{/startsWith}}
+        supermarket-pageType--{{dashcase page_type}} 
+        supermarket-page--{{dashcase template}} 
+        {{#if theme_settings.hide_content_navigation}}supermarket--hideContentNav{{/if}}
+        {{#if product_results.faceted_search_enabled}}has-faceted{{/if}}
+        {{#if category.faceted_search_enabled}}has-faceted{{/if}}
+        {{#if brands.faceted_search_enabled}}has-faceted{{/if}}
+        {{#if brand.faceted_search_enabled}}has-faceted{{/if}}
+        {{#if result_count '>' 0}}has-result{{/if}}
+        {{dashcase page.title}} " id="topOfPage">
+        <!-- Google Tag Manager (noscript) -->
+            <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WS6RH57"
+            height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+        <!-- End Google Tag Manager (noscript) -->
+
+        {{{snippet 'header'}}}
+
+        <svg data-src="{{cdn 'img/icon-sprite.svg'}}" class="icons-svg-sprite"></svg>
+
+        {{> components/common/header }}
+        {{> components/common/body }}
+        {{> components/common/footer }}
+
+        <script>window.__webpack_public_path__ = "{{cdn 'assets/dist/'}}";</script>
+        <script src="{{cdn 'assets/dist/theme-bundle.main.js'}}"></script>
+        <script>
+            {{!-- Exported in app.js --}}
+            window.stencilBootstrap("{{page_type}}", {{jsContext}}).load();
+        </script>
+
+        {{!-- Third-party widgets advanced settings --}}
+        <script>
+            if (typeof window.PapaThemesWidgetCustomerReviewsExtraSettings !== 'object') {
+                window.PapaThemesWidgetCustomerReviewsExtraSettings = {};
+            }
+            window.PapaThemesWidgetCustomerReviewsExtraSettings.slidesToShow = {{{theme_settings.widget_reviews_slides}}};
+        </script>
+
+        {{#if theme_settings.show_yotpo}}
+            {{> components/yotpo/footer-script}}
+        {{/if}}
+
+        {{{footer.scripts}}}
+        {{{snippet 'footer'}}}
+    </body>
+</html>

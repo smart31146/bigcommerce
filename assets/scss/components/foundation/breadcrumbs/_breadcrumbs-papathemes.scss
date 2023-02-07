@@ -1,0 +1,35 @@
+.breadcrumbs {
+	text-align: center;
+	margin-bottom: spacing("half");
+
+	@include breakpoint("small") {
+		margin-top: spacing("third");
+
+		@if $theme-style == "compact" {
+			margin-top: spacing("base");
+			margin-bottom: spacing("quarter");
+		}
+	}
+
+	.supermarket-pageType--cart &,
+	.supermarket-page--pages-page &,
+	.supermarket-page--pages-contact-us &,
+	.supermarket-page--pages-blog-post &,
+	.supermarket-page--pages-blog &,
+	.supermarket-page--pages-category &,
+	.supermarket-page--pages-custom-category-bulk-order &,
+	.supermarket-page--pages-custom-brand-bulk-order &,
+	.supermarket-page--pages-custom-product-no-sidebar &,
+	.supermarket-page--pages-brand &,
+	.supermarket-page--pages-brands &,
+	.supermarket-page--pages-search &,
+	.supermarket-page--pages-product & {
+		@include breakpoint("medium") {
+			text-align: left;
+		}
+	}
+}
+.breadcrumb {
+	text-transform: uppercase;
+	
+}

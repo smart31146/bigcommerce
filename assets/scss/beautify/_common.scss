@@ -1,0 +1,259 @@
+.icon {
+    fill: $icon-color;
+    a:hover & {
+        fill: $icon-color-hover;
+    }
+}
+
+[role=button] {
+    cursor: pointer;
+    &:active,
+    &:hover {
+        outline: none;
+    }
+}
+
+.button {
+    transition: none;
+}
+
+.button--light {
+    @include buttonVariant("primary");
+    color: stencilColor("button--primary-color");
+    background-color: stencilColor("button--light-backgroundColor");
+    border-color: stencilColor("button--light-backgroundColor");
+
+    &:hover,
+    &:focus {
+        color: stencilColor("button--primary-colorHover");
+        background-color: stencilColor("button--light-backgroundColorHover");
+        border-color: stencilColor("button--light-backgroundColorHover");
+    }
+
+    &:active {
+        color: stencilColor("button--primary-colorActive");
+        background-color: stencilColor("button--light-backgroundColorActive");
+        border-color: stencilColor("button--light-backgroundColorActive");
+    }
+}
+
+.button--dark {
+    @include buttonVariant("primary");
+    color: stencilColor("button--primary-color");
+    background-color: stencilColor("button--dark-backgroundColor");
+    border-color: stencilColor("button--dark-backgroundColor");
+
+    &:hover,
+    &:focus {
+        color: stencilColor("button--primary-colorHover");
+        background-color: stencilColor("button--dark-backgroundColorHover");
+        border-color: stencilColor("button--dark-backgroundColorHover");
+    }
+
+    &:active {
+        color: stencilColor("button--primary-colorActive");
+        background-color: stencilColor("button--dark-backgroundColorActive");
+        border-color: stencilColor("button--dark-backgroundColorActive");
+    }
+}
+
+.button--black {
+    @include buttonVariant("primary");
+    color: stencilColor("button--primary-color");
+    background-color: stencilColor("button--black-backgroundColor");
+    border-color: stencilColor("button--black-backgroundColor");
+
+    &:hover,
+    &:focus {
+        color: stencilColor("button--primary-colorHover");
+        background-color: stencilColor("button--black-backgroundColorHover");
+        border-color: stencilColor("button--black-backgroundColorHover");
+    }
+
+    &:active {
+        color: stencilColor("button--primary-colorActive");
+        background-color: stencilColor("button--black-backgroundColorActive");
+        border-color: stencilColor("button--black-backgroundColorActive");
+    }
+}
+
+.button--outline {
+    color: stencilColor("button--outline-color");
+    background-color: transparent;
+    border-color: stencilColor("button--outline-borderColor");
+
+    &:hover,
+    &:focus {
+        color: stencilColor("button--outline-colorHover");
+        background-color: transparent;
+        border-color: stencilColor("button--outline-borderColorHover");
+    }
+
+    &:active {
+        color: stencilColor("button--outline-colorActive");
+        background-color: transparent;
+        border-color: stencilColor("button--outline-borderColorActive");
+    }
+}
+
+.button--plain {
+    color: $color-textLink;
+    background-color: transparent;
+    border-color: transparent;
+
+    &:hover,
+    &:focus {
+        //color: $color-textLink-hover;
+        background-color: transparent;
+        border-color: transparent;
+    }
+
+    &:active {
+        color: $color-textLink-active;
+        background-color: transparent;
+        border-color: transparent;
+    }
+}
+
+.button--link {
+    color: $color-textLink;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    background-color: transparent;
+    border-color: transparent;
+    border: 0;
+
+    &:hover,
+    &:focus {
+        //color: $color-textLink-hover;
+        background-color: transparent;
+        border-color: transparent;
+    }
+
+    &:active {
+        color: $color-textLink-active;
+        background-color: transparent;
+        border-color: transparent;
+    }
+}
+
+.button--block {
+    display: block;
+}
+
+.button--outstock {
+    background-color: color("greys", "light");
+    &:hover,
+    &:focus {
+        background-color: color("greys", "dark");
+    }
+}
+
+
+.form-increment {
+    border: 0;
+
+    .button[data-action=dec],
+    .button[data-action=inc] {
+        border: 0;
+        height: 45px;
+        background-color: $color-greyLightest;
+
+        &:hover,
+        &:active {
+            background-color: $color-greyLighter;
+        }
+        &:focus {
+            outline-offset: -($outline-width) !important;
+        }
+    }
+    .button[data-action=dec] {
+        border-top-left-radius: $global-radius;
+        border-bottom-left-radius: $global-radius;
+    }
+    .button[data-action=inc] {
+        border-top-right-radius: $global-radius;
+        border-bottom-right-radius: $global-radius;
+    }
+    .form-input--incrementTotal {
+        width: 40px;
+        padding-left: 0;
+        padding-right: 0;
+        border-top: 1px solid $color-greyLightest;
+        border-bottom: 1px solid $color-greyLightest;
+        border-radius: 0;
+        outline-offset: -($outline-width) !important;
+    }
+}
+
+.sticky-header-loaded {
+    &.show {
+        position: fixed;
+        top: 0;
+    }
+}
+
+.alertBox-message {
+    p:last-child {
+        margin-bottom: 0;
+    }
+}
+
+.beautify__spacer {
+    border: 0;
+    margin: 0;
+    @media (max-width: screenSize("medium") - 1px) {
+        padding-bottom: spacing("double");
+    }
+    @include breakpoint("medium") {
+        padding-bottom: spacing("single") * 3;
+    }
+}
+
+.form-minMaxRow {
+    display: flex;
+    margin: 0;
+    
+    .form-field {
+        padding: 0;
+    }
+
+    .form-field--input {
+        display: flex;
+        align-items: center;
+        border: 1px solid $input-border-color;
+        border-radius: $input-border-radius;
+        padding: 0 spacing("third");
+        margin-right: spacing("half");
+
+        .form-input {
+            border: 0;
+            padding: 0;
+            display: inline-block;
+            text-align: center;
+        }
+    }
+}
+
+.form-label {
+    ._required {
+        color: color("error");
+        font-size: inherit;
+        margin-left: 0;
+    }
+}
+
+.form-field--date {
+    .form-row--third {
+        .form-field {
+            width: 33.3333%;
+        }
+        .form-select {
+            padding-right: spacing("single") + spacing("half");
+        }
+    }
+}
+
+.jstree {
+    font-size: fontSize("smaller");
+}

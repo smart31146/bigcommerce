@@ -1,0 +1,33 @@
+{{!--
+Arguments:
+    - categories (array)
+    - limit (number)
+    - style (string)
+--}}
+<h2 class="papathemes-categoriesGrid-heading {{#if style}}papathemes-categoriesGrid-heading--{{style}}{{/if}}"><span>{{lang 'papathemes.categories_grid.heading'}}</span></h2>
+<section class="papathemes-categoriesGrid-section {{#if style}}papathemes-categoriesGrid-section--{{style}}{{/if}}">
+    <ul class="papathemes-categoriesGrid">
+        {{#each (limit categories limit)}}
+        <li class="papathemes-categoriesGrid-item">
+            <article class="papathemes-categoriesGrid-card">
+                {{#if image}}
+                <figure class="papathemes-categoriesGrid-figure">
+                    <a href="{{url}}"><img class="papathemes-categoriesGrid-image" src="{{getImage image 'category_card_size'}}" alt="{{name}}" /></a>
+                    <figcaption>
+                        <div class="figcaption-body"></div>
+                    </figcaption>
+                </figure>
+                {{/if}}
+                <div class="papathemes-categoriesGrid-body">
+                    <h4 class="papathemes-categoriesGrid-name">
+                        {{name}}
+                    </h4>
+                    <div class="papathemes-categoriesGrid-productsCount">
+                        {{lang 'papathemes.categories_grid.products_count' count=count}}
+                    </div>
+                </div>
+            </article>
+        </li>
+        {{/each}}
+    </ul>
+</section>

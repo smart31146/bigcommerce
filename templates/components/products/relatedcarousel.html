@@ -1,0 +1,103 @@
+
+<section class="productCarousel productCarousel--maxCol{{ columns }} productOptionBox"
+{{#if settings.data_tag_enabled}} data-list-name="{{list}}"{{/if}}>
+    {{#each products}}
+        {{#if @index '==' 0}}
+            <strong><label class="product-variation-label-global">Product Options: </label></strong>
+            <div data-product-slide class="productCarousel-slide select-box">
+                <div class="product-container">
+                    {{> components/products/relatedcard settings=../settings theme_settings=../theme_settings customer=../customer event="list" position=(add @index 1)}}
+                    <div class="select-down-arrow">
+                        <i class="fa fa-chevron-down down-arrow"></i>
+                    </div>
+                </div>
+             </div>             
+        {{/if}}
+    {{/each}}
+    
+    {{#if products.length '>=' 1}}
+        <div class="dropdown-box-container">
+            {{#each products}}
+                {{#if @index '>=' 0}}
+                    <div data-product-slide class="productCarousel-slide dropdown-box">
+                        <div class="product-container">
+                            {{> components/products/relatedcard settings=../settings theme_settings=../theme_settings customer=../customer event="list" position=(add @index 1)}}
+                        </div>
+                    </div>             
+                {{/if}}
+            {{/each}}
+        </div>
+    {{/if}}
+{{inject "MyProduct" products}}
+</section>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type='text/javascript'>
+function assignCustomField(root, index, array) {
+    var Cfields=root.custom_fields;
+    
+    var a=[];
+        for(var opt in Cfields)
+        {
+            if(Cfields[opt].name.indexOf("SKU Option") !== -1)
+            {
+                isRelatedCustomAvailable=true;
+                a[opt]=Cfields[opt];
+            }
+            
+        }
+        a['p_id']=root.id;
+        a['price']=root.price.without_tax.formatted;
+        customOption.fields.push(a);
+
+}
+function showMatchOptions(proId)
+{ 
+    if(proId!=undefined && proId!="")
+    {
+        //var txt="<span>Products Options : </span>";
+        var relatedProductPrice="";
+        var options=customOption.fields;
+        if(options!=undefined || options!=null)
+        {
+            for(var pro in options)
+            {
+                if(proId==options[pro].p_id)
+                {
+                    relatedProductPrice=options[pro].price;
+                    for(var a in options[pro])
+                    {
+                        if(a<=options[pro].length)
+                        { 
+                            txt+="<span> "+options[pro][a].value+"</span> &nbsp;";
+                            if(a<options[pro].length-1){ txt+="|";}
+                        }
+                    }
+                }
+            }
+
+        }else{
+            txt="";
+        }
+        //$(".product-variation-label-global").html(txt);
+        //$(".price.price--withoutTax").html(relatedProductPrice);
+    }
+}
+    var productRelatedproduct = JSON.parse({{jsContext}});  
+     productRelatedproduct = productRelatedproduct.MyProduct;
+    if(productRelatedproduct!="")
+    {
+        productRelatedproduct.forEach(assignCustomField);
+        $(document).on("mouseover",".productView-related figure.card-figure a",function(e){
+            e.stopPropagation();
+            var productId=$(this).attr("data-entity-id");
+                showMatchOptions(productId);
+        });
+    }
+    if(isRelatedCustomAvailable)
+        {
+            $(".productView-related").css("display","block");
+        }else{
+            $(".productView-related").css("display","none");
+        }
+</script>

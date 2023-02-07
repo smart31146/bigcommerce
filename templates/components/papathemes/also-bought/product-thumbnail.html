@@ -1,0 +1,5 @@
+{{#if product.can_purchase}}
+<div class="productView-alsoBought-item-image">
+    <a class="productView-alsoBought-thumbnail-label" href="{{product.url}}" target="_blank"><img class="lazyload" src="{{cdn 'img/loading.svg'}}" data-src="{{getImage product.main_image 'alsobought_thumbnail_size' (cdn theme_settings.default_image_product)}}" alt="{{product.main_image.alt}}" title="{{product.main_image.alt}}"></a>
+</div>
+{{/if}}

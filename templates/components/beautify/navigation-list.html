@@ -1,0 +1,72 @@
+{{#if children}}
+<a class="navPages-action-toggle" href="#"
+    data-collapsible="navPages-{{#if page_type '==' 'page'}}page-{{getVar 'navWebPageCount'}}{{/if}}{{id}}{{idSuffix}}">
+    <span class="_more">{{lang 'common.nav_more'}} <svg class="icon"><use xlink:href="#icon-add"></use></svg></span>
+    <span class="_less">{{lang 'common.nav_less'}} <svg class="icon"><use xlink:href="#icon-remove"></use></svg></span>
+</a>
+<a class="navPages-action has-subMenu {{#if menu_type '==' 'vertical'}}navPages-action--vertical{{/if}}" href="{{url}}"
+    href="{{url}}"
+    {{#if menu_type '!=' 'vertical'}}data-instantload{{/if}}
+    {{#if id '==' category.id}}data-current-category{{/if}}
+>{{name}}
+<i class="fa fa-angle-down" aria-hidden="true"></i>
+</a>
+<!-- <a class="navPages-action-toggle-desktop" href="#" data-collapsible="navPages-{{#if page_type '==' 'page'}}page-{{getVar 'navWebPageCount'}}{{/if}}{{id}}{{idSuffix}}" title="{{lang 'common.nav_more'}}"><svg class="icon"><use xlink:href="#icon-caret-down"></use></svg></a> -->
+<div class="navPage-subMenu
+        {{#if menu_type '==' 'vertical'}}
+            navPage-subMenu--vertical
+        {{else if menu_type '==' 'standard'}}
+            navPage-subMenu--standard
+        {{/if}}
+    " id="navPages-{{#if page_type '==' 'page'}}page-{{getVar 'navWebPageCount'}}{{/if}}{{id}}{{idSuffix}}">
+    <ul class="navPage-subMenu-list">
+        {{#each children}}
+            <!-- {{incrementVar 'navWebPageCount'}} -->
+            <li class="navPage-subMenu-item"  {{#if children}}data-attr-child-length="{{children.length}}"{{else}}data-attr-child-length="0"{{/if}}>
+                {{#if children}}
+                    <a class="navPages-action-toggle" href="#"
+                        data-collapsible="navPages-{{#if ../../page_type '==' 'page'}}page-{{getVar 'navWebPageCount'}}{{/if}}{{id}}{{../../idSuffix}}">
+                        <span class="_more">{{lang 'common.nav_more'}} <svg class="icon"><use xlink:href="#icon-add"></use></svg></span>
+                        <span class="_less">{{lang 'common.nav_less'}} <svg class="icon"><use xlink:href="#icon-remove"></use></svg></span>
+                    </a>
+                    <a
+                        class="navPage-subMenu-action has-subMenu"
+                        href="{{url}}"
+                        {{#if ../../menu_type '!=' 'vertical'}}data-instantload{{/if}}
+                        {{#if id '==' ../../category.id}}data-current-category{{/if}}
+                    >{{name}}
+                    <!-- <i class="fa fa-angle-down" aria-hidden="true"></i> -->
+                </a>
+                    <!-- <a class="navPages-action-toggle-desktop" href="#" data-collapsible="navPages-{{#if ../../page_type '==' 'page'}}page-{{getVar 'navWebPageCount'}}{{/if}}{{id}}{{../../idSuffix}}" title="{{lang 'common.nav_more'}}"><svg class="icon"><use xlink:href="#icon-caret-down"></use></svg></a> -->
+                    <ul class="navPage-childList" id="navPages-{{#if ../../page_type '==' 'page'}}page-{{getVar 'navWebPageCount'}}{{/if}}{{id}}{{../../idSuffix}}">
+                        {{#each children}}
+                            <!-- {{incrementVar 'navWebPageCount'}} -->
+                            <li class="navPage-childList-item">
+                                {{> components/beautify/navigation-list-child 
+                                        category_id=../../../category.id 
+                                        idSuffix=../../../idSuffix 
+                                        theme_settings=../../../theme_settings
+                                        menu_type=../../../menu_type
+                                        page_type=../../../page_type}}
+                            </li>
+                        {{/each}}
+                        {{!--
+                        <!--
+                        {{#if ../../menu_type '==' 'mega'}}
+                            <li class="navPage-childList-item">
+                                <a class="navPage-childList-action" href="{{url}}" data-instantload>{{lang 'common.view_all'}}</a>
+                            </li>
+                        {{/if}}
+                        -->
+                        --}}
+                    </ul>
+                {{else}}
+                    <a class="navPage-subMenu-action" href="{{url}}" data-instantload {{#if id '==' ../../category.id}}data-current-category{{/if}}>{{name}}</a>
+                {{/if}}
+            </li>
+        {{/each}}
+    </ul>
+</div>
+{{else}}
+<a class="navPages-action" href="{{url}}" data-instantload {{#if id '==' category.id}}data-current-category{{/if}}>{{name}}</a>
+{{/if}}
